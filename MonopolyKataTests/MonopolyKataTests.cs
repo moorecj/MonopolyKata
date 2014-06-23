@@ -35,13 +35,10 @@ namespace MonopolyKataTests
 
             List<Player> players = new List<Player>();
 
-            for (int i = 0; i <= 9; ++i )
+            for (int i = 0; i < 9; ++i )
             {
                 players.Add(new Player());
             }
-
-
-            Monopoly game = new Monopoly(players);
 
             var exception = Assert.Throws<TooManyPlayersException>(() => new Monopoly(players));
 
