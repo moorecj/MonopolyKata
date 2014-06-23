@@ -57,6 +57,33 @@ namespace MonopolyKataTests
             Assert.That(exception.Message, Is.EqualTo("Too few players: 0"));
 
         }
+
+        [Test]
+        public void RandomPlayOrderShouldBeGenerated_In100GamesBothPlayOrdersShouldAppear()
+        {
+            Player Horse = new Player();
+            Player Car = new Player();
+
+            List<Player> players = new List<Player>();
+
+            players.Add(Horse);
+            players.Add(Car);
+
+            List<Monopoly> ListOfMonopolyGames = new List<Monopoly>();
+
+            for( int i = 0; i < 100; ++i )
+            {
+                ListOfMonopolyGames.Add(new Monopoly(players));
+            }
+
+            var differentOrderGames = from g in ListOfMonopolyGames
+                                      where g.GetPlayOrder()[0] != Car
+                                      select g;
+
+            Assert.That(differentOrderGames.Count(), Is.GreaterThan(0));
+
+
+        }
     }
 
 

@@ -12,6 +12,8 @@ namespace MonopolyKata
         const int  MAX_NUMBER_OF_PLAYERS = 8;
         const int  MIN_NUMBER_OF_PLAYERS = 2;
 
+        private List<Player> playOrder;
+
         public Monopoly( List<Player> players)
         {
 
@@ -24,9 +26,16 @@ namespace MonopolyKata
             {
                 throw new TooFewPlayersException(String.Format("Too few players: {0}", players.Count()));
             }
-
+            
 
         }
+
+        public List<Player>GetPlayOrder()
+        {
+            return playOrder;
+        }
+
+        
 
     }
 }
