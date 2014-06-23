@@ -45,6 +45,18 @@ namespace MonopolyKataTests
             Assert.That(exception.Message, Is.EqualTo("Too many players: 9"));
 
         }
+
+        [Test]
+        public void AGameWithLessThen2PlayersShouldFail()
+        {
+
+            List<Player> players = new List<Player>();
+
+            var exception = Assert.Throws<TooManyPlayersException>(() => new Monopoly(players));
+
+            Assert.That(exception.Message, Is.EqualTo("Too few players: 0"));
+
+        }
     }
 
 
