@@ -52,7 +52,7 @@ namespace MonopolyKataTests
 
             List<Player> players = new List<Player>();
 
-            var exception = Assert.Throws<TooManyPlayersException>(() => new Monopoly(players));
+            var exception = Assert.Throws<TooFewPlayersException>(() => new Monopoly(players));
 
             Assert.That(exception.Message, Is.EqualTo("Too few players: 0"));
 
