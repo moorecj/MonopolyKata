@@ -61,13 +61,19 @@ namespace MonopolyKataTests
         [Test]
         public void RandomPlayOrderShouldBeGenerated_In100GamesBothPlayOrdersShouldAppear()
         {
-            Player Horse = new Player();
-            Player Car = new Player();
+            Player Horse = new Player("Horse");
+            Player Car = new Player("Car");
+            Player Hat = new Player("Hat");
+            Player Shoe = new Player("Shoe");
 
             List<Player> players = new List<Player>();
+            List<Player> reverse = new List<Player>();
 
             players.Add(Horse);
             players.Add(Car);
+
+            reverse.Add(Car);
+            reverse.Add(Horse);
 
             List<Monopoly> ListOfMonopolyGames = new List<Monopoly>();
 
@@ -76,11 +82,14 @@ namespace MonopolyKataTests
                 ListOfMonopolyGames.Add(new Monopoly(players));
             }
 
-            var differentOrderGames = from g in ListOfMonopolyGames
-                                      where g.GetPlayOrder()[0] != Car
-                                      select g;
+            var different = from g in ListOfMonopolyGames
+                            where g.GetPlayOrder()[0] == Car
+                            select g;
+            var diffentCount =  different.Count();
 
-            Assert.That(differentOrderGames.Count(), Is.GreaterThan(0));
+            Assert.That(diffentCount, Is.GreaterThan(2));
+
+            
 
 
         }

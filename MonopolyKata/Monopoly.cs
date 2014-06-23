@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MonopolyKata.Extensions;
 
 namespace MonopolyKata
 {
@@ -22,11 +23,15 @@ namespace MonopolyKata
                 throw new TooManyPlayersException(String.Format("Too many players: {0}", players.Count()));
             }
 
-            if( players.Count() < MIN_NUMBER_OF_PLAYERS)
+            if (players.Count() < MIN_NUMBER_OF_PLAYERS)
             {
                 throw new TooFewPlayersException(String.Format("Too few players: {0}", players.Count()));
             }
-            
+
+            playOrder = players.DeepClone();
+
+            playOrder.Shuffle();
+
 
         }
 
