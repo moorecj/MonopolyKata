@@ -31,6 +31,11 @@ namespace MonopolyKata
             return location;
         }
 
+        public void MoveSpaces( int numberOfSpaces )
+        {
+            location += numberOfSpaces;
+        }
+
         public bool Equals(Player other)
         {
             if (other == null)

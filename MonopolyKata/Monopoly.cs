@@ -15,6 +15,8 @@ namespace MonopolyKata
 
         private List<Player> playOrder;
 
+        private Player currentTurnPlayer;
+
         public Monopoly( List<Player> players)
         {
 
@@ -32,17 +34,19 @@ namespace MonopolyKata
 
             playOrder.Shuffle();
 
+            currentTurnPlayer = playOrder[0];
+
 
         }
 
         public void Move(int numberOfSpaces)
         {
-
+            currentTurnPlayer.MoveSpaces(numberOfSpaces);  
         }
 
         public int GetLocation(int playerNumber)
         {
-            return playOrder[playerNumber].GetLocation();
+            return playOrder[playerNumber-1].GetLocation();
         }
 
         public List<Player>GetPlayOrder()
