@@ -205,7 +205,7 @@ namespace MonopolyKataTests
 
             Player horse = new Player("Horse");
 
-            Assert.That(horse.GetBalence(), Is.EqualTo(0));
+            Assert.That(horse.Balence, Is.EqualTo(0));
 
 
         }
@@ -226,12 +226,10 @@ namespace MonopolyKataTests
 
             game.MoveTheCurrentTurnPlayer(40);
 
-            Assert.That(game.GetPlayOrder()[game.GetCurrentTurnPlayer()].GetBalence(), Is.EqualTo(200));
+            Assert.That(game.GetPlayOrder()[game.GetCurrentTurnPlayer()].Balence, Is.EqualTo(200));
 
 
         }
-
-
 
 
     }

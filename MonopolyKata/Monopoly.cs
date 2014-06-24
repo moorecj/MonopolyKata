@@ -23,14 +23,11 @@ namespace MonopolyKata
 
             CheckForTooFewPlayers(players);
 
-            playOrder = players.DeepClone();
-
-            playOrder.Shuffle();
+            playOrder = players.Shuffle();
 
             currentTurnPlayer = playOrder[0];
 
             round = 1;
-
 
         }
 
@@ -75,12 +72,12 @@ namespace MonopolyKata
 
         public int GetLocation(int playerNumber)
         {
-            return playOrder[playerNumber-1].GetLocation();
+            return playOrder[playerNumber - 1].Location;
         }
 
         public int GetLocation(Player player)
         {
-            return playOrder.Find(p => p == player).GetLocation();
+            return playOrder.Find(p => p == player).Location;
         }
 
 

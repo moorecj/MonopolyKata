@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="BoardSpace.cs" />
     <Compile Include="ExtensionsMethods.cs" />
+    <Compile Include="GoSpace.cs" />
     <Compile Include="TooFewPlayersException.cs" />
     <Compile Include="Monopoly.cs" />
     <Compile Include="Player.cs" />

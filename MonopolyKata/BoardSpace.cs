@@ -14,8 +14,11 @@ namespace MonopolyKata
             
         }
 
+        abstract public void LandOn(Player player);
 
     }
+
+    
 
 
 }
