@@ -12,6 +12,7 @@ namespace MonopolyKata
         const int NUMBER_OF_LOCATIONS_ON_BOARD = 40;
         private string name;
         int location;
+        int balence;
 
         public Player()
         {
@@ -22,6 +23,7 @@ namespace MonopolyKata
         {
             this.name = name;
             location = 0;
+            balence = 0;
         }
 
         public int GetLocation()
@@ -37,6 +39,21 @@ namespace MonopolyKata
             {
                 location -= NUMBER_OF_LOCATIONS_ON_BOARD;    
             }
+        }
+
+        public int GetBalence()
+        {
+            return balence;
+        }
+
+        public void AddToBalence(int fundsToAdd)
+        {
+            
+        }
+
+        public void SubtractFromBalence(int fundsToSubtract)
+        {
+
         }
 
         public bool Equals(Player other)

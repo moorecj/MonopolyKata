@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Board.cs" />
+    <Compile Include="BoardSpace.cs" />
     <Compile Include="ExtensionsMethods.cs" />
     <Compile Include="TooFewPlayersException.cs" />
     <Compile Include="Monopoly.cs" />

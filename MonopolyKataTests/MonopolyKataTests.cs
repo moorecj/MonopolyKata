@@ -32,7 +32,6 @@ namespace MonopolyKataTests
         public void AGameWithMoreThen8PlayersShouldFail()
         {
             
-
             List<Player> players = new List<Player>();
 
             for (int i = 0; i < 9; ++i )
@@ -197,12 +196,40 @@ namespace MonopolyKataTests
                 
             }
 
-           
 
         }
 
+        [Test]
+        public void APlayerShouldHaveAStartingBalenceOfZero()
+        {
+
+            Player horse = new Player("Horse");
+
+            Assert.That(horse.GetBalence(), Is.EqualTo(0));
 
 
+        }
+
+        [Test]
+        public void APlayerWhoLandsOnGo_ShouldIncreaseTheirFundsBy200()
+        {
+
+            Player Horse = new Player("Horse");
+            Player Car = new Player("Car");
+
+            List<Player> players = new List<Player>();
+
+            players.Add(Horse);
+            players.Add(Car);
+
+            Monopoly game = new Monopoly(players);
+
+            game.MoveTheCurrentTurnPlayer(40);
+
+            Assert.That(game.GetPlayOrder()[game.GetCurrentTurnPlayer()].GetBalence(), Is.EqualTo(200));
+
+
+        }
 
 
 

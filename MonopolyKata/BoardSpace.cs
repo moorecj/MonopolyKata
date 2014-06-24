@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace MonopolyKata
 {
-    public class Board
+    abstract public class BoardSpace
     {
-        public Board()
+        public BoardSpace()
         {
+
             
         }
+
+
     }
+
+
 }
