@@ -89,7 +89,7 @@ namespace MonopolyKataTests
         }
 
         [Test]
-        public void APlayerRoll_ShouldIncreaseThereLocationByTheRoll()
+        public void APlayerRoll_ShouldIncreaseTheirLocationByTheRoll()
         {
             
             Player Horse = new Player("Horse");
@@ -133,7 +133,7 @@ namespace MonopolyKataTests
         }
 
         [Test]
-        public void InAGameOfTwentyRounds_TheOrderOfPlaShouldRemainTheSame()
+        public void After20RoundsOfMovingOneSpace_EachPlayerShouldBeOnLocation20()
         {
 
             Player Horse = new Player("Horse");
@@ -147,6 +147,8 @@ namespace MonopolyKataTests
 
             Monopoly game = new Monopoly(players);
 
+            int initialRound = game.GetRound();
+
             for (int i = 0; i < 20; ++i)
             {
                 game.MoveTheCurrentTurnPlayer(1);
@@ -157,7 +159,11 @@ namespace MonopolyKataTests
 
            }
 
-            Assert.That(game.GetRound(), Is.EqualTo(20));
+            int endRound = game.GetRound();
+
+            Assert.That(endRound-initialRound, Is.EqualTo(20));
+            Assert.That(game.GetLocation(Horse), Is.EqualTo(20));
+            Assert.That(game.GetLocation(Car), Is.EqualTo(20));
 
         }
 

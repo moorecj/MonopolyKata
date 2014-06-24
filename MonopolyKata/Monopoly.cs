@@ -65,6 +65,7 @@ namespace MonopolyKata
             if (nextPlayerIndex >= playOrder.Count())
             {
                 nextPlayerIndex = 0;
+                ++round;
             }
 
             currentTurnPlayer = playOrder[nextPlayerIndex];
@@ -79,6 +80,13 @@ namespace MonopolyKata
         {
             return playOrder[playerNumber-1].GetLocation();
         }
+
+        public int GetLocation(Player player)
+        {
+            return playOrder.Find(p => p == player).GetLocation();
+        }
+
+
 
         public List<Player>GetPlayOrder()
         {
