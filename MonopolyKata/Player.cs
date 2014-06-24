@@ -9,7 +9,7 @@ namespace MonopolyKata
     [Serializable]   
     public class Player : IEquatable<Player>
     {
-
+        const int NUMBER_OF_LOCATIONS_ON_BOARD = 40;
         private string name;
         int location;
 
@@ -20,10 +20,8 @@ namespace MonopolyKata
 
         public Player(string name)
         {
-
             this.name = name;
             location = 0;
-
         }
 
         public int GetLocation()
@@ -34,6 +32,11 @@ namespace MonopolyKata
         public void MoveSpaces( int numberOfSpaces )
         {
             location += numberOfSpaces;
+
+            if (location > NUMBER_OF_LOCATIONS_ON_BOARD)
+            {
+                location -= NUMBER_OF_LOCATIONS_ON_BOARD;    
+            }
         }
 
         public bool Equals(Player other)

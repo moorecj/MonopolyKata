@@ -103,12 +103,68 @@ namespace MonopolyKataTests
 
             Monopoly game = new Monopoly(players);
 
-            game.Move(7);
+            game.MoveTheCurrentTurnPlayer(7);
 
             Assert.That(game.GetLocation(1), Is.EqualTo(7));
 
+        }
+
+        [Test]
+        public void APlayerRollThatGoesBeyondTheLastSpaceOnTheBoard_ShouldLoopAroundToTheBeginingOfBoard()
+        {
+
+            Player Horse = new Player("Horse");
+            Player Car = new Player("Car");
+
+            List<Player> players = new List<Player>();
+
+            players.Add(Horse);
+            players.Add(Car);
+
+
+            Monopoly game = new Monopoly(players);
+
+            game.MoveTheCurrentTurnPlayer(39);
+
+            game.MoveTheCurrentTurnPlayer(6);
+
+            Assert.That(game.GetLocation(1), Is.EqualTo(5));
 
         }
+
+        [Test]
+        public void InAGameOfTwentyRounds_TheOrderOfPlaShouldRemainTheSame()
+        {
+
+            Player Horse = new Player("Horse");
+            Player Car = new Player("Car");
+
+            List<Player> players = new List<Player>();
+
+            players.Add(Horse);
+            players.Add(Car);
+
+
+            Monopoly game = new Monopoly(players);
+
+            for (int i = 0; i < 20; ++i)
+            {
+                game.MoveTheCurrentTurnPlayer(1);
+                game.GoToNextTurn();
+
+                game.MoveTheCurrentTurnPlayer(1);
+                game.GoToNextTurn();
+
+           }
+
+            Assert.That(game.GetRound(), Is.EqualTo(20));
+
+        }
+
+
+
+
+
     }
 
 
