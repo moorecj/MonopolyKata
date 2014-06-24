@@ -11,17 +11,24 @@ namespace MonopolyKata
     {
 
         private string name;
+        int location;
 
         public Player()
         {
-
+            location = 0;
         }
 
         public Player(string name)
         {
 
             this.name = name;
+            location = 0;
 
+        }
+
+        public int GetLocation()
+        {
+            return location;
         }
 
         public bool Equals(Player other)

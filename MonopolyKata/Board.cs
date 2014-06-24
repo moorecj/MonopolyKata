@@ -8,5 +8,9 @@ namespace MonopolyKata
 {
     public class Board
     {
+        public Board()
+        {
+            
+        }
     }
 }

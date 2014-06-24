@@ -63,17 +63,13 @@ namespace MonopolyKataTests
         {
             Player Horse = new Player("Horse");
             Player Car = new Player("Car");
-            Player Hat = new Player("Hat");
-            Player Shoe = new Player("Shoe");
 
             List<Player> players = new List<Player>();
-            List<Player> reverse = new List<Player>();
 
             players.Add(Horse);
             players.Add(Car);
 
-            reverse.Add(Car);
-            reverse.Add(Horse);
+
 
             List<Monopoly> ListOfMonopolyGames = new List<Monopoly>();
 
@@ -82,14 +78,34 @@ namespace MonopolyKataTests
                 ListOfMonopolyGames.Add(new Monopoly(players));
             }
 
-            var different = from g in ListOfMonopolyGames
-                            where g.GetPlayOrder()[0] == Car
-                            select g;
-            var diffentCount =  different.Count();
+            var differentOrder = from g in ListOfMonopolyGames
+                                 where g.GetPlayOrder()[0] == Car
+                                 select g;
+
+            var diffentCount = differentOrder.Count();
 
             Assert.That(diffentCount, Is.GreaterThan(2));
 
+        }
+
+        [Test]
+        public void APlayerRoll_ShouldIncreaseThereLocationByTheRoll()
+        {
             
+            Player Horse = new Player("Horse");
+            Player Car = new Player("Car");
+
+            List<Player> players = new List<Player>();
+
+            players.Add(Horse);
+            players.Add(Car);
+
+
+            Monopoly game = new Monopoly(players);
+
+            game.Move(7);
+
+            Assert.That(game.GetLocation(1), Is.EqualTo(7));
 
 
         }

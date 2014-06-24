@@ -35,6 +35,16 @@ namespace MonopolyKata
 
         }
 
+        public void Move(int numberOfSpaces)
+        {
+
+        }
+
+        public int GetLocation(int playerNumber)
+        {
+            return playOrder[playerNumber].GetLocation();
+        }
+
         public List<Player>GetPlayOrder()
         {
             return playOrder;
