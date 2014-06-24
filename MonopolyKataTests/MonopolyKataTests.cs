@@ -167,6 +167,42 @@ namespace MonopolyKataTests
 
         }
 
+        [Test]
+        public void After20RoundsOfMoving_ThePlayOrderShouldNeverChange()
+        {
+
+            Player Horse = new Player("Horse");
+            Player Car = new Player("Car");
+
+            List<Player> players = new List<Player>();
+
+            players.Add(Horse);
+            players.Add(Car);
+
+
+            Monopoly game = new Monopoly(players);
+
+            Player player1 = game.GetPlayOrder()[0];
+            Player player2 = game.GetPlayOrder()[1];
+
+            for (int i = 0; i < 20; ++i)
+            {
+                Assert.That(player1, Is.EqualTo(game.GetPlayOrder()[game.GetCurrentTurnPlayer()]));
+                game.MoveTheCurrentTurnPlayer(1);
+                game.GoToNextTurn();
+
+                Assert.That(player2, Is.EqualTo(game.GetPlayOrder()[game.GetCurrentTurnPlayer()]));
+                game.MoveTheCurrentTurnPlayer(1);
+                game.GoToNextTurn();
+                
+            }
+
+           
+
+        }
+
+
+
 
 
 

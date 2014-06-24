@@ -12,11 +12,8 @@ namespace MonopolyKata
 
         private const int  MAX_NUMBER_OF_PLAYERS = 8;
         private const int  MIN_NUMBER_OF_PLAYERS = 2;
-
         private int round;
-
         private List<Player> playOrder;
-
         private Player currentTurnPlayer;
 
         public Monopoly( List<Player> players)
