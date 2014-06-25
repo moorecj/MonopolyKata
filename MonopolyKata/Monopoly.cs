@@ -13,25 +13,22 @@ namespace MonopolyKata
         private const int  MAX_NUMBER_OF_PLAYERS = 8;
         private const int  MIN_NUMBER_OF_PLAYERS = 2;
         private int round;
-        private List<Player> playOrder;
-        private Player currentTurnPlayer;
+        private List<MonopolyPlayer> playOrder;
+        private MonopolyPlayer currentTurnPlayer;
 
-        public Monopoly( List<Player> players)
+        public Monopoly( List<MonopolyPlayer> players)
         {
 
             CheckForTooManyPlayers(players);
-
             CheckForTooFewPlayers(players);
 
             playOrder = players.Shuffle();
-
             currentTurnPlayer = playOrder[0];
-
             round = 1;
 
         }
 
-        private static void CheckForTooFewPlayers(List<Player> players)
+        private static void CheckForTooFewPlayers(List<MonopolyPlayer> players)
         {
             if (players.Count() < MIN_NUMBER_OF_PLAYERS)
             {
@@ -39,7 +36,7 @@ namespace MonopolyKata
             }
         }
 
-        private static void CheckForTooManyPlayers(List<Player> players)
+        private static void CheckForTooManyPlayers(List<MonopolyPlayer> players)
         {
             if (players.Count() > MAX_NUMBER_OF_PLAYERS)
             {
@@ -49,7 +46,7 @@ namespace MonopolyKata
 
         public void MoveTheCurrentTurnPlayer(int numberOfSpaces)
         {
-            currentTurnPlayer.MoveSpaces(numberOfSpaces);  
+            currentTurnPlayer.Move(numberOfSpaces);  
         }
 
         public void GoToNextTurn()
@@ -65,9 +62,9 @@ namespace MonopolyKata
             currentTurnPlayer = playOrder[nextPlayerIndex];
         }
 
-        public int GetCurrentTurnPlayer()
+        public MonopolyPlayer GetCurrentTurnPlayer()
         {
-            return playOrder.FindIndex(p => p == currentTurnPlayer);
+            return currentTurnPlayer;
         }
 
         public int GetLocation(int playerNumber)
@@ -75,21 +72,9 @@ namespace MonopolyKata
             return playOrder[playerNumber - 1].Location;
         }
 
-        public int GetLocation(Player player)
+        public int GetLocation(MonopolyPlayer player)
         {
             return playOrder.Find(p => p == player).Location;
-        }
-
-
-
-        public List<Player>GetPlayOrder()
-        {
-            return playOrder;
-        }
-
-        public int GetRound()
-        {
-            return round;
         }
 
         
