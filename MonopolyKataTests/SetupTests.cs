@@ -57,6 +57,44 @@ namespace MonopolyKataTests
 
         }
 
+        [Test]
+        public void GivenAValidPlayerTheSetupShouldTellYouWhoGoesNext()
+        {
+            ISetup setup = new MonopolySetup("Horse", "Car" );
+
+            MonopolyPlayer player1 = setup.WhoGoesFirst();
+
+            MonopolyPlayer player2 = setup.WhoGoesNext(player1);
+
+            Assert.That(player1, Is.Not.Null);
+            Assert.That(player2, Is.Not.Null);
+            Assert.That(player1, Is.Not.EqualTo(player2));
+
+        }
+
+        [Test]
+        public void ForEachSetupRandomPlayOrderShouldBeGenerated_In100GamesBothPlayOrdersShouldAppear()
+        {
+            List<MonopolySetup> ListOfSetups = new List<MonopolySetup>();
+
+            for (int i = 0; i < 100; ++i)
+            {
+                ListOfSetups.Add(new MonopolySetup("Horse", "Car"));
+            }
+
+            var differentOrder = from g in ListOfSetups
+                                 where g.WhoGoesFirst().name.Equals("Car")
+                                 select g;
+
+            var diffentCount = differentOrder.Count();
+
+            Assert.That(diffentCount, Is.GreaterThan(1));
+            Assert.That(diffentCount, Is.LessThan(99));
+
+        }
+
+
+
  
 
 

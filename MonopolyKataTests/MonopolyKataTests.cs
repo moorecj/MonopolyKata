@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MonopolyKata;
 using MonopolyKata.Player;
 using NUnit.Framework;
+using MonopolyKata.Setup;
 
 namespace MonopolyKataTests
 {
@@ -15,38 +16,22 @@ namespace MonopolyKataTests
         [Test]
         public void CanMakeNewMonopolyGameWith2Players()
         {
+            ISetup setup = new MonopolySetup("Horse", "Car");
 
-            Monopoly game = new Monopoly("Player 1", "Player 2");
+            Monopoly game = new Monopoly(setup);
 
             Assert.That(game, Is.Not.Null);
         }
 
 
-        [Test]
-        public void RandomPlayOrderShouldBeGenerated_In100GamesBothPlayOrdersShouldAppear()
-        {
-            List<Monopoly> ListOfMonopolyGames = new List<Monopoly>();
-
-            for( int i = 0; i < 100; ++i )
-            {
-                ListOfMonopolyGames.Add(new Monopoly("Horse","Car"));
-            }
-
-            var differentOrder = from g in ListOfMonopolyGames
-                                 where g.GetCurrentTurnPlayer().name.Equals("Car")
-                                 select g;
-
-            var diffentCount = differentOrder.Count();
-
-            Assert.That(diffentCount, Is.GreaterThan(2));
-
-        }
+ 
 
         [Test]
         public void APlayerRoll_ShouldIncreaseTheirLocationByTheRoll()
         {
 
-            Monopoly game = new Monopoly("Horse", "Car");
+            ISetup setup = new MonopolySetup("Horse", "Car");
+            Monopoly game = new Monopoly(setup);
 
             game.MoveTheCurrentTurnPlayer(7);
 
@@ -58,7 +43,8 @@ namespace MonopolyKataTests
         public void APlayerRollThatGoesBeyondTheLastSpaceOnTheBoard_ShouldLoopAroundToTheBeginingOfBoard()
         {
 
-            Monopoly game = new Monopoly("Horse", "Car");
+            ISetup setup = new MonopolySetup("Horse", "Car");
+            Monopoly game = new Monopoly(setup);
 
             game.MoveTheCurrentTurnPlayer(39);
 
@@ -72,7 +58,8 @@ namespace MonopolyKataTests
         public void After20RoundsOfMovingOneSpace_EachPlayerShouldBeOnLocation20()
         {
 
-            Monopoly game = new Monopoly("Horse", "Car");
+            ISetup setup = new MonopolySetup("Horse", "Car");
+            Monopoly game = new Monopoly(setup);
 
             for (int i = 0; i < 20; ++i)
             {
@@ -84,8 +71,9 @@ namespace MonopolyKataTests
 
            }
 
-            Assert.That(game.GetLocation("Horse"), Is.EqualTo(20));
-            Assert.That(game.GetLocation("Car"), Is.EqualTo(20));
+            Assert.That(game.GetCurrentTurnPlayer().Location, Is.EqualTo(20));
+            game.GoToNextTurn();
+            Assert.That(game.GetCurrentTurnPlayer().Location, Is.EqualTo(20));
 
         }
 
@@ -93,7 +81,8 @@ namespace MonopolyKataTests
         public void After20RoundsOfMoving_ThePlayOrderShouldNeverChange()
         {
 
-            Monopoly game = new Monopoly("Horse", "Car");
+            ISetup setup = new MonopolySetup("Horse", "Car");
+            Monopoly game = new Monopoly(setup);
 
             string player1Name = game.GetCurrentTurnPlayer().name;
             game.MoveTheCurrentTurnPlayer(1);
@@ -132,7 +121,8 @@ namespace MonopolyKataTests
         public void APlayerWhoLandsOnGo_ShouldIncreaseTheirFundsBy200()
         {
 
-            Monopoly game = new Monopoly("Horse", "Car");
+            ISetup setup = new MonopolySetup("Horse", "Car");
+            Monopoly game = new Monopoly(setup);
 
             game.MoveTheCurrentTurnPlayer(40);
 

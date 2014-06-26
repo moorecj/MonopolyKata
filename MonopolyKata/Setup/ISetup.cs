@@ -12,5 +12,6 @@ namespace MonopolyKata
         void CheckForTooFewPlayers(String[] players);
         void CheckForTooManyPlayers(String[] players);
         MonopolyPlayer WhoGoesFirst();
+        MonopolyPlayer WhoGoesNext(MonopolyPlayer player);
     }
 }

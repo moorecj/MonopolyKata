@@ -45,11 +45,11 @@
     <Compile Include="Spaces\BoardSpace.cs" />
     <Compile Include="Shuffler\ExtensionsMethods.cs" />
     <Compile Include="Spaces\GoSpace.cs" />
-    <Compile Include="TooFewPlayersException.cs" />
+    <Compile Include="Setup\TooFewPlayersException.cs" />
     <Compile Include="Monopoly.cs" />
     <Compile Include="Player\MonopolyPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TooManyPlayersException.cs" />
+    <Compile Include="Setup\TooManyPlayersException.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
