@@ -39,7 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Setup\ISetup.cs" />
     <Compile Include="Player\IPlayer.cs" />
+    <Compile Include="Setup\MonopolySetup.cs" />
     <Compile Include="Spaces\BoardSpace.cs" />
     <Compile Include="Shuffler\ExtensionsMethods.cs" />
     <Compile Include="Spaces\GoSpace.cs" />

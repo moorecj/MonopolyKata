@@ -12,23 +12,26 @@ namespace MonopolyKata
 
         private const int  MAX_NUMBER_OF_PLAYERS = 8;
         private const int  MIN_NUMBER_OF_PLAYERS = 2;
-        private int round;
-        private List<MonopolyPlayer> playOrder;
+        private List<MonopolyPlayer> playOrder = new List<MonopolyPlayer>();
         private MonopolyPlayer currentTurnPlayer;
 
-        public Monopoly( List<MonopolyPlayer> players)
+        public Monopoly(params String[] players)
         {
 
             CheckForTooManyPlayers(players);
             CheckForTooFewPlayers(players);
 
-            playOrder = players.Shuffle();
+            foreach(String s in players)
+            {
+                playOrder.Add(new MonopolyPlayer(s));    
+            }
+
+            playOrder = playOrder.Shuffle();
             currentTurnPlayer = playOrder[0];
-            round = 1;
 
         }
 
-        private static void CheckForTooFewPlayers(List<MonopolyPlayer> players)
+        private static void CheckForTooFewPlayers(String[] players)
         {
             if (players.Count() < MIN_NUMBER_OF_PLAYERS)
             {
@@ -36,7 +39,7 @@ namespace MonopolyKata
             }
         }
 
-        private static void CheckForTooManyPlayers(List<MonopolyPlayer> players)
+        private static void CheckForTooManyPlayers(String[] players)
         {
             if (players.Count() > MAX_NUMBER_OF_PLAYERS)
             {
@@ -56,7 +59,6 @@ namespace MonopolyKata
             if (nextPlayerIndex >= playOrder.Count())
             {
                 nextPlayerIndex = 0;
-                ++round;
             }
 
             currentTurnPlayer = playOrder[nextPlayerIndex];
@@ -67,14 +69,9 @@ namespace MonopolyKata
             return currentTurnPlayer;
         }
 
-        public int GetLocation(int playerNumber)
+        public int GetLocation(string  playerName)
         {
-            return playOrder[playerNumber - 1].Location;
-        }
-
-        public int GetLocation(MonopolyPlayer player)
-        {
-            return playOrder.Find(p => p == player).Location;
+            return playOrder.Find(p => p.name.Equals(playerName)).Location;
         }
 
         
