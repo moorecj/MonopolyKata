@@ -15,11 +15,8 @@ namespace MonopolyKata
         private List<MonopolyPlayer> playOrder = new List<MonopolyPlayer>();
         private MonopolyPlayer currentTurnPlayer;
 
-        public Monopoly(params String[] players)
+        public Monopoly( params String[] players )
         {
-
-            CheckForTooManyPlayers(players);
-            CheckForTooFewPlayers(players);
 
             foreach(String s in players)
             {
@@ -29,22 +26,6 @@ namespace MonopolyKata
             playOrder = playOrder.Shuffle();
             currentTurnPlayer = playOrder[0];
 
-        }
-
-        private static void CheckForTooFewPlayers(String[] players)
-        {
-            if (players.Count() < MIN_NUMBER_OF_PLAYERS)
-            {
-                throw new TooFewPlayersException(String.Format("Too few players: {0}", players.Count()));
-            }
-        }
-
-        private static void CheckForTooManyPlayers(String[] players)
-        {
-            if (players.Count() > MAX_NUMBER_OF_PLAYERS)
-            {
-                throw new TooManyPlayersException(String.Format("Too many players: {0}", players.Count()));
-            }
         }
 
         public void MoveTheCurrentTurnPlayer(int numberOfSpaces)
