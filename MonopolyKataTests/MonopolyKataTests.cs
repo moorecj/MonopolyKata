@@ -56,7 +56,7 @@ namespace MonopolyKataTests
 
             ISetup setup = new MonopolySetupFake("Horse", "Car");
             Monopoly game = new Monopoly(setup);
-
+            var startingBalence = game.GetCurrentTurnPlayer().Balence;
 
             for (int i = 0; i < 50; ++i)
             {
@@ -66,7 +66,7 @@ namespace MonopolyKataTests
 
             }
 
-            Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(200));
+            Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(startingBalence+200));
 
         }
 
@@ -77,6 +77,7 @@ namespace MonopolyKataTests
             ISetup setup = new MonopolySetupFake("Horse", "Car");
             Monopoly game = new Monopoly(setup);
 
+            var startingBalence = game.GetCurrentTurnPlayer().Balence;
 
             for (int i = 0; i <= 41 ; ++i)
             {
@@ -86,7 +87,7 @@ namespace MonopolyKataTests
 
             }
 
-            Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(200));
+            Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(startingBalence+ 200));
 
         }
 

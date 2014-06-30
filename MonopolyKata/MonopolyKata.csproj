@@ -39,15 +39,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Board\Board.cs" />
     <Compile Include="Dice\IDice.cs" />
     <Compile Include="Dice\SixSidedDie.cs" />
     <Compile Include="Setup\ISetup.cs" />
     <Compile Include="Player\IPlayer.cs" />
     <Compile Include="Setup\MonopolySetup.cs" />
     <Compile Include="Setup\MonopolySetupFake.cs" />
-    <Compile Include="Spaces\BoardSpace.cs" />
+    <Compile Include="Board\Spaces\BoardSpace.cs" />
     <Compile Include="Shuffler\ExtensionsMethods.cs" />
-    <Compile Include="Spaces\GoSpace.cs" />
+    <Compile Include="Board\Spaces\GoSpace.cs" />
     <Compile Include="Setup\TooFewPlayersException.cs" />
     <Compile Include="Monopoly.cs" />
     <Compile Include="Player\MonopolyPlayer.cs" />
