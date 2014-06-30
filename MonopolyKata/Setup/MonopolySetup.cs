@@ -20,7 +20,7 @@ namespace MonopolyKata.Setup
             CheckForTooManyPlayers(playerNames);
             CheckForTooFewPlayers(playerNames);
             PopulatePlayOrderList(playerNames);
-            RandomizePlayOrder();
+            RandomizePlayOrder(); 
         }
 
         private void RandomizePlayOrder()

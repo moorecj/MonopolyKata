@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DiceTest.cs" />
     <Compile Include="MonopolyKataTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SetupTests.cs" />

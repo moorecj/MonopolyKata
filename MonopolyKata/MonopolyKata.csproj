@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dice\IDice.cs" />
+    <Compile Include="Dice\SixSidedDie.cs" />
     <Compile Include="Setup\ISetup.cs" />
     <Compile Include="Player\IPlayer.cs" />
     <Compile Include="Setup\MonopolySetup.cs" />

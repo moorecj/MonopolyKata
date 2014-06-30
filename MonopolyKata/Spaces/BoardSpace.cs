@@ -8,6 +8,8 @@ namespace MonopolyKata
 {
     abstract public class BoardSpace
     {
+        public string name { get; set; }
+
         public BoardSpace()
         {
 

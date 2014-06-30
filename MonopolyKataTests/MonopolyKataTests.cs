@@ -17,15 +17,11 @@ namespace MonopolyKataTests
         public void CanMakeNewMonopolyGameWith2Players()
         {
             ISetup setup = new MonopolySetup("Horse", "Car");
-
             Monopoly game = new Monopoly(setup);
 
             Assert.That(game, Is.Not.Null);
         }
-
-
  
-
         [Test]
         public void APlayerRoll_ShouldIncreaseTheirLocationByTheRoll()
         {
@@ -127,8 +123,6 @@ namespace MonopolyKataTests
             game.MoveTheCurrentTurnPlayer(40);
 
             Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(200));
-
-
         }
 
 
