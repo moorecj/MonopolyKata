@@ -47,15 +47,6 @@ namespace MonopolyKataTests
             Assert.That(player.Balence, Is.EqualTo(0));
         }
 
-        [Test]
-        public void APlayerWhoLandsOnGo_ShouldIncreaseTheirFundsBy200()
-        {
-
-            MonopolyPlayer player = new MonopolyPlayer("Horse");
-            player.Move(41);
-            Assert.That(player.Balence, Is.EqualTo(200));
-
-            
-        }
+      
     }
 }

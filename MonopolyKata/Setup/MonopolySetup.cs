@@ -17,6 +17,8 @@ namespace MonopolyKata.Setup
         private List<MonopolyPlayer> playOrder;
         private IDice die;
 
+        private List<BoardSpace> board;
+
         public MonopolySetup(params String[] playerNames )
         {
             CheckForTooManyPlayers(playerNames);
@@ -24,8 +26,16 @@ namespace MonopolyKata.Setup
             PopulatePlayOrderList(playerNames);
             RandomizePlayOrder();
 
+            board = new List<BoardSpace>();
+            SetupBoardSpaces();
+
             die = new SixSidedDie();
 
+        }
+
+        private void SetupBoardSpaces()
+        {
+            board.Add(new GoSpace());
         }
          
         public int GetDiceRolls()
@@ -38,7 +48,7 @@ namespace MonopolyKata.Setup
             playOrder = playOrder.Shuffle();
         }
 
-        private void PopulatePlayOrderList(String[] playerNames)
+        public void PopulatePlayOrderList(String[] playerNames)
         {
             playOrder = new List<MonopolyPlayer>();
 

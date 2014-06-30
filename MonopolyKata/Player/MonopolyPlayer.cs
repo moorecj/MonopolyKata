@@ -15,12 +15,6 @@ namespace MonopolyKata
         public int Location { get; set; }
         public int Balence{ get; set; }
 
-
-        public MonopolyPlayer()
-        {
-            Location = 0;
-        }
-
         public MonopolyPlayer(string name)
         {
             this.name = name;
@@ -32,14 +26,11 @@ namespace MonopolyKata
         {
             Location += numberOfSpaces;
 
-            if (Location > NUMBER_OF_LOCATIONS_ON_BOARD)
+            while(Location > NUMBER_OF_LOCATIONS_ON_BOARD)
             {
                 Location -= NUMBER_OF_LOCATIONS_ON_BOARD;    
             }
         }
-
-       
-
 
     }
 }

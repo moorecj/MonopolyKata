@@ -24,28 +24,6 @@ namespace MonopolyKataTests
  
        
 
-        [Test]
-        public void After10RoundsOfMoving2SpacesEach_EachPlayerShouldBeOnLocation20()
-        {
-
-            ISetup setup = new MonopolySetupFake("Horse", "Car");
-            Monopoly game = new Monopoly(setup);
-
-            for (int i = 0; i < 10; ++i)
-            {
-                game.RollForCurrentTurnPlayer();
-                game.GoToNextTurn();
-
-                game.RollForCurrentTurnPlayer();
-                game.GoToNextTurn();
-
-           }
-
-            Assert.That(game.GetCurrentTurnPlayer().Location, Is.EqualTo(20));
-            game.GoToNextTurn();
-            Assert.That(game.GetCurrentTurnPlayer().Location, Is.EqualTo(20));
-
-        }
 
         [Test]
         public void After20RoundsOfMoving_ThePlayOrderShouldNeverChange()
@@ -56,25 +34,63 @@ namespace MonopolyKataTests
 
             string player1Name = game.GetCurrentTurnPlayer().name;
             game.RollForCurrentTurnPlayer();
-            game.GoToNextTurn();
 
             string player2Name = game.GetCurrentTurnPlayer().name;
             game.RollForCurrentTurnPlayer();
-            game.GoToNextTurn();
 
             for (int i = 0; i < 19; ++i)
             {
                 Assert.That(player1Name, Is.EqualTo(game.GetCurrentTurnPlayer().name));
                 game.RollForCurrentTurnPlayer();
-                game.GoToNextTurn();
 
                 Assert.That(player2Name, Is.EqualTo(game.GetCurrentTurnPlayer().name));
                 game.RollForCurrentTurnPlayer();
-                game.GoToNextTurn();
                 
             }
 
         }
+
+        [Test]
+        public void PassingGoShouldIncreaseBalenceBy200()
+        {
+
+            ISetup setup = new MonopolySetupFake("Horse", "Car");
+            Monopoly game = new Monopoly(setup);
+
+
+            for (int i = 0; i < 50; ++i)
+            {
+                
+                game.RollForCurrentTurnPlayer();//Rolls for fake setup always 1
+                game.RollForCurrentTurnPlayer();
+
+            }
+
+            Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(200));
+
+        }
+
+        [Test]
+        public void LandingOnGoShouldIncreaseBalenceBy200()
+        {
+
+            ISetup setup = new MonopolySetupFake("Horse", "Car");
+            Monopoly game = new Monopoly(setup);
+
+
+            for (int i = 0; i <= 41 ; ++i)
+            {
+
+                game.RollForCurrentTurnPlayer();//Rolls for fake setup always 1
+                game.RollForCurrentTurnPlayer();
+
+            }
+
+            Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(200));
+
+        }
+
+
 
 
     }

@@ -13,7 +13,6 @@ namespace MonopolyKata
         public BoardSpace()
         {
 
-            
         }
 
         abstract public void LandOn(MonopolyPlayer player);

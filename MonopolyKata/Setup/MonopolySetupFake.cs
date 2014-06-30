@@ -21,7 +21,7 @@ namespace MonopolyKata.Setup
          
         public int GetDiceRolls()
         {
-            return (2);
+            return (1);
         }
 
         private void RandomizePlayOrder()
@@ -29,7 +29,7 @@ namespace MonopolyKata.Setup
             ++randomizeCount;
         }
 
-        private void PopulatePlayOrderList(String[] playerNames)
+        public void PopulatePlayOrderList(String[] playerNames)
         {
             playOrder = new List<MonopolyPlayer>();
 

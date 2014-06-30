@@ -25,10 +25,20 @@ namespace MonopolyKata
 
         public void RollForCurrentTurnPlayer()
         {
-            currentTurnPlayer.Move(GameSetup.GetDiceRolls());  
+
+            int roll = GameSetup.GetDiceRolls();
+
+            if( roll + currentTurnPlayer.Location > 40)
+            {
+                GoSpace.Pass(currentTurnPlayer);    
+            }
+
+            currentTurnPlayer.Move(GameSetup.GetDiceRolls());
+
+            GoToNextTurn();
         }
 
-        public void GoToNextTurn()
+        private void GoToNextTurn()
         {
             currentTurnPlayer = GameSetup.WhoGoesNext(currentTurnPlayer);
         }
