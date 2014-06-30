@@ -9,7 +9,7 @@ using MonopolyKata.Dice;
 namespace MonopolyKataTests
 {
     [TestFixture]
-    class DiceTest
+    class DiceTests
     {
         [Test]
         public void ADiceRollForMonopolyShouldGiveANumberGreaterThen0()
@@ -39,7 +39,6 @@ namespace MonopolyKataTests
             {
                 testRolls[i] = die.Roll();
             }
-
 
             Assert.That(testRolls.Contains(1), Is.True);
             Assert.That(testRolls.Contains(2), Is.True);

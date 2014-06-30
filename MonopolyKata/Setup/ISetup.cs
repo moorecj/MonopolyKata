@@ -13,5 +13,6 @@ namespace MonopolyKata
         void CheckForTooManyPlayers(String[] players);
         MonopolyPlayer WhoGoesFirst();
         MonopolyPlayer WhoGoesNext(MonopolyPlayer player);
+        int GetDiceRolls();
     }
 }

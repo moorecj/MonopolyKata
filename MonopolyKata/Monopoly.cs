@@ -23,9 +23,9 @@ namespace MonopolyKata
 
         }
 
-        public void MoveTheCurrentTurnPlayer(int numberOfSpaces)
+        public void RollForCurrentTurnPlayer()
         {
-            currentTurnPlayer.Move(numberOfSpaces);  
+            currentTurnPlayer.Move(GameSetup.GetDiceRolls());  
         }
 
         public void GoToNextTurn()
