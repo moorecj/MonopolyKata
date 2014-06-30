@@ -29,5 +29,26 @@ namespace MonopolyKataTests
 
         }
 
+        [Test]
+        public void ADiceRollForShouldBeRandom_Given1000RollsAllSixNumbersShouldAppear()
+        {
+            IDice die =  new SixSidedDie();
+            int[] testRolls =  new int [1000];
+
+            for(int i = 0; i < 1000; ++i)
+            {
+                testRolls[i] = die.Roll();
+            }
+
+
+            Assert.That(testRolls.Contains(1), Is.True);
+            Assert.That(testRolls.Contains(2), Is.True);
+            Assert.That(testRolls.Contains(3), Is.True);
+            Assert.That(testRolls.Contains(4), Is.True);
+            Assert.That(testRolls.Contains(5), Is.True);
+            Assert.That(testRolls.Contains(6), Is.True);
+
+        }
+
     }
 }
