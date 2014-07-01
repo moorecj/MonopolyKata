@@ -162,6 +162,35 @@ namespace MonopolyKataTests
 
         }
 
+        [Test]
+        public void LandingOnIncomeTaxWithABalenceGreaterThan2000ShouldResultIn200DeductionFromBalance()
+        {
+
+            MonopolyPlayer player1 = new MonopolyPlayer("player1");
+            MonopolyPlayer player2 = new MonopolyPlayer("player2");
+
+            player1.Balence =  2200;
+            player1.Location = GameBoard.BALTIC_AVENUE_LOCATION;
+
+            var setupMock = new Mock<ISetup>();
+
+            setupMock.Setup(s => s.GetDiceRolls()).Returns(1);
+            setupMock.Setup(s => s.WhoGoesFirst()).Returns(player1);
+            setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
+            setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
+
+            Monopoly game = new Monopoly(setupMock.Object);
+
+            var startingBalence = game.GetCurrentTurnPlayer().Balence;
+
+            game.RollForCurrentTurnPlayer();
+            game.RollForCurrentTurnPlayer();
+
+            Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(2000));
+
+
+        }
+
 
 
 
