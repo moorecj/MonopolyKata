@@ -11,10 +11,7 @@ namespace MonopolyKata
     {
         private const int LAND_ON_GO_AMOUNT = 200;
         
-        public GoSpace( string name  ) : base ( name )
-        {
-
-        }
+        public GoSpace( string name  ) : base ( name ){}
 
         public override void LandOn(MonopolyPlayer player)
         {

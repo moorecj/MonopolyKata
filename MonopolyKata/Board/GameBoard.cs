@@ -97,7 +97,7 @@ namespace MonopolyKata.Board
             spaces.Add(new MonopolyBoardSpace("Ventnor Avenue"));
             spaces.Add(new MonopolyBoardSpace("Water Works"));
             spaces.Add(new MonopolyBoardSpace("Marvin Gardins Avenue"));
-            spaces.Add(new MonopolyBoardSpace("Go To Jail"));
+            spaces.Add(new GoToJailSpace("Go To Jail"));
             spaces.Add(new MonopolyBoardSpace("Pacific Avenue"));
             spaces.Add(new MonopolyBoardSpace("North Carolina Avenue"));
             spaces.Add(new MonopolyBoardSpace("Community Chest"));

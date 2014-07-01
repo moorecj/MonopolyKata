@@ -15,7 +15,7 @@ namespace MonopolyKata.Board.Spaces
 
         public override void LandOn(MonopolyPlayer player)
         {
-            player.Location = 10;
+            player.Location = GameBoard.JAIL_LOCATION;
         }
 
     }
