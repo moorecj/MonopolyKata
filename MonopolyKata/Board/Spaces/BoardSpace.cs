@@ -10,9 +10,9 @@ namespace MonopolyKata
     {
         public string name { get; set; }
 
-        public BoardSpace()
+        public BoardSpace(string name)
         {
-
+            this.name =  name;
         }
 
         abstract public void LandOn(MonopolyPlayer player);

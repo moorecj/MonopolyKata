@@ -40,6 +40,19 @@ namespace MonopolyKataTests
         }
 
         [Test]
+        public void APlayerThatGoesOnePositionPastSpace39WillEndUpAtPosition0()
+        {
+            MonopolyPlayer player = new MonopolyPlayer("Horse");
+
+            player.Move(39);
+
+            player.Move(1);
+
+            Assert.That(player.Location, Is.EqualTo(0));
+
+        }
+
+        [Test]
         public void APlayerShouldHaveAStartingBalenceOfZero()
         {
 

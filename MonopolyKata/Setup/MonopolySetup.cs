@@ -25,18 +25,11 @@ namespace MonopolyKata.Setup
             CheckForTooFewPlayers(playerNames);
             PopulatePlayOrderList(playerNames);
             RandomizePlayOrder();
-
-            board = new List<BoardSpace>();
-            SetupBoardSpaces();
-
             die = new SixSidedDie();
 
         }
 
-        private void SetupBoardSpaces()
-        {
-            board.Add(new GoSpace());
-        }
+        
          
         public int GetDiceRolls()
         {

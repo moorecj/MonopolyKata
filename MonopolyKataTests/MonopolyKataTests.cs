@@ -7,6 +7,8 @@ using MonopolyKata;
 using MonopolyKata.Player;
 using NUnit.Framework;
 using MonopolyKata.Setup;
+using Moq;
+using MonopolyKata.Board;
 
 namespace MonopolyKataTests
 {
@@ -54,19 +56,27 @@ namespace MonopolyKataTests
         public void PassingGoShouldIncreaseBalenceBy200()
         {
 
-            ISetup setup = new MonopolySetupFake("Horse", "Car");
-            Monopoly game = new Monopoly(setup);
+            MonopolyPlayer player1 = new MonopolyPlayer("player1");
+            MonopolyPlayer player2 = new MonopolyPlayer("player2");
+
+            player1.Location = 39;
+
+            var setupMock = new Mock<ISetup>();
+
+            setupMock.Setup(s => s.GetDiceRolls()).Returns(10);
+            setupMock.Setup(s => s.WhoGoesFirst()).Returns(player1);
+            setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
+            setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
+
+            Monopoly game = new Monopoly(setupMock.Object);
+
             var startingBalence = game.GetCurrentTurnPlayer().Balence;
 
-            for (int i = 0; i < 50; ++i)
-            {
-                
-                game.RollForCurrentTurnPlayer();//Rolls for fake setup always 1
-                game.RollForCurrentTurnPlayer();
+            game.RollForCurrentTurnPlayer();
+            game.RollForCurrentTurnPlayer();
 
-            }
 
-            Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(startingBalence+200));
+            Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(startingBalence + 200));
 
         }
 
@@ -74,22 +84,56 @@ namespace MonopolyKataTests
         public void LandingOnGoShouldIncreaseBalenceBy200()
         {
 
-            ISetup setup = new MonopolySetupFake("Horse", "Car");
-            Monopoly game = new Monopoly(setup);
+            MonopolyPlayer player1 = new MonopolyPlayer("player1");
+            MonopolyPlayer player2 = new MonopolyPlayer("player2");
+
+            player1.Location = 39;
+
+            var setupMock = new Mock<ISetup>();
+
+            setupMock.Setup(s => s.GetDiceRolls()).Returns(1);
+            setupMock.Setup(s => s.WhoGoesFirst()).Returns(player1);
+            setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
+            setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
+
+            Monopoly game = new Monopoly(setupMock.Object);
 
             var startingBalence = game.GetCurrentTurnPlayer().Balence;
 
-            for (int i = 0; i <= 41 ; ++i)
-            {
+            game.RollForCurrentTurnPlayer();
+            game.RollForCurrentTurnPlayer();
 
-                game.RollForCurrentTurnPlayer();//Rolls for fake setup always 1
-                game.RollForCurrentTurnPlayer();
-
-            }
-
-            Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(startingBalence+ 200));
-
+            Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(startingBalence + 200));
         }
+
+        [Test]
+        public void LandingOnGoToJailShouldMoveAPlayerDirectlyToJail()
+        {
+
+            MonopolyPlayer player1 = new MonopolyPlayer("player1");
+            MonopolyPlayer player2 = new MonopolyPlayer("player2");
+
+            player1.Location = GameBoard.MARVIN_GARDINS_AVENUE_LOCATION;
+
+            var setupMock = new Mock<ISetup>();
+
+            setupMock.Setup(s => s.GetDiceRolls()).Returns(1);
+            setupMock.Setup(s => s.WhoGoesFirst()).Returns(player1);
+            setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
+            setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
+
+            Monopoly game = new Monopoly(setupMock.Object);
+
+
+            game.RollForCurrentTurnPlayer();
+            game.RollForCurrentTurnPlayer();
+
+            Assert.That(game.GetCurrentTurnPlayer().Location, Is.EqualTo(GameBoard.JAIL_LOCATION)); 
+
+           
+        }
+
+
 
 
 

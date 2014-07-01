@@ -26,7 +26,7 @@ namespace MonopolyKata
         {
             Location += numberOfSpaces;
 
-            while(Location > NUMBER_OF_LOCATIONS_ON_BOARD)
+            while(Location >= NUMBER_OF_LOCATIONS_ON_BOARD)
             {
                 Location -= NUMBER_OF_LOCATIONS_ON_BOARD;    
             }

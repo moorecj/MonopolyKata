@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonopolyKata.Board.Spaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace MonopolyKata
 {
-    public class GoSpace : BoardSpace
+    public class GoSpace : MonopolyBoardSpace
     {
         private const int LAND_ON_GO_AMOUNT = 200;
-
-        public GoSpace( )
+        
+        public GoSpace( string name  ) : base ( name )
         {
-            name = "Go";
+
         }
 
         public override void LandOn(MonopolyPlayer player)
