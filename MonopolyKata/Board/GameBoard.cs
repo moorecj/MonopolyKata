@@ -71,7 +71,7 @@ namespace MonopolyKata.Board
             spaces.Add(new MonopolyBoardSpace("Mediterranean Avenue"));
             spaces.Add(new MonopolyBoardSpace("Community Chest"));
             spaces.Add(new MonopolyBoardSpace("Baltic Avenue"));
-            spaces.Add(new MonopolyBoardSpace("Income Tax"));
+            spaces.Add(new IncomeTaxSpace("Income Tax"));
             spaces.Add(new MonopolyBoardSpace("Reading Railroad"));
             spaces.Add(new MonopolyBoardSpace("Oriental Avenue"));
             spaces.Add(new MonopolyBoardSpace("Chance"));

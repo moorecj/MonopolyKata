@@ -141,6 +141,7 @@ namespace MonopolyKataTests
             MonopolyPlayer player2 = new MonopolyPlayer("player2");
 
             player1.Balence = 100;
+            player1.Location = GameBoard.BALTIC_AVENUE_LOCATION;
 
             var setupMock = new Mock<ISetup>();
 
