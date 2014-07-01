@@ -191,6 +191,35 @@ namespace MonopolyKataTests
 
         }
 
+        [Test]
+        public void LandingOnLuxuryTaxShouldReduceAPlayersBalenceBy75()
+        {
+
+            MonopolyPlayer player1 = new MonopolyPlayer("player1");
+            MonopolyPlayer player2 = new MonopolyPlayer("player2");
+
+            player1.Balence = 100;
+            player1.Location = GameBoard.PARK_PLACE_LOCATION;
+
+            var setupMock = new Mock<ISetup>();
+
+            setupMock.Setup(s => s.GetDiceRolls()).Returns(1);
+            setupMock.Setup(s => s.WhoGoesFirst()).Returns(player1);
+            setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
+            setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
+
+            Monopoly game = new Monopoly(setupMock.Object);
+
+            var startingBalence = game.GetCurrentTurnPlayer().Balence;
+
+            game.RollForCurrentTurnPlayer();
+            game.RollForCurrentTurnPlayer();
+
+            Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(25));
+
+
+        }
+
 
 
 
