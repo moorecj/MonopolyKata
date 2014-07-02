@@ -42,6 +42,7 @@
     <Compile Include="Board\GameBoard.cs" />
     <Compile Include="Board\Spaces\GoToJailSpace.cs" />
     <Compile Include="Board\Spaces\IncomeTaxSpace.cs" />
+    <Compile Include="Board\Spaces\LuxuryTaxSpace.cs" />
     <Compile Include="Board\Spaces\MonopolyBoardSpace.cs" />
     <Compile Include="Dice\IDice.cs" />
     <Compile Include="Dice\SixSidedDie.cs" />

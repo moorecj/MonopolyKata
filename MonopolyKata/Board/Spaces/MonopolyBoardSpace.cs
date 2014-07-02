@@ -14,7 +14,10 @@ namespace MonopolyKata.Board.Spaces
 
         }
 
-        public override void LandOn(MonopolyPlayer player){}
+        public override void LandOn(MonopolyPlayer player)
+        {
+            Console.WriteLine(player.name + " landed on " + name );
+        }
 
     }
 }

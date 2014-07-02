@@ -14,14 +14,23 @@ namespace MonopolyKata.Board.Spaces
 
         public override void LandOn(MonopolyPlayer player)
         {
+            base.LandOn(player);
+
+            int taxAmount;
+
             if( (0.10 * player.Balence ) >= MAX_INCOME_TAX_AMOUNT)
             {
-                player.Balence -= MAX_INCOME_TAX_AMOUNT;
+                taxAmount = MAX_INCOME_TAX_AMOUNT;
             }
             else
             {
-                player.Balence -= (int)((double)player.Balence * 0.10);
+                taxAmount = (int)((double)player.Balence * 0.10);
             }
+
+            player.Balence -= taxAmount;
+
+            Console.WriteLine(player.name + " pays {0}", taxAmount);
+            Console.WriteLine(player.name + "'s new balence is: {0}\n", player.Balence);
             
         }
 

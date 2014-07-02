@@ -105,7 +105,7 @@ namespace MonopolyKata.Board
             spaces.Add(new MonopolyBoardSpace("Short Line Railroad"));
             spaces.Add(new MonopolyBoardSpace("Chance"));
             spaces.Add(new MonopolyBoardSpace("Park Place"));
-            spaces.Add(new MonopolyBoardSpace("Luxury Tax"));
+            spaces.Add(new LuxuryTaxSpace("Luxury Tax"));
             spaces.Add(new MonopolyBoardSpace("Boardwalk"));
         }
     }

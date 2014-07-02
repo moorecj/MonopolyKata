@@ -8,7 +8,7 @@ using MonopolyKata.Board;
 
 namespace MonopolyKata
 {
-    public class Monopoly
+    public class MonopolyEngine
     {
 
         private MonopolyPlayer currentTurnPlayer;
@@ -17,32 +17,35 @@ namespace MonopolyKata
 
         GameBoard gameBoard;
 
-        public Monopoly( ISetup GameSetup )
+        public MonopolyEngine( ISetup GameSetup )
         {
 
             this.GameSetup = GameSetup;
-
             currentTurnPlayer = GameSetup.WhoGoesFirst();
-
             gameBoard = new GameBoard();
+
 
         }
 
-        public void RollForCurrentTurnPlayer()
+        public void TakeTurn()
         {
-
             int roll = GameSetup.GetDiceRolls();
 
-            if( (roll + currentTurnPlayer.Location) > 40 )
-            {
-                GoSpace.Pass(currentTurnPlayer);    
-            }
+            CheckForPassingGo(roll);
 
-            currentTurnPlayer.Move(GameSetup.GetDiceRolls());
+            currentTurnPlayer.Move(roll);
 
             gameBoard.LandOnNewSpace(currentTurnPlayer);
-
+            
             GoToNextTurn();
+        }
+
+        private void CheckForPassingGo(int roll)
+        {
+            if ((roll + currentTurnPlayer.Location) > 40)
+            {
+                GoSpace.Pass(currentTurnPlayer);
+            }
         }
 
         private void GoToNextTurn()

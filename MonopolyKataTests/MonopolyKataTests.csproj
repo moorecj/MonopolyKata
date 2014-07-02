@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MonopolyIntegrationTest.cs" />
     <Compile Include="PlayerTests.cs" />
     <Compile Include="DiceTests.cs" />
     <Compile Include="MonopolyKataTests.cs" />

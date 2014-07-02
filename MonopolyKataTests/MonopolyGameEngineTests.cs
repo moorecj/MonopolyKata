@@ -13,13 +13,13 @@ using MonopolyKata.Board;
 namespace MonopolyKataTests
 {
     [TestFixture]
-    public class MonopolyKataTests
+    public class MonopolyGameEngineTests
     {
         [Test]
         public void CanMakeNewMonopolyGameWith2Players()
         {
             ISetup setup = new MonopolySetup("Horse", "Car");
-            Monopoly game = new Monopoly(setup);
+            MonopolyEngine game = new MonopolyEngine(setup);
 
             Assert.That(game, Is.Not.Null);
         }
@@ -30,21 +30,21 @@ namespace MonopolyKataTests
         {
 
             ISetup setup = new MonopolySetup("Horse", "Car");
-            Monopoly game = new Monopoly(setup);
+            MonopolyEngine game = new MonopolyEngine(setup);
 
             string player1Name = game.GetCurrentTurnPlayer().name;
-            game.RollForCurrentTurnPlayer();
+            game.TakeTurn();
 
             string player2Name = game.GetCurrentTurnPlayer().name;
-            game.RollForCurrentTurnPlayer();
+            game.TakeTurn();
 
             for (int i = 0; i < 19; ++i)
             {
                 Assert.That(player1Name, Is.EqualTo(game.GetCurrentTurnPlayer().name));
-                game.RollForCurrentTurnPlayer();
+                game.TakeTurn();
 
                 Assert.That(player2Name, Is.EqualTo(game.GetCurrentTurnPlayer().name));
-                game.RollForCurrentTurnPlayer();
+                game.TakeTurn();
                 
             }
 
@@ -66,12 +66,12 @@ namespace MonopolyKataTests
             setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
             setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
 
-            Monopoly game = new Monopoly(setupMock.Object);
+            MonopolyEngine game = new MonopolyEngine(setupMock.Object);
 
             var startingBalence = game.GetCurrentTurnPlayer().Balence;
 
-            game.RollForCurrentTurnPlayer();
-            game.RollForCurrentTurnPlayer();
+            game.TakeTurn();
+            game.TakeTurn();
 
 
             Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(startingBalence + 200));
@@ -94,12 +94,12 @@ namespace MonopolyKataTests
             setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
             setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
 
-            Monopoly game = new Monopoly(setupMock.Object);
+            MonopolyEngine game = new MonopolyEngine(setupMock.Object);
 
             var startingBalence = game.GetCurrentTurnPlayer().Balence;
 
-            game.RollForCurrentTurnPlayer();
-            game.RollForCurrentTurnPlayer();
+            game.TakeTurn();
+            game.TakeTurn();
 
             Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(startingBalence + 200));
         }
@@ -120,12 +120,12 @@ namespace MonopolyKataTests
             setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
             setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
 
-            Monopoly game = new Monopoly(setupMock.Object);
+            MonopolyEngine game = new MonopolyEngine(setupMock.Object);
 
             var startingBalence = game.GetCurrentTurnPlayer().Balence;
 
-            game.RollForCurrentTurnPlayer();
-            game.RollForCurrentTurnPlayer();
+            game.TakeTurn();
+            game.TakeTurn();
 
             Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(startingBalence));
             Assert.That(game.GetCurrentTurnPlayer().Location, Is.EqualTo(GameBoard.JAIL_LOCATION)); 
@@ -150,12 +150,12 @@ namespace MonopolyKataTests
             setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
             setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
 
-            Monopoly game = new Monopoly(setupMock.Object);
+            MonopolyEngine game = new MonopolyEngine(setupMock.Object);
 
             var startingBalence = game.GetCurrentTurnPlayer().Balence;
 
-            game.RollForCurrentTurnPlayer();
-            game.RollForCurrentTurnPlayer();
+            game.TakeTurn();
+            game.TakeTurn();
 
             Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(90));
             
@@ -179,12 +179,12 @@ namespace MonopolyKataTests
             setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
             setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
 
-            Monopoly game = new Monopoly(setupMock.Object);
+            MonopolyEngine game = new MonopolyEngine(setupMock.Object);
 
             var startingBalence = game.GetCurrentTurnPlayer().Balence;
 
-            game.RollForCurrentTurnPlayer();
-            game.RollForCurrentTurnPlayer();
+            game.TakeTurn();
+            game.TakeTurn();
 
             Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(2000));
 
@@ -208,21 +208,17 @@ namespace MonopolyKataTests
             setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
             setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
 
-            Monopoly game = new Monopoly(setupMock.Object);
+            MonopolyEngine game = new MonopolyEngine(setupMock.Object);
 
             var startingBalence = game.GetCurrentTurnPlayer().Balence;
 
-            game.RollForCurrentTurnPlayer();
-            game.RollForCurrentTurnPlayer();
+            game.TakeTurn();
+            game.TakeTurn();
 
             Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(25));
 
 
         }
-
-
-
-
 
     }
 

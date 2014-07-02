@@ -28,8 +28,6 @@ namespace MonopolyKata.Setup
             die = new SixSidedDie();
 
         }
-
-        
          
         public int GetDiceRolls()
         {
