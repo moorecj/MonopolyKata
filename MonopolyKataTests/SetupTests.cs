@@ -38,9 +38,9 @@ namespace MonopolyKataTests
         [Test]
         public void ASetupWithLessThen2PlayersShouldFail()
         {
-            var exception = Assert.Throws<TooFewPlayersException>(() => new MonopolySetup());
+            var exception = Assert.Throws<TooFewPlayersException>(() => new MonopolySetup("Player1"));
 
-            Assert.That(exception.Message, Is.EqualTo("Too few players: 0"));
+            Assert.That(exception.Message, Is.EqualTo("Too few players: 1"));
 
         }
 

@@ -9,18 +9,29 @@ using NUnit.Framework;
 using MonopolyKata.Setup;
 using Moq;
 using MonopolyKata.Board;
+using MonopolyKata.Dice;
 
 namespace MonopolyKataTests
 {
     [TestFixture]
     public class MonopolyGameEngineTests
     {
+        public ISetup setup;
+        public IDice die;
+
+
+        [SetUp]
+        public void MonopolyEngineSetUp()
+        {
+            setup = new MonopolySetup("Horse", "Car");
+            die = new SixSidedDie();
+        }
+
         [Test]
         public void CanMakeNewMonopolyGameWith2Players()
         {
-            ISetup setup = new MonopolySetup("Horse", "Car");
-            MonopolyEngine game = new MonopolyEngine(setup);
-
+            
+            MonopolyEngine game = new MonopolyEngine(setup, die);
             Assert.That(game, Is.Not.Null);
         }
 
@@ -29,8 +40,7 @@ namespace MonopolyKataTests
         public void After20RoundsOfMoving_ThePlayOrderShouldNeverChange()
         {
 
-            ISetup setup = new MonopolySetup("Horse", "Car");
-            MonopolyEngine game = new MonopolyEngine(setup);
+            MonopolyEngine game = new MonopolyEngine(setup,die);
 
             string player1Name = game.GetCurrentTurnPlayer().name;
             game.TakeTurn();
@@ -61,20 +71,21 @@ namespace MonopolyKataTests
 
             var setupMock = new Mock<ISetup>();
 
-            setupMock.Setup(s => s.GetDiceRolls()).Returns(10);
             setupMock.Setup(s => s.WhoGoesFirst()).Returns(player1);
             setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
             setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
 
-            MonopolyEngine game = new MonopolyEngine(setupMock.Object);
+            var dieMock = new Mock<IDice>();
 
-            var startingBalence = game.GetCurrentTurnPlayer().Balence;
+            dieMock.Setup(s => s.Roll()).Returns(1);
 
-            game.TakeTurn();
-            game.TakeTurn();
+            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
+            var startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
 
-            Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(startingBalence + 200));
+            gameEngine.TakeTurn();
+
+            Assert.That(gameEngine.GetCurrentTurnPlayer().Balence, Is.EqualTo(startingBalence + 200));
 
         }
 
@@ -85,23 +96,26 @@ namespace MonopolyKataTests
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
             MonopolyPlayer player2 = new MonopolyPlayer("player2");
 
-            player1.Location = 39;
+            player1.Location = GameBoard.GO_LOCATION-2;
 
             var setupMock = new Mock<ISetup>();
 
-            setupMock.Setup(s => s.GetDiceRolls()).Returns(1);
             setupMock.Setup(s => s.WhoGoesFirst()).Returns(player1);
             setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
             setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
 
-            MonopolyEngine game = new MonopolyEngine(setupMock.Object);
+            var dieMock = new Mock<IDice>();
 
-            var startingBalence = game.GetCurrentTurnPlayer().Balence;
+            dieMock.Setup(s => s.Roll()).Returns(1);
 
-            game.TakeTurn();
-            game.TakeTurn();
+            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
-            Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(startingBalence + 200));
+            var startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
+
+            gameEngine.TakeTurn();
+
+            Assert.That(gameEngine.GetCurrentTurnPlayer().Location, Is.EqualTo(GameBoard.GO_LOCATION));
+            Assert.That(gameEngine.GetCurrentTurnPlayer().Balence, Is.EqualTo(startingBalence + 200));
         }
 
         [Test]
@@ -111,24 +125,23 @@ namespace MonopolyKataTests
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
             MonopolyPlayer player2 = new MonopolyPlayer("player2");
 
-            player1.Location = GameBoard.MARVIN_GARDINS_AVENUE_LOCATION;
+            player1.Location = GameBoard.GO_TO_JAIL_LOCATION - 2;
 
             var setupMock = new Mock<ISetup>();
 
-            setupMock.Setup(s => s.GetDiceRolls()).Returns(1);
             setupMock.Setup(s => s.WhoGoesFirst()).Returns(player1);
             setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
             setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
 
-            MonopolyEngine game = new MonopolyEngine(setupMock.Object);
+            var dieMock = new Mock<IDice>();
 
-            var startingBalence = game.GetCurrentTurnPlayer().Balence;
+            dieMock.Setup(s => s.Roll()).Returns(1);
 
-            game.TakeTurn();
-            game.TakeTurn();
+            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
-            Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(startingBalence));
-            Assert.That(game.GetCurrentTurnPlayer().Location, Is.EqualTo(GameBoard.JAIL_LOCATION)); 
+            gameEngine.TakeTurn();
+
+            Assert.That(gameEngine.GetCurrentTurnPlayer().Location, Is.EqualTo(GameBoard.JAIL_LOCATION)); 
            
         }
 
@@ -141,23 +154,25 @@ namespace MonopolyKataTests
             MonopolyPlayer player2 = new MonopolyPlayer("player2");
 
             player1.Balence = 100;
-            player1.Location = GameBoard.BALTIC_AVENUE_LOCATION;
+            player1.Location = GameBoard.INCOME_TAX_LOCATION - 2;
 
             var setupMock = new Mock<ISetup>();
 
-            setupMock.Setup(s => s.GetDiceRolls()).Returns(1);
             setupMock.Setup(s => s.WhoGoesFirst()).Returns(player1);
             setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
             setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
 
-            MonopolyEngine game = new MonopolyEngine(setupMock.Object);
+            var dieMock = new Mock<IDice>();
 
-            var startingBalence = game.GetCurrentTurnPlayer().Balence;
+            dieMock.Setup(s => s.Roll()).Returns(1);
 
-            game.TakeTurn();
-            game.TakeTurn();
+            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
-            Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(90));
+            var startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
+
+            gameEngine.TakeTurn();
+
+            Assert.That(gameEngine.GetCurrentTurnPlayer().Balence, Is.EqualTo(90));
             
 
         }
@@ -170,24 +185,25 @@ namespace MonopolyKataTests
             MonopolyPlayer player2 = new MonopolyPlayer("player2");
 
             player1.Balence =  2200;
-            player1.Location = GameBoard.BALTIC_AVENUE_LOCATION;
+            player1.Location = GameBoard.INCOME_TAX_LOCATION-2;
 
             var setupMock = new Mock<ISetup>();
 
-            setupMock.Setup(s => s.GetDiceRolls()).Returns(1);
             setupMock.Setup(s => s.WhoGoesFirst()).Returns(player1);
             setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
             setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
 
-            MonopolyEngine game = new MonopolyEngine(setupMock.Object);
+            var dieMock = new Mock<IDice>();
 
-            var startingBalence = game.GetCurrentTurnPlayer().Balence;
+            dieMock.Setup(s => s.Roll()).Returns(1);
 
-            game.TakeTurn();
-            game.TakeTurn();
+            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
-            Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(2000));
+            var startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
 
+            gameEngine.TakeTurn();
+
+            Assert.That(gameEngine.GetCurrentTurnPlayer().Balence, Is.EqualTo(2000));
 
         }
 
@@ -199,24 +215,25 @@ namespace MonopolyKataTests
             MonopolyPlayer player2 = new MonopolyPlayer("player2");
 
             player1.Balence = 100;
-            player1.Location = GameBoard.PARK_PLACE_LOCATION;
+            player1.Location = GameBoard.LUXURY_TAX_LOCATION - 2;
 
             var setupMock = new Mock<ISetup>();
 
-            setupMock.Setup(s => s.GetDiceRolls()).Returns(1);
             setupMock.Setup(s => s.WhoGoesFirst()).Returns(player1);
             setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
             setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
 
-            MonopolyEngine game = new MonopolyEngine(setupMock.Object);
+            var dieMock = new Mock<IDice>();
 
-            var startingBalence = game.GetCurrentTurnPlayer().Balence;
+            dieMock.Setup(s => s.Roll()).Returns(1);
 
-            game.TakeTurn();
-            game.TakeTurn();
+            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
-            Assert.That(game.GetCurrentTurnPlayer().Balence, Is.EqualTo(25));
+            var startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
 
+            gameEngine.TakeTurn();
+
+            Assert.That(gameEngine.GetCurrentTurnPlayer().Balence, Is.EqualTo(25));
 
         }
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MonopolyKata.Extensions;
 using MonopolyKata.Board;
+using MonopolyKata.Dice;
 
 namespace MonopolyKata
 {
@@ -14,30 +15,32 @@ namespace MonopolyKata
         private MonopolyPlayer currentTurnPlayer;
 
         private ISetup GameSetup;
+        private IDice die;
 
         GameBoard gameBoard;
 
-        public MonopolyEngine( ISetup GameSetup )
+
+        public MonopolyEngine( ISetup GameSetup, IDice die )
         {
 
             this.GameSetup = GameSetup;
+            this.die = die;
             currentTurnPlayer = GameSetup.WhoGoesFirst();
             gameBoard = new GameBoard();
-
 
         }
 
         public void TakeTurn()
         {
-            int roll = GameSetup.GetDiceRolls();
+            int roll1 = die.Roll();
+            int roll2 = die.Roll();
 
-            CheckForPassingGo(roll);
+            CheckForPassingGo(roll1+roll2);
 
-            currentTurnPlayer.Move(roll);
+            currentTurnPlayer.Move(roll1 + roll2);
 
             gameBoard.LandOnNewSpace(currentTurnPlayer);
             
-            GoToNextTurn();
         }
 
         private void CheckForPassingGo(int roll)
@@ -48,7 +51,7 @@ namespace MonopolyKata
             }
         }
 
-        private void GoToNextTurn()
+        public void GoToNextTurn()
         {
             currentTurnPlayer = GameSetup.WhoGoesNext(currentTurnPlayer);
         }

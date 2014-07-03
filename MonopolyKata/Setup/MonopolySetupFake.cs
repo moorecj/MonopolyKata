@@ -56,11 +56,11 @@ namespace MonopolyKata.Setup
             return playOrder[nextPlayerIndex];
         }
 
-        public void CheckForTooFewPlayers(String[] players)
+        public void CheckForTooFewPlayers<T>(T[] players)
         {
         }
 
-        public void CheckForTooManyPlayers(String[] players)
+        public void CheckForTooManyPlayers<T>(T[] players)
         {
         }
     }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using MonopolyKata.Setup;
 using MonopolyKata;
+using MonopolyKata.Dice;
 
 namespace MonopolyKataTests
 {
@@ -17,7 +18,9 @@ namespace MonopolyKataTests
         {
 
             ISetup setup = new MonopolySetup("Horse", "Car");
-            MonopolyEngine game = new MonopolyEngine(setup);
+            IDice die = new SixSidedDie();
+
+            MonopolyEngine game = new MonopolyEngine(setup, die);
 
             for (int i = 0; i < 20; ++i)
             {

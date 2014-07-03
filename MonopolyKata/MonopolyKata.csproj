@@ -44,8 +44,10 @@
     <Compile Include="Board\Spaces\IncomeTaxSpace.cs" />
     <Compile Include="Board\Spaces\LuxuryTaxSpace.cs" />
     <Compile Include="Board\Spaces\MonopolyBoardSpace.cs" />
+    <Compile Include="Dice\ConsolePrintingSixSidedDie.cs" />
     <Compile Include="Dice\IDice.cs" />
     <Compile Include="Dice\SixSidedDie.cs" />
+    <Compile Include="Player\ConsolePrintingMonopolyPlayer.cs" />
     <Compile Include="Setup\ISetup.cs" />
     <Compile Include="Player\IPlayer.cs" />
     <Compile Include="Setup\MonopolySetup.cs" />
@@ -54,7 +56,7 @@
     <Compile Include="Shuffler\ExtensionsMethods.cs" />
     <Compile Include="Board\Spaces\GoSpace.cs" />
     <Compile Include="Setup\TooFewPlayersException.cs" />
-    <Compile Include="Monopoly.cs" />
+    <Compile Include="MonopolyEngine.cs" />
     <Compile Include="Player\MonopolyPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup\TooManyPlayersException.cs" />

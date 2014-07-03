@@ -11,9 +11,11 @@ namespace MonopolyKata
     {
         const int NUMBER_OF_LOCATIONS_ON_BOARD = 40;
 
+        protected int _balence;
+
         public string name { get; set; }
         public int Location { get; set; }
-        public int Balence{ get; set; }
+        public virtual int Balence{ get; set; }
 
         public MonopolyPlayer(string name)
         {
@@ -22,7 +24,7 @@ namespace MonopolyKata
             Balence = 0;
         }
 
-        public void Move( int numberOfSpaces )
+        public virtual void Move( int numberOfSpaces )
         {
             Location += numberOfSpaces;
 

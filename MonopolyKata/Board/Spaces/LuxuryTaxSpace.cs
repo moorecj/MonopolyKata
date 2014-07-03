@@ -22,4 +22,5 @@ namespace MonopolyKata.Board.Spaces
             
         }
     }
+    
 }

@@ -15,9 +15,6 @@ namespace MonopolyKata.Setup
         private const int MIN_NUMBER_OF_PLAYERS = 2;
 
         private List<MonopolyPlayer> playOrder;
-        private IDice die;
-
-        private List<BoardSpace> board;
 
         public MonopolySetup(params String[] playerNames )
         {
@@ -25,13 +22,15 @@ namespace MonopolyKata.Setup
             CheckForTooFewPlayers(playerNames);
             PopulatePlayOrderList(playerNames);
             RandomizePlayOrder();
-            die = new SixSidedDie();
 
         }
-         
-        public int GetDiceRolls()
+
+        public MonopolySetup(params MonopolyPlayer[] players)
         {
-            return (die.Roll() + die.Roll());
+            CheckForTooManyPlayers(players);
+            CheckForTooFewPlayers(players);
+            playOrder = players.ToList<MonopolyPlayer>();
+            RandomizePlayOrder();
         }
 
         private void RandomizePlayOrder()
@@ -66,7 +65,7 @@ namespace MonopolyKata.Setup
             return playOrder[nextPlayerIndex];
         }
 
-        public void CheckForTooFewPlayers(String[] players)
+        public void CheckForTooFewPlayers<T>(T[] players)
         {
             if (players.Count() < MIN_NUMBER_OF_PLAYERS)
             {
@@ -74,7 +73,7 @@ namespace MonopolyKata.Setup
             }
         }
 
-        public void CheckForTooManyPlayers(String[] players)
+        public void CheckForTooManyPlayers<T>(T[] players)
         {
             if (players.Count() > MAX_NUMBER_OF_PLAYERS)
             {

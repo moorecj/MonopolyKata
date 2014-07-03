@@ -9,11 +9,10 @@ namespace MonopolyKata
 {
     public interface ISetup
     {
-        void CheckForTooFewPlayers(String[] players);
-        void CheckForTooManyPlayers(String[] players);
+        void CheckForTooFewPlayers<T>(T[] players);
+        void CheckForTooManyPlayers<T>(T[] players);
         MonopolyPlayer WhoGoesFirst();
         MonopolyPlayer WhoGoesNext(MonopolyPlayer player);
         void PopulatePlayOrderList(String[] players);
-        int GetDiceRolls();
     }
 }
