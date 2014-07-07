@@ -36,30 +36,55 @@ namespace MonopolyKataTests
 
         }
 
-
         [Test]
-        public void PurchasingARealEstateSpaceShouldChangeTheOwerToTheUserThatPurchaedIt()
+        public void LandingOnAnUnownedRealEstateSpaceShouldPurchaseTheSpaceAutomatically()
         {
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
 
             RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space");
 
-            realEstateSpace.Purchase(player1);
+            realEstateSpace.LandOn(player1);
 
             Assert.That(realEstateSpace.Owner, Is.EqualTo(player1));
 
         }
+        
 
         [Test]
         public void PurchasingARealEstateSpaceShouldReduceThePurchaseesBalenceByTheCost()
         {
+            
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
 
-            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space");
+            player1.Balence = 1000;
 
-            realEstateSpace.Purchase(player1);
+            int LandOnCost = 10;
+            int PurchaseCost = 100;
 
-            Assert.That(realEstateSpace.Owner.Balence, Is.EqualTo(player1));
+            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", LandOnCost, PurchaseCost);
+
+            realEstateSpace.LandOn(player1);
+
+            Assert.That(player1.Balence, Is.EqualTo(900));
+
+        }
+
+        [Test]
+        public void IfAPlayerWillNotPurchaseASpaceIfTheyDoNotHaveEnoughMoney()
+        {
+
+            MonopolyPlayer player1 = new MonopolyPlayer("player1");
+
+            player1.Balence = 0;
+
+            int LandOnCost = 10;
+            int PurchaseCost = 100;
+
+            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", LandOnCost, PurchaseCost);
+
+            realEstateSpace.LandOn(player1);
+
+            Assert.That(realEstateSpace.Owner, Is.Null);
 
         } 
 

@@ -21,15 +21,31 @@ namespace MonopolyKata.Board.Spaces.RealEstate
             this.purchaseCost = purchaseCost;
         }
 
-
         public override void LandOn(MonopolyPlayer player)
         {
             base.LandOn(player);
+
+            if (SpaceIsForSale())
+            {
+                if(player.Balence >= purchaseCost)
+                {
+                    Purchase(player);
+                }
+                
+            }
         }
 
-        public void Purchase( MonopolyPlayer player)
+        private bool SpaceIsForSale()
         {
-            Owner = player;    
+            return Owner == null;
+        }
+
+        private void Purchase( MonopolyPlayer player)
+        {
+            Owner = player;
+
+            player.Balence -= purchaseCost;
+
         }
     }
 }
