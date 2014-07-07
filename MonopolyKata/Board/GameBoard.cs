@@ -52,6 +52,8 @@ namespace MonopolyKata.Board
         public const int LUXURY_TAX_LOCATION = 38;
         public const int BOARDWALK_LOCATION = 39;
 
+        public const int NUMBER_OF_GAME_BOARD_SPACES = 40;
+
         public GameBoard()
         {
 

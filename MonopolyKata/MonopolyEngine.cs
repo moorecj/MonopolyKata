@@ -22,12 +22,10 @@ namespace MonopolyKata
 
         public MonopolyEngine( ISetup GameSetup, IDice die )
         {
-
             this.GameSetup = GameSetup;
             this.die = die;
             currentTurnPlayer = GameSetup.WhoGoesFirst();
             gameBoard = new GameBoard();
-
         }
 
         public void TakeTurn()
@@ -45,7 +43,7 @@ namespace MonopolyKata
 
         private void CheckForPassingGo(int roll)
         {
-            if ((roll + currentTurnPlayer.Location) > 40)
+            if ((roll + currentTurnPlayer.Location) > GameBoard.NUMBER_OF_GAME_BOARD_SPACES)
             {
                 GoSpace.Pass(currentTurnPlayer);
             }
@@ -61,6 +59,10 @@ namespace MonopolyKata
             return currentTurnPlayer;
         }
 
+        public bool CurrentTurnPlayerIsLoser()
+        {
+            return false;
+        }
        
         
 

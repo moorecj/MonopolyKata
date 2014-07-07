@@ -15,7 +15,7 @@ namespace MonopolyKata.Dice
             randomNumber = new Random();
         }
 
-        public int Roll()
+        public virtual int Roll()
         {
             return (randomNumber.Next(1, 7));
         }

@@ -6,17 +6,13 @@ using System.Threading.Tasks;
 
 namespace MonopolyKata.Dice
 {
-    class ConsolePrintingSixSidedDie : SixSidedDie
+    public class ConsolePrintingSixSidedDie : SixSidedDie
     {
 
 
-        public ConsolePrintingSixSidedDie()
-            : base() 
-        {
-            
-        }
+        public ConsolePrintingSixSidedDie(): base() {}
 
-        public int Roll()
+        public override int Roll()
         {
             int roll = base.Roll();
             Console.WriteLine("Roll was: {0}", roll);

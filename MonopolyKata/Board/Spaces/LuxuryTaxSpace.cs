@@ -16,9 +16,6 @@ namespace MonopolyKata.Board.Spaces
         {
             base.LandOn(player);
             player.Balence -= LUXURY_TAX_AMOUNT;
-
-            Console.WriteLine(player.name + " pays {0}", LUXURY_TAX_AMOUNT);
-            Console.WriteLine(player.name + "'s new balence is: {0}\n", player.Balence);
             
         }
     }

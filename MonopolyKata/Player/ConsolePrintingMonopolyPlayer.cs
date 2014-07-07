@@ -25,7 +25,7 @@ namespace MonopolyKata
         public override void Move( int numberOfSpaces )
         {
             base.Move(numberOfSpaces);
-            Console.WriteLine(name + "moved {0} spaces", numberOfSpaces);
+            Console.WriteLine(name + " moved {0} spaces", numberOfSpaces);
         }
 
     }

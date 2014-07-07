@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{839DC30B-9C84-44EF-B5ED-E73584CF5A12}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{FDDCB059-3910-4839-85F0-DC552D894DC5}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MonopolyKata</RootNamespace>
-    <AssemblyName>MonopolyKata</AssemblyName>
+    <RootNamespace>GameOfMonopoly</RootNamespace>
+    <AssemblyName>GameOfMonopoly</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -39,30 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Board\GameBoard.cs" />
-    <Compile Include="Board\Spaces\GoToJailSpace.cs" />
-    <Compile Include="Board\Spaces\IncomeTaxSpace.cs" />
-    <Compile Include="Board\Spaces\LuxuryTaxSpace.cs" />
-    <Compile Include="Board\Spaces\MonopolyBoardSpace.cs" />
-    <Compile Include="Dice\ConsolePrintingSixSidedDie.cs" />
-    <Compile Include="Dice\IDice.cs" />
-    <Compile Include="Dice\SixSidedDie.cs" />
-    <Compile Include="MonopolyGame.cs" />
-    <Compile Include="Player\ConsolePrintingMonopolyPlayer.cs" />
-    <Compile Include="Setup\ISetup.cs" />
-    <Compile Include="Player\IPlayer.cs" />
-    <Compile Include="Setup\MonopolySetup.cs" />
-    <Compile Include="Setup\MonopolySetupFake.cs" />
-    <Compile Include="Board\Spaces\BoardSpace.cs" />
-    <Compile Include="Shuffler\ExtensionsMethods.cs" />
-    <Compile Include="Board\Spaces\GoSpace.cs" />
-    <Compile Include="Setup\TooFewPlayersException.cs" />
-    <Compile Include="MonopolyEngine.cs" />
-    <Compile Include="Player\MonopolyPlayer.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Setup\TooManyPlayersException.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MonopolyKata\MonopolyKata.csproj">
+      <Project>{839dc30b-9c84-44ef-b5ed-e73584cf5a12}</Project>
+      <Name>MonopolyKata</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
