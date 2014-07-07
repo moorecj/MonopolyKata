@@ -188,8 +188,34 @@ namespace MonopolyKataTests
 
             Assert.That(gameEngine.CurrentTurnPlayerIsLoser(), Is.True);
 
+        }
+
+        [Test]
+        public void IfAPlayerLosesThePlayerShouldRemovedFromTheTurnRotaion()
+        {
+
+            player1.Balence = 0;
+            player1.Location = GameBoard.LUXURY_TAX_LOCATION - 2;
+
+            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
+
+            var startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
+
+            gameEngine.TakeTurn();
+
+            Assert.That(gameEngine.CurrentTurnPlayerIsLoser(), Is.True);
+
+            gameEngine.GoToNextTurn();
+
+            Assert.That(gameEngine.GetCurrentTurnPlayer(), Is.Not.EqualTo(player1));
+
+            gameEngine.GoToNextTurn();
+
+            Assert.That(gameEngine.GetCurrentTurnPlayer(), Is.Not.EqualTo(player1));
 
         }
+
+
 
     }
 
