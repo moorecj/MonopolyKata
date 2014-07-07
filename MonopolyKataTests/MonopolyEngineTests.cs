@@ -16,22 +16,35 @@ namespace MonopolyKataTests
     [TestFixture]
     public class MonopolyEngineTests
     {
-        public ISetup setup;
-        public IDice die;
+        public Mock<ISetup> setupMock;
+        public Mock<IDice> dieMock;
+        MonopolyPlayer player1;
+        MonopolyPlayer player2;
 
 
         [SetUp]
         public void MonopolyEngineSetUp()
         {
-            setup = new MonopolySetup("Horse", "Car");
-            die = new SixSidedDie();
+
+            player1 = new MonopolyPlayer("player1");
+            player2 = new MonopolyPlayer("player2");
+
+            setupMock = new Mock<ISetup>();
+
+            setupMock.Setup(s => s.WhoGoesFirst()).Returns(player1);
+            setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
+            setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
+
+            dieMock = new Mock<IDice>();
+
+            dieMock.Setup(s => s.Roll()).Returns(1);
         }
 
         [Test]
         public void CanMakeNewMonopolyGameWith2Players()
         {
-            
-            MonopolyEngine game = new MonopolyEngine(setup, die);
+
+            MonopolyEngine game = new MonopolyEngine(setupMock.Object, dieMock.Object);
             Assert.That(game, Is.Not.Null);
         }
 
@@ -40,7 +53,7 @@ namespace MonopolyKataTests
         public void After20RoundsOfMoving_ThePlayOrderShouldNeverChange()
         {
 
-            MonopolyEngine game = new MonopolyEngine(setup,die);
+            MonopolyEngine game = new MonopolyEngine(setupMock.Object,dieMock.Object);
 
             string player1Name = game.GetCurrentTurnPlayer().name;
             game.TakeTurn();
@@ -64,20 +77,7 @@ namespace MonopolyKataTests
         public void PassingGoShouldIncreaseBalenceBy200()
         {
 
-            MonopolyPlayer player1 = new MonopolyPlayer("player1");
-            MonopolyPlayer player2 = new MonopolyPlayer("player2");
-
             player1.Location = 39;
-
-            var setupMock = new Mock<ISetup>();
-
-            setupMock.Setup(s => s.WhoGoesFirst()).Returns(player1);
-            setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
-            setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
-
-            var dieMock = new Mock<IDice>();
-
-            dieMock.Setup(s => s.Roll()).Returns(1);
 
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
@@ -93,20 +93,8 @@ namespace MonopolyKataTests
         public void LandingOnGoShouldIncreaseBalenceBy200()
         {
 
-            MonopolyPlayer player1 = new MonopolyPlayer("player1");
-            MonopolyPlayer player2 = new MonopolyPlayer("player2");
-
             player1.Location = GameBoard.GO_LOCATION-2;
 
-            var setupMock = new Mock<ISetup>();
-
-            setupMock.Setup(s => s.WhoGoesFirst()).Returns(player1);
-            setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
-            setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
-
-            var dieMock = new Mock<IDice>();
-
-            dieMock.Setup(s => s.Roll()).Returns(1);
 
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
@@ -122,20 +110,7 @@ namespace MonopolyKataTests
         public void LandingOnGoToJailShouldMoveAPlayerDirectlyToJail()
         {
 
-            MonopolyPlayer player1 = new MonopolyPlayer("player1");
-            MonopolyPlayer player2 = new MonopolyPlayer("player2");
-
             player1.Location = GameBoard.GO_TO_JAIL_LOCATION - 2;
-
-            var setupMock = new Mock<ISetup>();
-
-            setupMock.Setup(s => s.WhoGoesFirst()).Returns(player1);
-            setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
-            setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
-
-            var dieMock = new Mock<IDice>();
-
-            dieMock.Setup(s => s.Roll()).Returns(1);
 
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
@@ -150,21 +125,8 @@ namespace MonopolyKataTests
         public void LandingOnIncomeTaxWithABalenceLessThen2000ShouldResultIn10PercentDeductionFromBalance()
         {
 
-            MonopolyPlayer player1 = new MonopolyPlayer("player1");
-            MonopolyPlayer player2 = new MonopolyPlayer("player2");
-
             player1.Balence = 100;
             player1.Location = GameBoard.INCOME_TAX_LOCATION - 2;
-
-            var setupMock = new Mock<ISetup>();
-
-            setupMock.Setup(s => s.WhoGoesFirst()).Returns(player1);
-            setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
-            setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
-
-            var dieMock = new Mock<IDice>();
-
-            dieMock.Setup(s => s.Roll()).Returns(1);
 
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
@@ -181,21 +143,8 @@ namespace MonopolyKataTests
         public void LandingOnIncomeTaxWithABalenceGreaterThan2000ShouldResultIn200DeductionFromBalance()
         {
 
-            MonopolyPlayer player1 = new MonopolyPlayer("player1");
-            MonopolyPlayer player2 = new MonopolyPlayer("player2");
-
             player1.Balence =  2200;
             player1.Location = GameBoard.INCOME_TAX_LOCATION-2;
-
-            var setupMock = new Mock<ISetup>();
-
-            setupMock.Setup(s => s.WhoGoesFirst()).Returns(player1);
-            setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
-            setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
-
-            var dieMock = new Mock<IDice>();
-
-            dieMock.Setup(s => s.Roll()).Returns(1);
 
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
@@ -211,21 +160,8 @@ namespace MonopolyKataTests
         public void LandingOnLuxuryTaxShouldReduceAPlayersBalenceBy75()
         {
 
-            MonopolyPlayer player1 = new MonopolyPlayer("player1");
-            MonopolyPlayer player2 = new MonopolyPlayer("player2");
-
             player1.Balence = 100;
             player1.Location = GameBoard.LUXURY_TAX_LOCATION - 2;
-
-            var setupMock = new Mock<ISetup>();
-
-            setupMock.Setup(s => s.WhoGoesFirst()).Returns(player1);
-            setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
-            setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
-
-            var dieMock = new Mock<IDice>();
-
-            dieMock.Setup(s => s.Roll()).Returns(1);
 
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
@@ -241,21 +177,8 @@ namespace MonopolyKataTests
         public void IfAPlayersBalenceGoesBelowZeroThatPlayerLosses()
         {
 
-            MonopolyPlayer player1 = new MonopolyPlayer("player1");
-            MonopolyPlayer player2 = new MonopolyPlayer("player2");
-
             player1.Balence = 0;
             player1.Location = GameBoard.LUXURY_TAX_LOCATION - 2;
-
-            var setupMock = new Mock<ISetup>();
-
-            setupMock.Setup(s => s.WhoGoesFirst()).Returns(player1);
-            setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
-            setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
-
-            var dieMock = new Mock<IDice>();
-
-            dieMock.Setup(s => s.Roll()).Returns(1);
 
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 

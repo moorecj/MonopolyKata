@@ -61,7 +61,7 @@ namespace MonopolyKata
 
         public bool CurrentTurnPlayerIsLoser()
         {
-            return false;
+            return currentTurnPlayer.Balence < 0;
         }
        
         
