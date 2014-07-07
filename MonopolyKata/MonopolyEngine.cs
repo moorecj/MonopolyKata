@@ -38,7 +38,6 @@ namespace MonopolyKata
             currentTurnPlayer.Move(roll1 + roll2);
 
             gameBoard.LandOnNewSpace(currentTurnPlayer);
-            
         }
 
         private void CheckForPassingGo(int roll)
@@ -51,7 +50,24 @@ namespace MonopolyKata
 
         public void GoToNextTurn()
         {
-            currentTurnPlayer = GameSetup.WhoGoesNext(currentTurnPlayer);
+            
+            currentTurnPlayer = ReturnNextValidPlayerOrCurrentPlayerIfNoValidPlayersExist(); 
+
+        }
+
+        private MonopolyPlayer ReturnNextValidPlayerOrCurrentPlayerIfNoValidPlayersExist()
+        {
+            var initalPlayer = currentTurnPlayer;
+            var nextPlayer = GameSetup.WhoGoesNext(currentTurnPlayer);
+
+            while (PlayerIsLoser(nextPlayer))
+            {
+                nextPlayer = GameSetup.WhoGoesNext(nextPlayer);
+                if (nextPlayer == initalPlayer)
+                    break;
+            }
+
+            return nextPlayer;
         }
 
         public MonopolyPlayer GetCurrentTurnPlayer()
@@ -59,9 +75,20 @@ namespace MonopolyKata
             return currentTurnPlayer;
         }
 
+        private bool PlayerIsLoser(MonopolyPlayer player)
+        {
+            return player.Balence < 0;
+        }
+            
+
         public bool CurrentTurnPlayerIsLoser()
         {
-            return currentTurnPlayer.Balence < 0;
+            return PlayerIsLoser(currentTurnPlayer);
+        }
+
+        public bool CurrentTurnPlayerIsWinner()
+        {
+            return currentTurnPlayer == ReturnNextValidPlayerOrCurrentPlayerIfNoValidPlayersExist();
         }
        
         

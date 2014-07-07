@@ -215,6 +215,68 @@ namespace MonopolyKataTests
 
         }
 
+        [Test]
+        public void IfAPlayerLosesTheOthersPlayersInTheGameShouldBeAllowedToContinuePlay()
+        {
+            MonopolyPlayer player3 = new MonopolyPlayer("player3");
+
+            player1.Balence = 0;
+            player1.Location = GameBoard.LUXURY_TAX_LOCATION - 2;
+
+            setupMock.Setup(s => s.WhoGoesFirst()).Returns(player1);
+            setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
+            setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player3);
+            setupMock.Setup(s => s.WhoGoesNext(player3)).Returns(player1);
+
+            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
+
+            var startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
+
+            gameEngine.TakeTurn();
+
+            Assert.That(gameEngine.CurrentTurnPlayerIsLoser(), Is.True);
+
+            gameEngine.GoToNextTurn();
+            gameEngine.TakeTurn();
+
+            Assert.That(gameEngine.GetCurrentTurnPlayer(), Is.EqualTo(player2));
+
+            gameEngine.GoToNextTurn();
+            gameEngine.TakeTurn();
+
+            Assert.That(gameEngine.GetCurrentTurnPlayer(), Is.EqualTo(player3));
+            
+            gameEngine.GoToNextTurn();
+            gameEngine.TakeTurn();
+
+            Assert.That(gameEngine.GetCurrentTurnPlayer(), Is.EqualTo(player2));
+
+        }
+
+        [Test]
+        public void IfAPlayerIsTheOnlyPlayerLeftInTheGameThatHasNotLostThatPlayerIsTheWinner()
+        {
+
+            player1.Balence = 0;
+            player1.Location = GameBoard.LUXURY_TAX_LOCATION - 2;
+
+            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
+
+            var startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
+
+            gameEngine.TakeTurn();
+
+            Assert.That(gameEngine.CurrentTurnPlayerIsLoser(), Is.True);
+
+            gameEngine.GoToNextTurn();
+
+            Assert.That(gameEngine.CurrentTurnPlayerIsWinner(), Is.True);
+
+        }
+
+
+
+
 
 
     }

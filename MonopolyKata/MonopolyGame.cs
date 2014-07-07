@@ -33,35 +33,29 @@ namespace MonopolyKata
 
         public void PlayGame()
         {
+            
+            Console.WriteLine("======Play Monopoly========");
 
             for (int i = 0; i < (players.Count*20); ++i)
             {
                 Console.WriteLine("It's " + gameEngine.GetCurrentTurnPlayer().name + "'s turn");
                 gameEngine.TakeTurn();
 
-                if (CheckForLosser())
+                if (gameEngine.CurrentTurnPlayerIsLoser())
                 {
                     Console.WriteLine(gameEngine.GetCurrentTurnPlayer().name + " has lost" );
-                    RemoveLoserFromTheGame();
+                }
+
+                if(gameEngine.CurrentTurnPlayerIsWinner())
+                {
+                    Console.WriteLine(gameEngine.GetCurrentTurnPlayer().name + " has Won");
+                    break;
                 }
 
                 gameEngine.GoToNextTurn();
             }
 
         }
-
-
-
-        private void RemoveLoserFromTheGame()
-        {
-            players.Remove(gameEngine.GetCurrentTurnPlayer());
-        }
-
-        private bool CheckForLosser()
-        {
-            return gameEngine.GetCurrentTurnPlayer().Balence < 0;
-        }
-
             
     }
 }
