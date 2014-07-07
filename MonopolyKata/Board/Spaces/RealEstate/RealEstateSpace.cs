@@ -23,7 +23,7 @@ namespace MonopolyKata.Board.Spaces.RealEstate
 
         public void Purchase( MonopolyPlayer player)
         {
-            
+            Owner = player;    
         }
     }
 }
