@@ -9,8 +9,8 @@ namespace MonopolyKata.Board.Spaces.RealEstate
 
     public class RealEstateSpace : MonopolyBoardSpace
     {
-        public MonopolyPlayer Owner{ get; set; }
-        public int landOnCost{ get; private set;}
+        public virtual MonopolyPlayer Owner{ get; set; }
+        public virtual int landOnCost{ get; private set;}
         public int purchaseCost {  get; private set; }
 
         public RealEstateSpace(string name) : base(name){ }
@@ -33,6 +33,13 @@ namespace MonopolyKata.Board.Spaces.RealEstate
                 }
                 
             }
+            else 
+            {
+                Owner.Balence += landOnCost;
+                player.Balence -= landOnCost;
+            }
+
+
         }
 
         private bool SpaceIsForSale()
