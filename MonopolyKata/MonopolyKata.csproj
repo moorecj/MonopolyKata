@@ -44,6 +44,7 @@
     <Compile Include="Board\Spaces\IncomeTaxSpace.cs" />
     <Compile Include="Board\Spaces\LuxuryTaxSpace.cs" />
     <Compile Include="Board\Spaces\MonopolyBoardSpace.cs" />
+    <Compile Include="Board\Spaces\RealEstate\RealEstateSpace.cs" />
     <Compile Include="Dice\ConsolePrintingSixSidedDie.cs" />
     <Compile Include="Dice\IDice.cs" />
     <Compile Include="Dice\SixSidedDie.cs" />

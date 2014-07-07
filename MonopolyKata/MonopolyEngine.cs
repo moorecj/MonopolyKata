@@ -80,7 +80,6 @@ namespace MonopolyKata
             return player.Balence < 0;
         }
             
-
         public bool CurrentTurnPlayerIsLoser()
         {
             return PlayerIsLoser(currentTurnPlayer);
