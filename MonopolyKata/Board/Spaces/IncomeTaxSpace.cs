@@ -18,6 +18,7 @@ namespace MonopolyKata.Board.Spaces
 
             int taxAmount;
 
+      
             if( (0.10 * player.Balence ) >= MAX_INCOME_TAX_AMOUNT)
             {
                 taxAmount = MAX_INCOME_TAX_AMOUNT;

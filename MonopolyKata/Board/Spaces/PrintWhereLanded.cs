@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 
 namespace MonopolyKata.Board.Spaces
 {
-    public class GoToJailSpace : MonopolyBoardSpace
+    public class PrintWhereLanded : SpaceDecorator
     {
-        public GoToJailSpace(string name) : base(name)
+        public PrintWhereLanded(BoardSpace space) : base ( space )
         {
-            this.name = name; 
+
         }
 
         public override void LandOn(MonopolyPlayer player)
         {
-            base.LandOn(player);
-            player.Location = GameBoard.JAIL_LOCATION;
+            Console.WriteLine(player.name + " has landed on " + name);
+            space.LandOn(player);
         }
 
+        
     }
 }

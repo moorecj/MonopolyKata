@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using MonopolyKata;
 using MonopolyKata.Board.Spaces.RealEstate;
+using MonopolyKata.Board.Spaces.RealEstate.Property;
 using MonopolyKata.Board.Spaces;
 using Moq;
 
@@ -26,14 +27,14 @@ namespace MonopolyKataTests
         }
 
         [Test]
-        public void RealEstateShouldSaveABaseLandOnCostAndPurchaseCostInContructor()
+        public void RealEstateShouldSaveAPurchaseCostInContructor()
         {
-            int LandOnCost =  10;
+
             int PurchaseCost = 100;
-            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", LandOnCost, PurchaseCost);
+            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space",  PurchaseCost);
 
             Assert.That(realEstateSpace.purchaseCost, Is.EqualTo(100));
-            Assert.That(realEstateSpace.landOnCost, Is.EqualTo(10));
+
 
         }
 
@@ -59,10 +60,10 @@ namespace MonopolyKataTests
 
             player1.Balence = 1000;
 
-            int LandOnCost = 10;
+
             int PurchaseCost = 100;
 
-            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", LandOnCost, PurchaseCost);
+            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", PurchaseCost);
 
             realEstateSpace.LandOn(player1);
 
@@ -78,46 +79,15 @@ namespace MonopolyKataTests
 
             player1.Balence = 0;
 
-            int LandOnCost = 10;
             int PurchaseCost = 100;
 
-            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", LandOnCost, PurchaseCost);
+            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", PurchaseCost);
 
             realEstateSpace.LandOn(player1);
 
             Assert.That(realEstateSpace.Owner, Is.Null);
 
         }
-
-
-        [Test]
-        public void LandingOnASpaceOwnedByAnotherPlayerTransferTheRentCostFromTheRenterToTheOwner()
-        {
-            var player1 = new MonopolyPlayer("player1");
-            var player2 = new MonopolyPlayer("player2");
-
-            player1.Balence = 0;
-
-            player2.Balence = 10;
-
-            int LandOnCost = 10;
-            int PurchaseCost = 100;
-
-            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", LandOnCost, PurchaseCost);
-
-            realEstateSpace.Owner = player1;
-
-            realEstateSpace.LandOn(player2);
-
-            Assert.That(player1.Balence, Is.EqualTo(10));
-            Assert.That(player2.Balence, Is.EqualTo(0));
-
-        }
-
-
-
-
-
 
 
 

@@ -25,7 +25,9 @@ namespace MonopolyKata
             }
 
             ISetup setup = new MonopolySetup(players.ToArray());
-            IDice die = new ConsolePrintingSixSidedDie();
+            IDice die = new SixSidedDie();
+
+            die = new PrintDiceRoll(die);
 
             gameEngine = new MonopolyEngine(setup, die);
 

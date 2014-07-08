@@ -6,18 +6,21 @@ using System.Threading.Tasks;
 
 namespace MonopolyKata.Board.Spaces
 {
-    public class GoToJailSpace : MonopolyBoardSpace
+
+    public abstract class SpaceDecorator : BoardSpace
     {
-        public GoToJailSpace(string name) : base(name)
+        protected BoardSpace space;
+
+        public SpaceDecorator(BoardSpace space): base(space.name)
         {
-            this.name = name; 
+            this.space = space;
         }
 
         public override void LandOn(MonopolyPlayer player)
         {
-            base.LandOn(player);
-            player.Location = GameBoard.JAIL_LOCATION;
+            space.LandOn(player);
         }
 
     }
+    
 }

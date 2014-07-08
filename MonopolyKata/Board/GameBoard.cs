@@ -109,6 +109,14 @@ namespace MonopolyKata.Board
             spaces.Add(new MonopolyBoardSpace("Park Place"));
             spaces.Add(new LuxuryTaxSpace("Luxury Tax"));
             spaces.Add(new MonopolyBoardSpace("Boardwalk"));
+
+
+            for(int i = 0; i < spaces.Count(); ++i)
+            {
+                spaces[i] = new PrintWhereLanded(spaces[i]);
+            }
+
+            
         }
     }
 }

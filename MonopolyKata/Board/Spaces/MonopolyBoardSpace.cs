@@ -8,7 +8,6 @@ namespace MonopolyKata.Board.Spaces
 {
     public class MonopolyBoardSpace : BoardSpace
     {
-
         public MonopolyBoardSpace( string name ) : base( name )
         {
 
@@ -16,7 +15,7 @@ namespace MonopolyKata.Board.Spaces
 
         public override void LandOn(MonopolyPlayer player)
         {
-            Console.WriteLine(player.name + " landed on " + name );
+
         }
 
     }

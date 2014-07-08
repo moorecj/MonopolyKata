@@ -50,9 +50,7 @@ namespace MonopolyKata
 
         public void GoToNextTurn()
         {
-            
             currentTurnPlayer = ReturnNextValidPlayerOrCurrentPlayerIfNoValidPlayersExist(); 
-
         }
 
         private MonopolyPlayer ReturnNextValidPlayerOrCurrentPlayerIfNoValidPlayersExist()
