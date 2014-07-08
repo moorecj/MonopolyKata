@@ -16,8 +16,8 @@ namespace MonopolyKataTests
         [Test]
         public void LandingOnASpaceOwnedByAnotherPlayerTransferTheRentCostFromTheRenterToTheOwner()
         {
-            var player1 = new MonopolyPlayer("player1");
-            var player2 = new MonopolyPlayer("player2");
+            MonopolyPlayer player1 = new MonopolyPlayer("player1");
+            MonopolyPlayer player2 = new MonopolyPlayer("player2");
 
             player1.Balence = 0;
 
@@ -26,7 +26,7 @@ namespace MonopolyKataTests
             int LandOnCost = 10;
             int PurchaseCost = 100;
 
-            var propertySpace = new PropertySpace("Real Estate Space", LandOnCost, PurchaseCost);
+            PropertySpace propertySpace = new PropertySpace("Real Estate Space", LandOnCost, PurchaseCost);
 
             propertySpace.Owner = player1;
 

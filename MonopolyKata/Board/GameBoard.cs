@@ -111,12 +111,18 @@ namespace MonopolyKata.Board
             spaces.Add(new MonopolyBoardSpace("Boardwalk"));
 
 
-            for(int i = 0; i < spaces.Count(); ++i)
-            {
-                spaces[i] = new PrintWhereLandedDecoration(spaces[i]);
-            }
+            AddPrintWherLandedDecoration();
 
             
         }
+
+        private void AddPrintWherLandedDecoration()
+        {
+            for (int i = 0; i < spaces.Count(); ++i)
+            {
+                spaces[i] = new PrintWhereLandedDecoration(spaces[i]);
+            }
+        }
+
     }
 }

@@ -81,7 +81,7 @@ namespace MonopolyKataTests
 
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
-            var startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
+            int startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
 
             gameEngine.TakeTurn();
 
@@ -98,7 +98,7 @@ namespace MonopolyKataTests
 
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
-            var startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
+            int startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
 
             gameEngine.TakeTurn();
 
@@ -130,7 +130,7 @@ namespace MonopolyKataTests
 
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
-            var startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
+            int startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
 
             gameEngine.TakeTurn();
 
@@ -148,7 +148,7 @@ namespace MonopolyKataTests
 
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
-            var startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
+            int startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
 
             gameEngine.TakeTurn();
 
@@ -165,7 +165,7 @@ namespace MonopolyKataTests
 
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
-            var startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
+            int startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
 
             gameEngine.TakeTurn();
 
@@ -182,7 +182,7 @@ namespace MonopolyKataTests
 
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
-            var startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
+            int startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
 
             gameEngine.TakeTurn();
 
@@ -199,7 +199,7 @@ namespace MonopolyKataTests
 
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
-            var startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
+            int startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
 
             gameEngine.TakeTurn();
 
@@ -230,7 +230,7 @@ namespace MonopolyKataTests
 
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
-            var startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
+            int startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
 
             gameEngine.TakeTurn();
 
@@ -262,7 +262,7 @@ namespace MonopolyKataTests
 
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
-            var startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
+            int startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
 
             gameEngine.TakeTurn();
 

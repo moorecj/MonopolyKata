@@ -55,8 +55,8 @@ namespace MonopolyKata
 
         private MonopolyPlayer ReturnNextValidPlayerOrCurrentPlayerIfNoValidPlayersExist()
         {
-            var initalPlayer = currentTurnPlayer;
-            var nextPlayer = GameSetup.WhoGoesNext(currentTurnPlayer);
+            MonopolyPlayer initalPlayer = currentTurnPlayer;
+            MonopolyPlayer nextPlayer = GameSetup.WhoGoesNext(currentTurnPlayer);
 
             while (PlayerIsLoser(nextPlayer))
             {

@@ -29,7 +29,7 @@ namespace MonopolyKataTests
                                  "Player 4", "Player 5", "Player 6", 
                                  "Player 7", "Player 8", "Player 9" };
 
-            var exception = Assert.Throws<TooManyPlayersException>(() => new MonopolySetup(players));
+            TooManyPlayersException exception = Assert.Throws<TooManyPlayersException>(() => new MonopolySetup(players));
 
             Assert.That(exception.Message, Is.EqualTo("Too many players: 9"));
 
@@ -38,7 +38,7 @@ namespace MonopolyKataTests
         [Test]
         public void ASetupWithLessThen2PlayersShouldFail()
         {
-            var exception = Assert.Throws<TooFewPlayersException>(() => new MonopolySetup("Player1"));
+            TooFewPlayersException exception = Assert.Throws<TooFewPlayersException>(() => new MonopolySetup("Player1"));
 
             Assert.That(exception.Message, Is.EqualTo("Too few players: 1"));
 
@@ -82,11 +82,11 @@ namespace MonopolyKataTests
                 ListOfSetups.Add(new MonopolySetup("Horse", "Car"));
             }
 
-            var differentOrder = from g in ListOfSetups
+            IEnumerable<MonopolySetup> differentOrder = from g in ListOfSetups
                                  where g.WhoGoesFirst().name.Equals("Car")
                                  select g;
 
-            var diffentCount = differentOrder.Count();
+            int diffentCount = differentOrder.Count();
 
             Assert.That(diffentCount, Is.GreaterThan(1));
             Assert.That(diffentCount, Is.LessThan(99));

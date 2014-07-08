@@ -55,7 +55,7 @@ namespace MonopolyKata.Setup
 
         public MonopolyPlayer WhoGoesNext( MonopolyPlayer player )
         {
-            var nextPlayerIndex = playOrder.FindIndex(p => p == player) + 1;
+            int nextPlayerIndex = playOrder.FindIndex(p => p == player) + 1;
 
             if (nextPlayerIndex >= playOrder.Count())
             {

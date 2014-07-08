@@ -44,11 +44,11 @@
     <Compile Include="Board\Spaces\IncomeTaxSpace.cs" />
     <Compile Include="Board\Spaces\LuxuryTaxSpace.cs" />
     <Compile Include="Board\Spaces\MonopolyBoardSpace.cs" />
-    <Compile Include="Board\Spaces\PrintWhereLanded.cs" />
+    <Compile Include="Board\Spaces\PrintWhereLandedDecoration.cs" />
     <Compile Include="Board\Spaces\SpaceDecorator.cs" />
     <Compile Include="Board\Spaces\RealEstate\Property\PropertySpace.cs" />
     <Compile Include="Board\Spaces\RealEstate\RealEstateSpace.cs" />
-    <Compile Include="Dice\PrintDiceRoll.cs" />
+    <Compile Include="Dice\PrintDiceRollDecoration.cs" />
     <Compile Include="Dice\DiceDecorator.cs" />
     <Compile Include="Dice\IDice.cs" />
     <Compile Include="Dice\SixSidedDie.cs" />
