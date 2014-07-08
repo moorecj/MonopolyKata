@@ -21,7 +21,6 @@ namespace MonopolyKataTests
         MonopolyPlayer player1;
         MonopolyPlayer player2;
 
-
         [SetUp]
         public void MonopolyEngineSetUp()
         {

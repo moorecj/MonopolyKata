@@ -20,11 +20,28 @@ namespace MonopolyKata.Board.Spaces.RealEstate.Property
 
             if(Owner !=  player)           
             {
-                Owner.Balence += baseLandOnCost;
-                player.Balence -= baseLandOnCost;
+                int multiplier; 
+
+                if (ThisOwnerOwnTheRestInGroup())
+                {
+                    multiplier = 2;
+                }
+                else
+                {
+                    multiplier = 1;
+                }
+
+
+                Owner.Balence += baseLandOnCost * multiplier;
+                player.Balence -= baseLandOnCost * multiplier;
             }
 
 
+        }
+
+        private bool ThisOwnerOwnTheRestInGroup()
+        {
+            return groupProperties.Count() == groupProperties.Where(p => p.Owner == Owner).Count();
         }
 
     }

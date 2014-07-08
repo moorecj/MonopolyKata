@@ -11,12 +11,15 @@ namespace MonopolyKata.Board.Spaces.RealEstate
     {
         public MonopolyPlayer Owner{ get; set; }
         public int purchaseCost {  get; private set; }
+        protected List<RealEstateSpace> groupProperties;
 
         public RealEstateSpace(string name) : base(name){ }
 
         public RealEstateSpace(string name, int purchaseCost) : base(name) 
         {
             this.purchaseCost = purchaseCost;
+
+            groupProperties = new List<RealEstateSpace>();
         }
 
         public override void LandOn(MonopolyPlayer player)
@@ -28,10 +31,27 @@ namespace MonopolyKata.Board.Spaces.RealEstate
                 if(player.Balence >= purchaseCost)
                 {
                     Purchase(player);
-                }
-                
+                } 
             }
+        }
 
+        public static void GroupSpaces(params RealEstateSpace[] spaces)
+        {
+            for (int i = 0; i < spaces.Length-1; ++i )
+            {
+                for (int j = i+1; j < spaces.Length; ++j )
+                {
+                    spaces[i].AddSpaceToGroup(spaces[j]);
+                    spaces[j].AddSpaceToGroup(spaces[i]);
+                }
+            }
+        }
+
+
+
+        public void AddSpaceToGroup( RealEstateSpace spaceToAdd )
+        {
+            groupProperties.Add(spaceToAdd);
         }
 
         private bool SpaceIsForSale()
@@ -46,5 +66,7 @@ namespace MonopolyKata.Board.Spaces.RealEstate
             player.Balence -= purchaseCost;
 
         }
+
+
     }
 }

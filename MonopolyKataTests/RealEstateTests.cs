@@ -60,7 +60,6 @@ namespace MonopolyKataTests
 
             player1.Balence = 1000;
 
-
             int PurchaseCost = 100;
 
             RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", PurchaseCost);
