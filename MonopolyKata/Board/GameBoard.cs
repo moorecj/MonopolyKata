@@ -113,7 +113,7 @@ namespace MonopolyKata.Board
 
             for(int i = 0; i < spaces.Count(); ++i)
             {
-                spaces[i] = new PrintWhereLanded(spaces[i]);
+                spaces[i] = new PrintWhereLandedDecoration(spaces[i]);
             }
 
             

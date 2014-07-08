@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MonopolyKata.Board.Spaces
 {
-    public class PrintWhereLanded : SpaceDecorator
+    public class PrintWhereLandedDecoration : SpaceDecorator
     {
-        public PrintWhereLanded(BoardSpace space) : base ( space )
+        public PrintWhereLandedDecoration(BoardSpace space) : base ( space )
         {
 
         }
