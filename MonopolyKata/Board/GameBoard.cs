@@ -95,8 +95,6 @@ namespace MonopolyKata.Board
         public const int LUXURY_TAX_LOCATION = 38;
         public const int BOARDWALK_LOCATION = 39;
 
-        public const int NUMBER_OF_GAME_BOARD_SPACES = 40;
-
         public GameBoard()
         {
 
@@ -105,7 +103,7 @@ namespace MonopolyKata.Board
             CreateBoardSpaces();
             AddBoardSpacesToList();
 
-            AddPrintWherLandedDecoration();
+            AddPrintWhereLandedDecoration();
 
         }
 
@@ -113,6 +111,12 @@ namespace MonopolyKata.Board
         {
             spaces[player.Location].LandOn(player);
         }
+
+        public int GetNumberOfBoardSpaces()
+        {
+            return (spaces.Count());
+        }
+
 
 
         private void SetUpPropertyGroups()
@@ -220,7 +224,7 @@ namespace MonopolyKata.Board
             spaces.Add( Boardwalk );
         }
 
-        private void AddPrintWherLandedDecoration()
+        private void AddPrintWhereLandedDecoration()
         {
             for (int i = 0; i < spaces.Count(); ++i)
             {

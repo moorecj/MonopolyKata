@@ -16,7 +16,6 @@ namespace MonopolyKata
 
         private ISetup GameSetup;
         private IDice die;
-
         private IGameBoard gameBoard;
 
 
@@ -50,7 +49,7 @@ namespace MonopolyKata
 
         private void CheckForPassingGo(int roll)
         {
-            if ((roll + currentTurnPlayer.Location) > GameBoard.NUMBER_OF_GAME_BOARD_SPACES)
+            if ((roll + currentTurnPlayer.Location) > gameBoard.GetNumberOfBoardSpaces())
             {
                 GoSpace.Pass(currentTurnPlayer);
             }
