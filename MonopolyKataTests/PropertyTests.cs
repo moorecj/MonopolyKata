@@ -65,5 +65,7 @@ namespace MonopolyKataTests
             Assert.That(player2.Balence, Is.EqualTo(0));
 
         }
+
+
     }
 }

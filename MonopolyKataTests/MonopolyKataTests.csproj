@@ -50,6 +50,7 @@
     <Compile Include="MonopolyEngineTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyTests.cs" />
+    <Compile Include="RailRoadTests.cs" />
     <Compile Include="RealEstateTests.cs" />
     <Compile Include="SetupTests.cs" />
   </ItemGroup>

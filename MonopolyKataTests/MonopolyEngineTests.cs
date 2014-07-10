@@ -52,7 +52,12 @@ namespace MonopolyKataTests
         public void After20RoundsOfMoving_ThePlayOrderShouldNeverChange()
         {
 
+
+
             MonopolyEngine game = new MonopolyEngine(setupMock.Object,dieMock.Object);
+
+            player1.Balence = 10000;
+            player2.Balence = 10000;
 
             string player1Name = game.GetCurrentTurnPlayer().name;
             game.TakeTurn();
@@ -78,7 +83,11 @@ namespace MonopolyKataTests
 
             player1.Location = 39;
 
-            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
+            Mock<IGameBoard> gameBoardMock = new Mock<IGameBoard>();
+
+            gameBoardMock.Setup(s => s.LandOnNewSpace(It.IsAny<MonopolyPlayer>()));
+
+            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object, gameBoardMock.Object);
 
             int startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
 

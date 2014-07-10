@@ -17,7 +17,7 @@ namespace MonopolyKata
         private ISetup GameSetup;
         private IDice die;
 
-        GameBoard gameBoard;
+        private IGameBoard gameBoard;
 
 
         public MonopolyEngine( ISetup GameSetup, IDice die )
@@ -26,6 +26,14 @@ namespace MonopolyKata
             this.die = die;
             currentTurnPlayer = GameSetup.WhoGoesFirst();
             gameBoard = new GameBoard();
+        }
+
+        public MonopolyEngine(ISetup GameSetup, IDice die, IGameBoard gameBoard)
+        {
+            this.GameSetup = GameSetup;
+            this.die = die;
+            currentTurnPlayer = GameSetup.WhoGoesFirst();
+            this.gameBoard = gameBoard;
         }
 
         public void TakeTurn()
