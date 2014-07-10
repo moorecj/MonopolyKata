@@ -16,6 +16,7 @@ namespace MonopolyKata
         public string name { get; set; }
         public int Location { get; set; }
         public virtual int Balence{ get; set; }
+        public int lastRoll { get; set; }
 
         public MonopolyPlayer(string name)
         {
@@ -24,9 +25,11 @@ namespace MonopolyKata
             Balence = 0;
         }
 
-        public virtual void Move( int numberOfSpaces )
+        public virtual void Move( int roll )
         {
-            Location += numberOfSpaces;
+            Location += roll;
+
+            lastRoll = roll;
 
             while(Location >= NUMBER_OF_LOCATIONS_ON_BOARD)
             {

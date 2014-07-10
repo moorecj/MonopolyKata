@@ -15,8 +15,20 @@ namespace MonopolyKata.Board.Spaces
 
         public override void LandOn(MonopolyPlayer player)
         {
+            if (CheckForPassingGo(player))
+            {
+                GoSpace.Pass(player);
+            }
+            
 
         }
+
+        private static bool CheckForPassingGo(MonopolyPlayer player)
+        {
+            return ((player.Location - player.lastRoll) < 0) && player.Location != GameBoard.GO_LOCATION;
+        }
+
+        
 
     }
 }

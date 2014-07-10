@@ -77,42 +77,6 @@ namespace MonopolyKataTests
 
         }
 
-        [Test]
-        public void PassingGoShouldIncreaseBalenceBy200()
-        {
-
-            player1.Location = 39;
-
-            Mock<IGameBoard> gameBoardMock = new Mock<IGameBoard>();
-
-            gameBoardMock.Setup(s => s.LandOnNewSpace(It.IsAny<MonopolyPlayer>()));
-
-            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object, gameBoardMock.Object);
-
-            int startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
-
-            gameEngine.TakeTurn();
-
-            Assert.That(gameEngine.GetCurrentTurnPlayer().Balence, Is.EqualTo(startingBalence + 200));
-
-        }
-
-        [Test]
-        public void LandingOnGoShouldIncreaseBalenceBy200()
-        {
-
-            player1.Location = GameBoard.GO_LOCATION-2;
-
-
-            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
-
-            int startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
-
-            gameEngine.TakeTurn();
-
-            Assert.That(gameEngine.GetCurrentTurnPlayer().Location, Is.EqualTo(GameBoard.GO_LOCATION));
-            Assert.That(gameEngine.GetCurrentTurnPlayer().Balence, Is.EqualTo(startingBalence + 200));
-        }
 
         [Test]
         public void LandingOnGoToJailShouldMoveAPlayerDirectlyToJail()

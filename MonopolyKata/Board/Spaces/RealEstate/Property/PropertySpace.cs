@@ -41,6 +41,7 @@ namespace MonopolyKata.Board.Spaces.RealEstate.Property
             {
                 multiplier = 1;
             }
+
             return multiplier;
         }
 

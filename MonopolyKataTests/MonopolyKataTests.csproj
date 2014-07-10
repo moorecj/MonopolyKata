@@ -45,14 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SpaceTests\GoSpaceTests.cs" />
     <Compile Include="PlayerTests.cs" />
     <Compile Include="DiceTests.cs" />
     <Compile Include="MonopolyEngineTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyTests.cs" />
-    <Compile Include="RailRoadTests.cs" />
-    <Compile Include="RealEstateTests.cs" />
+    <Compile Include="SpaceTests\PropertyTests.cs" />
+    <Compile Include="SpaceTests\RailRoadTests.cs" />
+    <Compile Include="SpaceTests\RealEstateTests.cs" />
     <Compile Include="SetupTests.cs" />
+    <Compile Include="SpaceTests\UtilitySpaceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

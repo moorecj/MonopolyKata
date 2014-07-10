@@ -97,14 +97,12 @@ namespace MonopolyKata.Board
 
         public GameBoard()
         {
-
             spaces = new List<BoardSpace>();
             
             CreateBoardSpaces();
             AddBoardSpacesToList();
 
             AddPrintWhereLandedDecoration();
-
         }
 
         public void LandOnNewSpace( MonopolyPlayer player )

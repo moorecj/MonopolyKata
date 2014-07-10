@@ -40,20 +40,11 @@ namespace MonopolyKata
             int roll1 = die.Roll();
             int roll2 = die.Roll();
 
-            CheckForPassingGo(roll1+roll2);
-
             currentTurnPlayer.Move(roll1 + roll2);
 
             gameBoard.LandOnNewSpace(currentTurnPlayer);
         }
 
-        private void CheckForPassingGo(int roll)
-        {
-            if ((roll + currentTurnPlayer.Location) > gameBoard.GetNumberOfBoardSpaces())
-            {
-                GoSpace.Pass(currentTurnPlayer);
-            }
-        }
 
         public void GoToNextTurn()
         {
