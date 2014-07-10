@@ -43,7 +43,10 @@ namespace MonopolyKataTests.SpaceTests
         public void LandingOnAUtilityWhenMoreThenOneIsOwnedResultsIn10TimesTheLastMovementReducedFromBalence()
         {
             int PurchaseCost = 100;
-            UtilitySpace Utility = new UtilitySpace("Utility", PurchaseCost);
+            UtilitySpace Utility1 = new UtilitySpace("Utility", PurchaseCost);
+            UtilitySpace Utility2 = new UtilitySpace("Utility", PurchaseCost);
+
+            RealEstateSpace.GroupSpaces(Utility1, Utility2);
 
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
             MonopolyPlayer player2 = new MonopolyPlayer("player2");
@@ -52,11 +55,12 @@ namespace MonopolyKataTests.SpaceTests
 
             player2.Balence = 100;
 
-            Utility.Owner = player1;
+            Utility1.Owner = player1;
+            Utility2.Owner = player1;
 
             player2.Move(10);
 
-            Utility.LandOn(player2);
+            Utility1.LandOn(player2);
 
             Assert.That(player1.Balence, Is.EqualTo(100));
             Assert.That(player2.Balence, Is.EqualTo(0));

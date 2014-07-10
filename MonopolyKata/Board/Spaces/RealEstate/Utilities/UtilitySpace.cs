@@ -8,7 +8,6 @@ namespace MonopolyKata.Board.Spaces.RealEstate.Utilities
 {
     public class UtilitySpace : RealEstateSpace
     {
-        const int UTILITY_MULTIPLYER = 4;
 
         public int baseLandOnCost { set; get; }
 
@@ -21,13 +20,34 @@ namespace MonopolyKata.Board.Spaces.RealEstate.Utilities
         {
             base.LandOn(player);
 
-            int cost = UTILITY_MULTIPLYER * player.lastRoll;
+            int cost = player.lastRoll * GetUtilityMultiplier();
 
             if (Owner != player)
             {
                 Owner.Balence += cost;
                 player.Balence -= cost;
             }
+        }
+
+        private int GetUtilityMultiplier()
+        {
+            int multiplier;
+
+            if ((CountOfOtherOwners() >= 1))
+            {
+                multiplier = 10;    
+            }
+            else
+            {
+                multiplier = 4;  
+            }
+
+            return multiplier;
+        }
+
+        private int CountOfOtherOwners()
+        {
+            return groupProperties.Where(p => p.Owner != null).Count();
         }
     
     }
