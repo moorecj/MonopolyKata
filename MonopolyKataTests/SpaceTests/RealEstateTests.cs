@@ -88,6 +88,27 @@ namespace MonopolyKataTests
 
         }
 
+        [Test]
+        public void APlayerCanMortgageARealEstateSpaceFor90PercentOfTheInitialCost()
+        {
+
+            MonopolyPlayer player1 = new MonopolyPlayer("player1");
+
+            player1.Balence = 0;
+
+            int PurchaseCost = 100;
+
+            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", PurchaseCost);
+
+            
+
+
+            Assert.That(realEstateSpace.Owner, );
+
+        }
+
+
+
 
 
 
