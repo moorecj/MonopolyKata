@@ -11,15 +11,22 @@ namespace MonopolyKata.Board.Spaces.RealEstate
     {
         public MonopolyPlayer Owner{ get; set; }
         public int purchaseCost {  get; private set; }
-        protected List<RealEstateSpace> groupProperties;
-
+        public List<RealEstateSpace> groupProperties;
+        public int baseLandOnCost { get; set; }
+        IRealEstateChargingStategy chargingStrategy;
+        
+        
         public RealEstateSpace(string name) : base(name){ }
 
-        public RealEstateSpace(string name, int purchaseCost) : base(name) 
+
+        public RealEstateSpace(string name, int purchaseCost, int baseLandOnCost, IRealEstateChargingStategy chargingStrategy) : base(name) 
         {
             this.purchaseCost = purchaseCost;
 
             groupProperties = new List<RealEstateSpace>();
+
+            this.chargingStrategy = chargingStrategy;
+            this.baseLandOnCost = baseLandOnCost;
         }
 
         public override void LandOn(MonopolyPlayer player)
@@ -33,6 +40,11 @@ namespace MonopolyKata.Board.Spaces.RealEstate
                     Purchase(player);
                 } 
             }
+            else
+            {
+                chargingStrategy.ChargePlayer(player,this);
+            }
+
         }
 
         public static void GroupSpaces(params RealEstateSpace[] spaces)
@@ -46,8 +58,6 @@ namespace MonopolyKata.Board.Spaces.RealEstate
                 }
             }
         }
-
-
 
         public void AddSpaceToGroup( RealEstateSpace spaceToAdd )
         {

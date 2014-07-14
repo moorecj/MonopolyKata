@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using MonopolyKata.Board.Spaces;
 using MonopolyKata.Board.Spaces.RealEstate;
-using MonopolyKata.Board.Spaces.RealEstate.Property;
 
 namespace MonopolyKata.Board
 {
@@ -137,45 +136,45 @@ namespace MonopolyKata.Board
         private void CreateBoardSpaces()
         {
             Go = new GoSpace("Go");
-            MediterraneanAvenue = new PropertySpace ("Mediterranean Avenue",2,60);
+            MediterraneanAvenue = new RealEstateSpace("Mediterranean Avenue", 2, 60, new PropertyChargingStrategy());
             CommunityChest1 = new MonopolyBoardSpace("Community Chest");
-            BalticAvenue = new PropertySpace("Baltic Avenue",4,60);
+            BalticAvenue = new RealEstateSpace("Baltic Avenue", 4, 60, new PropertyChargingStrategy());
             IncomeTax= new IncomeTaxSpace("Income Tax");
-            ReadingRailroad = new RealEstateSpace("Reading Railroad");
-            OrientalAvenue = new PropertySpace("Oriental Avenue",6,100);
+            ReadingRailroad = new RealEstateSpace("Reading Railroad",25,200,new RailRoadChargingStrategy());
+            OrientalAvenue = new RealEstateSpace("Oriental Avenue", 6, 100, new PropertyChargingStrategy());
             Chance1 = new MonopolyBoardSpace ("Chance");
-            VermontAvenue = new PropertySpace("Vermont Avenue",6,100);
-            ConnecticutAvenue = new PropertySpace("Connecticut Avenue",8,120);
+            VermontAvenue = new RealEstateSpace("Vermont Avenue", 6, 100, new PropertyChargingStrategy());
+            ConnecticutAvenue = new RealEstateSpace("Connecticut Avenue", 8, 120, new PropertyChargingStrategy());
             Jail =  new MonopolyBoardSpace("Jail");
-            StCharlesPlace = new PropertySpace("St Charles Place",10,140);
-            ElectricCompany= new RealEstateSpace ("Electric Company");
-            StatesAvenue = new PropertySpace("States Avenue",10,140);
-            VirginiaAvenue = new PropertySpace("Virginia Avenue",12,160);
+            StCharlesPlace = new RealEstateSpace("St Charles Place", 10, 140, new PropertyChargingStrategy());
+            ElectricCompany = new RealEstateSpace("Electric Company", 4, 140, new UtilityChargingStrategy());
+            StatesAvenue = new RealEstateSpace("States Avenue", 10, 140, new PropertyChargingStrategy());
+            VirginiaAvenue = new RealEstateSpace("Virginia Avenue", 12, 160, new PropertyChargingStrategy());
             PennsylvaniaRailroad = new RealEstateSpace ("Pennsylvania Railroad");
-            StJamesPlace = new PropertySpace("St James Place",14,180);
+            StJamesPlace = new RealEstateSpace("St James Place", 14, 180, new PropertyChargingStrategy());
             CommunityChest2= new MonopolyBoardSpace ("Community Chest");
-            TessesseeAvenue = new PropertySpace("Tessessee Avenue",14,180);
-            NewYorkAvenue = new PropertySpace("New York Avenue",16,200);
+            TessesseeAvenue = new RealEstateSpace("Tessessee Avenue", 14, 180, new PropertyChargingStrategy());
+            NewYorkAvenue = new RealEstateSpace("New York Avenue", 16, 200, new PropertyChargingStrategy());
             FreeParking = new MonopolyBoardSpace("Free Parking");
-            KentuckyAvenue = new PropertySpace("Kentucky Avenue",18,220);
+            KentuckyAvenue = new RealEstateSpace("Kentucky Avenue", 18, 220, new PropertyChargingStrategy());
             Chance2 = new MonopolyBoardSpace("Chance");
-            IndianaAvenue = new PropertySpace("Indiana Avenue",18,220);
-            IllinoisAvenue = new PropertySpace("Illinois Avenue",20,240);
-            BnORailroad= new RealEstateSpace ("B&O Railroad");
-            AtlanticAvenue = new PropertySpace("Atlantic Avenue",22,260);
-            VentnorAvenue = new PropertySpace("Ventnor Avenue",22,260);
-            WaterWorks= new RealEstateSpace ("Water Works");
-            MarvinGardinsAvenue = new PropertySpace("Marvin Gardins Avenue",22,280);
+            IndianaAvenue = new RealEstateSpace("Indiana Avenue", 18, 220, new PropertyChargingStrategy());
+            IllinoisAvenue = new RealEstateSpace("Illinois Avenue", 20, 240, new PropertyChargingStrategy());
+            BnORailroad = new RealEstateSpace("B&O Railroad", 25, 200, new RailRoadChargingStrategy());
+            AtlanticAvenue = new RealEstateSpace("Atlantic Avenue", 22, 260, new PropertyChargingStrategy());
+            VentnorAvenue = new RealEstateSpace("Ventnor Avenue", 22, 260, new PropertyChargingStrategy());
+            WaterWorks= new RealEstateSpace ("Water Works", 4, 140, new UtilityChargingStrategy());
+            MarvinGardinsAvenue = new RealEstateSpace("Marvin Gardins Avenue", 22, 280, new PropertyChargingStrategy());
             GoToJail = new GoToJailSpace("Go To Jail");
-            PacificAvenue = new PropertySpace("Pacific Avenue",26,300);
-            NorthCarolinaAvenue = new PropertySpace("North Carolina Avenue",26,300);
+            PacificAvenue = new RealEstateSpace("Pacific Avenue", 26, 300, new PropertyChargingStrategy());
+            NorthCarolinaAvenue = new RealEstateSpace("North Carolina Avenue", 26, 300, new PropertyChargingStrategy());
             CommunityChest3 = new MonopolyBoardSpace("Community Chest");
-            PennsylvaniaAvenue = new PropertySpace("Pennsylvania Avenue",28,320);
-            ShortLineRailroad = new RealEstateSpace ("Short Line Railroad");
+            PennsylvaniaAvenue = new RealEstateSpace("Pennsylvania Avenue", 28, 320, new PropertyChargingStrategy());
+            ShortLineRailroad = new RealEstateSpace("Short Line Railroad", 25, 200, new RailRoadChargingStrategy());
             Chance3 = new MonopolyBoardSpace("Chance");
-            ParkPlace = new PropertySpace("Park Place",35,350);
+            ParkPlace = new RealEstateSpace("Park Place", 35, 350, new PropertyChargingStrategy());
             LuxuryTax = new LuxuryTaxSpace("Luxury Tax");
-            Boardwalk = new PropertySpace("Boardwalk",50,400);
+            Boardwalk = new RealEstateSpace("Boardwalk", 50, 400, new PropertyChargingStrategy());
         }
 
         private void AddBoardSpacesToList()

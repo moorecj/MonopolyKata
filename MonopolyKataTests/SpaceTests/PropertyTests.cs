@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using MonopolyKata.Board.Spaces.RealEstate.Property;
 using MonopolyKata.Board.Spaces.RealEstate;
 using MonopolyKata.Player;
 using MonopolyKata;
@@ -27,7 +26,7 @@ namespace MonopolyKataTests
             int LandOnCost = 10;
             int PurchaseCost = 100;
 
-            PropertySpace propertySpace = new PropertySpace("Real Estate Space", LandOnCost, PurchaseCost);
+            RealEstateSpace propertySpace = new RealEstateSpace("Real Estate Space", PurchaseCost, LandOnCost, new PropertyChargingStrategy());
 
             propertySpace.Owner = player1;
 
@@ -51,8 +50,8 @@ namespace MonopolyKataTests
             int LandOnCost = 10;
             int PurchaseCost = 100;
 
-            PropertySpace groupPropertySpace1 = new PropertySpace("Real Estate Space 1", LandOnCost, PurchaseCost);
-            PropertySpace groupPropertySpace2 = new PropertySpace("Real Estate Space 2", LandOnCost, PurchaseCost);
+            RealEstateSpace groupPropertySpace1 = new RealEstateSpace("Real Estate Space", PurchaseCost, LandOnCost, new PropertyChargingStrategy());
+            RealEstateSpace groupPropertySpace2 = new RealEstateSpace("Real Estate Space", PurchaseCost, LandOnCost,  new PropertyChargingStrategy());
 
             groupPropertySpace1.Owner = player1;
             groupPropertySpace2.Owner = player1;

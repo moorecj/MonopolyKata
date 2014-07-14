@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using MonopolyKata;
 using MonopolyKata.Board.Spaces.RealEstate;
-using MonopolyKata.Board.Spaces.RealEstate.Utilities;
 using MonopolyKata.Board.Spaces;
 using Moq;
 using NUnit.Framework;
@@ -19,7 +18,7 @@ namespace MonopolyKataTests.SpaceTests
         public void LandingOnAUtilityWhenOnlyOneUtilityIsOwnedResultsIn4TimesTheLastMovementReducedFromBalence()
         {
             int PurchaseCost = 100;
-            UtilitySpace Utility = new UtilitySpace("Utility", PurchaseCost);
+            RealEstateSpace Utility = new RealEstateSpace("Utility", PurchaseCost, 4, new UtilityChargingStrategy());
 
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
             MonopolyPlayer player2 = new MonopolyPlayer("player2");
@@ -43,8 +42,8 @@ namespace MonopolyKataTests.SpaceTests
         public void LandingOnAUtilityWhenMoreThenOneIsOwnedResultsIn10TimesTheLastMovementReducedFromBalence()
         {
             int PurchaseCost = 100;
-            UtilitySpace Utility1 = new UtilitySpace("Utility", PurchaseCost);
-            UtilitySpace Utility2 = new UtilitySpace("Utility", PurchaseCost);
+            RealEstateSpace Utility1 = new RealEstateSpace("Utility", PurchaseCost,4,new UtilityChargingStrategy());
+            RealEstateSpace Utility2 = new RealEstateSpace("Utility", PurchaseCost,4,new UtilityChargingStrategy());
 
             RealEstateSpace.GroupSpaces(Utility1, Utility2);
 

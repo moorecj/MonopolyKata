@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using MonopolyKata;
 using MonopolyKata.Player;
-using MonopolyKata.Board.Spaces.RealEstate.RailRoad;
 using MonopolyKata.Board.Spaces.RealEstate;
 
 
@@ -26,7 +25,7 @@ namespace MonopolyKataTests
 
             int PurchaseCost =  200;
 
-            RailRoadSpace railRoad = new RailRoadSpace("Rail Road Space", PurchaseCost);
+            RealEstateSpace railRoad = new RealEstateSpace("Rail Road Space", PurchaseCost,25,new RailRoadChargingStrategy());
 
             railRoad.Owner = player1;
 
@@ -48,8 +47,8 @@ namespace MonopolyKataTests
 
             int PurchaseCost = 200;
 
-            RailRoadSpace railRoad1 = new RailRoadSpace("Rail Road Space", PurchaseCost);
-            RailRoadSpace railRoad2 = new RailRoadSpace("Rail Road Space", PurchaseCost);
+            RealEstateSpace railRoad1 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
+            RealEstateSpace railRoad2 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
 
             RealEstateSpace.GroupSpaces(railRoad1, railRoad2);
 
@@ -74,9 +73,9 @@ namespace MonopolyKataTests
 
             int PurchaseCost = 200;
 
-            RailRoadSpace railRoad1 = new RailRoadSpace("Rail Road Space", PurchaseCost);
-            RailRoadSpace railRoad2 = new RailRoadSpace("Rail Road Space", PurchaseCost);
-            RailRoadSpace railRoad3 = new RailRoadSpace("Rail Road Space", PurchaseCost);
+            RealEstateSpace railRoad1 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
+            RealEstateSpace railRoad2 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
+            RealEstateSpace railRoad3 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
 
             RealEstateSpace.GroupSpaces(railRoad1, railRoad2, railRoad3);
 
@@ -102,10 +101,10 @@ namespace MonopolyKataTests
 
             int PurchaseCost = 200;
 
-            RailRoadSpace railRoad1 = new RailRoadSpace("Rail Road Space", PurchaseCost);
-            RailRoadSpace railRoad2 = new RailRoadSpace("Rail Road Space", PurchaseCost);
-            RailRoadSpace railRoad3 = new RailRoadSpace("Rail Road Space", PurchaseCost);
-            RailRoadSpace railRoad4 = new RailRoadSpace("Rail Road Space", PurchaseCost);
+            RealEstateSpace railRoad1 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
+            RealEstateSpace railRoad2 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
+            RealEstateSpace railRoad3 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
+            RealEstateSpace railRoad4 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
 
             RealEstateSpace.GroupSpaces(railRoad1, railRoad2, railRoad3, railRoad4);
 
