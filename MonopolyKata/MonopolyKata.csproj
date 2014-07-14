@@ -46,6 +46,8 @@
     <Compile Include="Board\Spaces\LuxuryTaxSpace.cs" />
     <Compile Include="Board\Spaces\MonopolyBoardSpace.cs" />
     <Compile Include="Board\Spaces\PrintWhereLandedDecoration.cs" />
+    <Compile Include="Board\Spaces\RealEstate\IMortgage.cs" />
+    <Compile Include="Board\Spaces\RealEstate\MortgageRealEstate.cs" />
     <Compile Include="Board\Spaces\RealEstate\RailRoad\RailRoadSpace.cs" />
     <Compile Include="Board\Spaces\RealEstate\Utilities\UtilitySpace.cs" />
     <Compile Include="Board\Spaces\SpaceDecorator.cs" />

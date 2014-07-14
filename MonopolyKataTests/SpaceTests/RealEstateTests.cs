@@ -103,7 +103,7 @@ namespace MonopolyKataTests
             
 
 
-            Assert.That(realEstateSpace.Owner, );
+           
 
         }
 
