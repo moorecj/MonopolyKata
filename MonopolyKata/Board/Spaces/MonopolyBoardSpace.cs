@@ -23,7 +23,7 @@ namespace MonopolyKata.Board.Spaces
 
         }
 
-        private static bool CheckForPassingGo(MonopolyPlayer player)
+        private bool CheckForPassingGo(MonopolyPlayer player)
         {
             return ((player.Location - player.lastRoll) < 0) && player.Location != GameBoard.GO_LOCATION;
         }

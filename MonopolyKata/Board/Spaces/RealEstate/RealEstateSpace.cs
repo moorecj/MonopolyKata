@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace MonopolyKata.Board.Spaces.RealEstate
 {
 
-    public class RealEstateSpace : MonopolyBoardSpace, IMortgage
+    public class RealEstateSpace : MonopolyBoardSpace
     {
         public MonopolyPlayer Owner{ get; set; }
         public int purchaseCost {  get; private set; }
@@ -67,9 +67,10 @@ namespace MonopolyKata.Board.Spaces.RealEstate
 
         }
 
-        void Motgage(RealEstateSpace space, MonopolyPlayer player) 
+        public void Mortgage( MonopolyPlayer player ) 
         {
-            space = new MortgageRealEstate(space, player);
+            player.Balence = (this.purchaseCost*90)/100;
+            
         }
 
         void Unmortage(RealEstateSpace space, MonopolyPlayer player)
