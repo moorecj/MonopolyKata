@@ -79,7 +79,10 @@ namespace MonopolyKata.Board.Spaces.RealEstate
 
         public void Mortgage( MonopolyPlayer player ) 
         {
-            player.Balence = (this.purchaseCost*90)/100;
+            
+            player.Balence += (this.purchaseCost*90)/100;
+
+            chargingStrategy = new MortgageChargingStrategy();
             
         }
 

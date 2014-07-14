@@ -47,6 +47,7 @@
     <Compile Include="Board\Spaces\MonopolyBoardSpace.cs" />
     <Compile Include="Board\Spaces\PrintWhereLandedDecoration.cs" />
     <Compile Include="Board\Spaces\RealEstate\IRealEstateChargingStategy.cs" />
+    <Compile Include="Board\Spaces\RealEstate\MortgageChargingStrategy.cs" />
     <Compile Include="Board\Spaces\RealEstate\PropertyChargingStrategy.cs" />
     <Compile Include="Board\Spaces\RealEstate\RailRoadChargingStrategy.cs" />
     <Compile Include="Board\Spaces\RealEstate\UtilityChargingStrategy.cs" />
