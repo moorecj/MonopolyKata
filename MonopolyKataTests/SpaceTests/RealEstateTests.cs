@@ -158,6 +158,29 @@ namespace MonopolyKataTests
 
         }
 
+        [Test]
+        public void APlayerCannotMortgageARealEstateSpaceThatTheyDontOwn()
+        {
+
+            MonopolyPlayer player1 = new MonopolyPlayer("player1");
+            MonopolyPlayer player2 = new MonopolyPlayer("player2");
+
+            player1.Balence = 0;
+
+            IRealEstateChargingStategy strategy = new PropertyChargingStrategy();
+            int PurchaseCost = 100;
+
+            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", PurchaseCost, 10, strategy);
+
+            realEstateSpace.Owner = player2;
+
+            realEstateSpace.Mortgage(player1);
+
+            Assert.That(player1.Balence, Is.EqualTo(0));
+
+        }
+
+
 
 
 
