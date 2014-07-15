@@ -51,27 +51,23 @@ namespace MonopolyKataTests
         [Test]
         public void After20RoundsOfMoving_ThePlayOrderShouldNeverChange()
         {
-
-
-
             MonopolyEngine game = new MonopolyEngine(setupMock.Object,dieMock.Object);
 
-            player1.Balence = 10000;
-            player2.Balence = 10000;
-
             string player1Name = game.GetCurrentTurnPlayer().name;
-            game.TakeTurn();
+            game.GoToNextTurn();
 
             string player2Name = game.GetCurrentTurnPlayer().name;
-            game.TakeTurn();
+            game.GoToNextTurn();
+
+            Assert.That(player1Name, Is.Not.EqualTo(player2Name));
 
             for (int i = 0; i < 19; ++i)
             {
                 Assert.That(player1Name, Is.EqualTo(game.GetCurrentTurnPlayer().name));
-                game.TakeTurn();
+                game.GoToNextTurn();
 
                 Assert.That(player2Name, Is.EqualTo(game.GetCurrentTurnPlayer().name));
-                game.TakeTurn();
+                game.GoToNextTurn();
                 
             }
 
@@ -211,17 +207,17 @@ namespace MonopolyKataTests
             gameEngine.GoToNextTurn();
             gameEngine.TakeTurn();
 
-            Assert.That(gameEngine.GetCurrentTurnPlayer(), Is.EqualTo(player2));
+            Assert.That(gameEngine.GetCurrentTurnPlayer(), Is.Not.EqualTo(player1));
 
             gameEngine.GoToNextTurn();
             gameEngine.TakeTurn();
 
-            Assert.That(gameEngine.GetCurrentTurnPlayer(), Is.EqualTo(player3));
+            Assert.That(gameEngine.GetCurrentTurnPlayer(), Is.Not.EqualTo(player1));
             
             gameEngine.GoToNextTurn();
             gameEngine.TakeTurn();
 
-            Assert.That(gameEngine.GetCurrentTurnPlayer(), Is.EqualTo(player2));
+            Assert.That(gameEngine.GetCurrentTurnPlayer(), Is.Not.EqualTo(player1));
 
         }
 
@@ -245,6 +241,51 @@ namespace MonopolyKataTests
             Assert.That(gameEngine.CurrentTurnPlayerIsWinner(), Is.True);
 
         }
+
+        [Test]
+        public void IfAPlayerRollsDoublesThenTheyGetToTakeAnotherTurn()
+        {
+
+            MonopolyPlayer PlayerWhoGoesFirst;
+            MonopolyPlayer PlayerWhoGoesNext;
+
+            //Mock die is setup to always return one
+            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
+
+            PlayerWhoGoesFirst = gameEngine.GetCurrentTurnPlayer();            
+
+            gameEngine.TakeTurn();
+
+            gameEngine.GoToNextTurn();
+
+            PlayerWhoGoesNext = gameEngine.GetCurrentTurnPlayer();
+
+            Assert.That(PlayerWhoGoesFirst, Is.EqualTo(PlayerWhoGoesNext));
+
+        }
+
+        [Test]
+        public void IfAPlayerRollsDoublesThreeTimesInARowTheyGoToJail()
+        {
+
+            MonopolyPlayer player;
+
+            //Mock die is setup to always return one
+            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
+
+            player = gameEngine.GetCurrentTurnPlayer();
+
+            gameEngine.TakeTurn();
+            gameEngine.GoToNextTurn();
+
+            gameEngine.TakeTurn();
+            gameEngine.GoToNextTurn();
+
+            gameEngine.TakeTurn();
+
+            Assert.That(player.Location, Is.EqualTo(GameBoard.JAIL_LOCATION));
+        }
+
 
 
 
