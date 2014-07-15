@@ -13,20 +13,39 @@ namespace MonopolyKata.Board.Spaces.RealEstate
         public int purchaseCost {  get; private set; }
         public List<RealEstateSpace> groupProperties;
         public int baseLandOnCost { get; set; }
-        IRealEstateChargingStategy chargingStrategy;
+        IRealEstateChargingStategy currentChargingStrategy;
+        IRealEstateChargingStategy standardChargingStrategy;
+        IRealEstateChargingStategy mortgagedChargingStrategy;
         
         
         public RealEstateSpace(string name) : base(name){ }
 
-
-        public RealEstateSpace(string name, int purchaseCost, int baseLandOnCost, IRealEstateChargingStategy chargingStrategy) : base(name) 
+        public RealEstateSpace(string name, int purchaseCost, int baseLandOnCost, IRealEstateChargingStategy standardChargingStrategy)
+            : base(name)
         {
             this.purchaseCost = purchaseCost;
 
             groupProperties = new List<RealEstateSpace>();
 
-            this.chargingStrategy = chargingStrategy;
             this.baseLandOnCost = baseLandOnCost;
+
+            currentChargingStrategy = standardChargingStrategy;
+            this.standardChargingStrategy = standardChargingStrategy;
+            mortgagedChargingStrategy = new MortgageChargingStrategy();
+        }
+
+
+        public RealEstateSpace(string name, int purchaseCost, int baseLandOnCost, IRealEstateChargingStategy standardChargingStrategy, IRealEstateChargingStategy mortgagedChargingStrategy ) : base(name) 
+        {
+            this.purchaseCost = purchaseCost;
+
+            groupProperties = new List<RealEstateSpace>();
+
+            this.baseLandOnCost = baseLandOnCost;
+
+            currentChargingStrategy = standardChargingStrategy;
+            this.standardChargingStrategy = standardChargingStrategy;
+            this.mortgagedChargingStrategy = mortgagedChargingStrategy;
         }
 
         public override void LandOn(MonopolyPlayer player)
@@ -42,7 +61,7 @@ namespace MonopolyKata.Board.Spaces.RealEstate
             }
             else
             {
-                chargingStrategy.ChargePlayer(player,this);
+                currentChargingStrategy.ChargePlayer(player, this);
             }
 
         }
@@ -79,12 +98,12 @@ namespace MonopolyKata.Board.Spaces.RealEstate
 
         public void Mortgage( MonopolyPlayer player ) 
         {
-            if(!(chargingStrategy is MortgageChargingStrategy))
+            if (currentChargingStrategy == standardChargingStrategy)
             {
                 if(player == Owner)
                 {
                     player.Balence += (this.purchaseCost * 90) / 100;
-                    chargingStrategy = new MortgageChargingStrategy();
+                    currentChargingStrategy = mortgagedChargingStrategy;
                 }
                 
             }
@@ -92,6 +111,15 @@ namespace MonopolyKata.Board.Spaces.RealEstate
 
         public void Unmortgage(MonopolyPlayer player)
         {
+            if (currentChargingStrategy == mortgagedChargingStrategy)
+            {
+                if (player == Owner)
+                {
+                    player.Balence -= this.purchaseCost;
+                    currentChargingStrategy = standardChargingStrategy;
+                }
+
+            }
 
         }
 
