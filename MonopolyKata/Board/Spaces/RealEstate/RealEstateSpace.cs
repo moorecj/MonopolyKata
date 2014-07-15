@@ -81,9 +81,12 @@ namespace MonopolyKata.Board.Spaces.RealEstate
         {
             if(!(chargingStrategy is MortgageChargingStrategy))
             {
-                player.Balence += (this.purchaseCost * 90) / 100;
-
-                chargingStrategy = new MortgageChargingStrategy();
+                if(player == Owner)
+                {
+                    player.Balence += (this.purchaseCost * 90) / 100;
+                    chargingStrategy = new MortgageChargingStrategy();
+                }
+                
             }
         }
 
