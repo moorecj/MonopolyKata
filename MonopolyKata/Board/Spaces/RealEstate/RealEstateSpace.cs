@@ -90,7 +90,7 @@ namespace MonopolyKata.Board.Spaces.RealEstate
             }
         }
 
-        void Unmortage(RealEstateSpace space, MonopolyPlayer player)
+        public void Unmortgage(MonopolyPlayer player)
         {
 
         }
