@@ -40,24 +40,38 @@ namespace MonopolyKata
 
         public void TakeTurn()
         {
-            Roll1 = die.Roll();
-            Roll2 = die.Roll();
+            RollTheDice();
 
-            RecordTheDoubleRolls();
-
-            if(doublesCount >= 3)
+            if (ThePlayerRolledTooManyDoubles())
             {
-                currentTurnPlayer.Location = GameBoard.JAIL_LOCATION;
-                currentTurnPlayerGoesAgainFromDoubles = false;
-                doublesCount = 0;
+                SendTheCurrentPlayerToJail();
             }
             else
             {
                 currentTurnPlayer.Move(Roll1 + Roll2);
                 gameBoard.LandOnNewSpace(currentTurnPlayer);
-
             }
 
+        }
+
+        private void SendTheCurrentPlayerToJail()
+        {
+            currentTurnPlayer.Location = GameBoard.JAIL_LOCATION;
+            currentTurnPlayerGoesAgainFromDoubles = false;
+            doublesCount = 0;
+        }
+
+        private bool ThePlayerRolledTooManyDoubles()
+        {
+            return doublesCount >= 3;
+        }
+
+        private void RollTheDice()
+        {
+            Roll1 = die.Roll();
+            Roll2 = die.Roll();
+
+            RecordTheDoubleRolls();
         }
 
         public void GoToNextTurn()
@@ -101,8 +115,7 @@ namespace MonopolyKata
                 if (nextPlayer == initalPlayer)
                 {
                     break;
-                }
-                    
+                }     
             }
 
             return nextPlayer;
