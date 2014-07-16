@@ -7,6 +7,7 @@ using NUnit.Framework;
 using MonopolyKata;
 using MonopolyKata.Player;
 using MonopolyKata.Board.Spaces.RealEstate;
+using MonopolyKata.Board;
 
 
 namespace MonopolyKataTests
@@ -50,7 +51,7 @@ namespace MonopolyKataTests
             RealEstateSpace railRoad1 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
             RealEstateSpace railRoad2 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
 
-            RealEstateSpace.GroupSpaces(railRoad1, railRoad2);
+            GameBoard.GroupSpaces(railRoad1, railRoad2);
 
             railRoad1.Owner = player1;
             railRoad2.Owner = player1;
@@ -77,7 +78,7 @@ namespace MonopolyKataTests
             RealEstateSpace railRoad2 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
             RealEstateSpace railRoad3 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
 
-            RealEstateSpace.GroupSpaces(railRoad1, railRoad2, railRoad3);
+            GameBoard.GroupSpaces(railRoad1, railRoad2, railRoad3);
 
             railRoad1.Owner = player1;
             railRoad2.Owner = player1;
@@ -106,7 +107,7 @@ namespace MonopolyKataTests
             RealEstateSpace railRoad3 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
             RealEstateSpace railRoad4 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
 
-            RealEstateSpace.GroupSpaces(railRoad1, railRoad2, railRoad3, railRoad4);
+            GameBoard.GroupSpaces(railRoad1, railRoad2, railRoad3, railRoad4);
 
             railRoad1.Owner = player1;
             railRoad2.Owner = player1;

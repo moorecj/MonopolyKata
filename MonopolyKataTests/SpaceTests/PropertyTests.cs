@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using MonopolyKata.Board.Spaces.RealEstate;
+using MonopolyKata.Board;
 using MonopolyKata.Player;
 using MonopolyKata;
 
@@ -56,7 +57,7 @@ namespace MonopolyKataTests
             groupPropertySpace1.Owner = player1;
             groupPropertySpace2.Owner = player1;
 
-            RealEstateSpace.GroupSpaces(groupPropertySpace1, groupPropertySpace2);
+            GameBoard.GroupSpaces(groupPropertySpace1, groupPropertySpace2);
 
             groupPropertySpace1.LandOn(player2);
 

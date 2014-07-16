@@ -20,22 +20,23 @@ namespace MonopolyKata.Board.Spaces.RealEstate
         
         public RealEstateSpace(string name) : base(name){ }
 
-        public RealEstateSpace(string name, int purchaseCost, int baseLandOnCost, IRealEstateChargingStategy standardChargingStrategy)
-            : base(name)
-        {
-            this.purchaseCost = purchaseCost;
+        //public RealEstateSpace(string name, int purchaseCost, int baseLandOnCost, IRealEstateChargingStategy standardChargingStrategy)
+        //    : base(name)
+        //{
+        //    this.purchaseCost = purchaseCost;
 
-            groupProperties = new List<RealEstateSpace>();
+        //    groupProperties = new List<RealEstateSpace>();
 
-            this.baseLandOnCost = baseLandOnCost;
+        //    this.baseLandOnCost = baseLandOnCost;
 
-            currentChargingStrategy = standardChargingStrategy;
-            this.standardChargingStrategy = standardChargingStrategy;
-            mortgagedChargingStrategy = new MortgageChargingStrategy();
-        }
+        //    currentChargingStrategy = standardChargingStrategy;
+        //    this.standardChargingStrategy = standardChargingStrategy;
+        //    mortgagedChargingStrategy = new MortgageChargingStrategy();
+        //}
 
 
-        public RealEstateSpace(string name, int purchaseCost, int baseLandOnCost, IRealEstateChargingStategy standardChargingStrategy, IRealEstateChargingStategy mortgagedChargingStrategy ) : base(name) 
+        public RealEstateSpace(string name, int purchaseCost, int baseLandOnCost, IRealEstateChargingStategy standardChargingStrategy, IRealEstateChargingStategy mortgagedChargingStrategy ): base(name) 
+            : this(name,purchaseCost,baseLandOnCost,standardChargingStrategy, new MortgageChargingStrategy())
         {
             this.purchaseCost = purchaseCost;
 
@@ -64,18 +65,6 @@ namespace MonopolyKata.Board.Spaces.RealEstate
                 currentChargingStrategy.ChargePlayer(player, this);
             }
 
-        }
-
-        public static void GroupSpaces(params RealEstateSpace[] spaces)
-        {
-            for (int i = 0; i < spaces.Length-1; ++i )
-            {
-                for (int j = i+1; j < spaces.Length; ++j )
-                {
-                    spaces[i].AddSpaceToGroup(spaces[j]);
-                    spaces[j].AddSpaceToGroup(spaces[i]);
-                }
-            }
         }
 
         public void AddSpaceToGroup( RealEstateSpace spaceToAdd )

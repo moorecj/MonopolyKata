@@ -114,23 +114,33 @@ namespace MonopolyKata.Board
             return (spaces.Count());
         }
 
-
+        public static void GroupSpaces(params RealEstateSpace[] spaces)
+        {
+            for (int i = 0; i < spaces.Length - 1; ++i)
+            {
+                for (int j = i + 1; j < spaces.Length; ++j)
+                {
+                    spaces[i].AddSpaceToGroup(spaces[j]);
+                    spaces[j].AddSpaceToGroup(spaces[i]);
+                }
+            }
+        }
 
         private void SetUpPropertyGroups()
         {
 
-            RealEstateSpace.GroupSpaces(ReadingRailroad, PennsylvaniaRailroad, BnORailroad, ShortLineRailroad);
+            GroupSpaces(ReadingRailroad, PennsylvaniaRailroad, BnORailroad, ShortLineRailroad);
 
-            RealEstateSpace.GroupSpaces(ElectricCompany, WaterWorks);
+            GroupSpaces(ElectricCompany, WaterWorks);
 
-            RealEstateSpace.GroupSpaces(MediterraneanAvenue, BalticAvenue);
-            RealEstateSpace.GroupSpaces(OrientalAvenue, VermontAvenue, ConnecticutAvenue);
-            RealEstateSpace.GroupSpaces(StCharlesPlace, StatesAvenue, VirginiaAvenue);
-            RealEstateSpace.GroupSpaces(StJamesPlace, TessesseeAvenue, NewYorkAvenue);
-            RealEstateSpace.GroupSpaces(KentuckyAvenue, IndianaAvenue, IllinoisAvenue);
-            RealEstateSpace.GroupSpaces(AtlanticAvenue, VentnorAvenue, MarvinGardinsAvenue);
-            RealEstateSpace.GroupSpaces(PacificAvenue, NorthCarolinaAvenue, PennsylvaniaAvenue);
-            RealEstateSpace.GroupSpaces(ParkPlace, Boardwalk);
+            GroupSpaces(MediterraneanAvenue, BalticAvenue);
+            GroupSpaces(OrientalAvenue, VermontAvenue, ConnecticutAvenue);
+            GroupSpaces(StCharlesPlace, StatesAvenue, VirginiaAvenue);
+            GroupSpaces(StJamesPlace, TessesseeAvenue, NewYorkAvenue);
+            GroupSpaces(KentuckyAvenue, IndianaAvenue, IllinoisAvenue);
+            GroupSpaces(AtlanticAvenue, VentnorAvenue, MarvinGardinsAvenue);
+            GroupSpaces(PacificAvenue, NorthCarolinaAvenue, PennsylvaniaAvenue);
+            GroupSpaces(ParkPlace, Boardwalk);
         }
 
         private void CreateBoardSpaces()

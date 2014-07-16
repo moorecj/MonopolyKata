@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MonopolyKata;
 using MonopolyKata.Board.Spaces.RealEstate;
 using MonopolyKata.Board.Spaces;
+using MonopolyKata.Board;
 using Moq;
 using NUnit.Framework;
 
@@ -45,7 +46,7 @@ namespace MonopolyKataTests.SpaceTests
             RealEstateSpace Utility1 = new RealEstateSpace("Utility", PurchaseCost, 4, new UtilityChargingStrategy(), new MortgageChargingStrategy());
             RealEstateSpace Utility2 = new RealEstateSpace("Utility", PurchaseCost, 4, new UtilityChargingStrategy(), new MortgageChargingStrategy());
 
-            RealEstateSpace.GroupSpaces(Utility1, Utility2);
+            GameBoard.GroupSpaces(Utility1, Utility2);
 
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
             MonopolyPlayer player2 = new MonopolyPlayer("player2");
