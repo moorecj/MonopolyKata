@@ -25,15 +25,11 @@ namespace MonopolyKata.Board.Spaces.RealEstate
 
         private int GetRentMultiplier( RealEstateSpace realEstateSpace )
         {
-            int multiplier;
+            int multiplier = 1;
 
             if (OwnerOfThisSpaceOwnsTheRestInGroup( realEstateSpace ))
             {
                 multiplier = 2;
-            }
-            else
-            {
-                multiplier = 1;
             }
 
             return multiplier;
@@ -41,8 +37,7 @@ namespace MonopolyKata.Board.Spaces.RealEstate
 
         private bool OwnerOfThisSpaceOwnsTheRestInGroup(RealEstateSpace realEstateSpace)
         {
-            List<RealEstateSpace> groupProperties = realEstateSpace.groupProperties;
-            return ((groupProperties.Count() == groupProperties.Where(p => p.Owner == realEstateSpace.Owner).Count()) && groupProperties.Count() > 0);
+            return realEstateSpace.groupProperties.All(p => p.Owner == realEstateSpace.Owner);
         }
     }
 }

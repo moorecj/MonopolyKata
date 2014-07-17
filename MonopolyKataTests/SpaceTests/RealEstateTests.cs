@@ -19,7 +19,9 @@ namespace MonopolyKataTests
         [Test]
         public void RealEstateShouldHaveAnOwnerInitializedToNull()
         {
-            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space");
+            IRealEstateChargingStategy strategy = new PropertyChargingStrategy();
+            int PurchaseCost = 100;
+            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", PurchaseCost, 10, strategy);
 
             Assert.That( realEstateSpace.Owner, Is.EqualTo(null));
 
@@ -40,7 +42,10 @@ namespace MonopolyKataTests
         {
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
 
-            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space");
+            IRealEstateChargingStategy strategy = new PropertyChargingStrategy();
+            int PurchaseCost = 0;
+
+            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space",  PurchaseCost, 10, strategy);
 
             realEstateSpace.LandOn(player1);
 

@@ -26,23 +26,7 @@ namespace MonopolyKata.Board.Spaces.RealEstate
 
             int NumberOfOtherRailRoadsOwned = realEstateSpace.groupProperties.Where(p => p.Owner == realEstateSpace.Owner).Count();
 
-            return (realEstateSpace.baseLandOnCost * (int)IntPower(2, (short)(NumberOfOtherRailRoadsOwned)));
-
-        }
-
-        private long IntPower(int x, short power)
-        {
-            if (power == 0) return 1;
-            if (power == 1) return x;
-
-            int n = 15;
-            while ((power <<= 1) >= 0) n--;
-
-            long tmp = x;
-            while (--n > 0)
-                tmp = tmp * tmp *
-                     (((power <<= 1) < 0) ? x : 1);
-            return tmp;
+            return 25 * (Int32)Math.Pow(2, NumberOfOtherRailRoadsOwned);
         }
     }
 }

@@ -129,10 +129,10 @@ namespace MonopolyKata.Board
         private void SetUpPropertyGroups()
         {
 
+
             GroupSpaces(ReadingRailroad, PennsylvaniaRailroad, BnORailroad, ShortLineRailroad);
 
             GroupSpaces(ElectricCompany, WaterWorks);
-
             GroupSpaces(MediterraneanAvenue, BalticAvenue);
             GroupSpaces(OrientalAvenue, VermontAvenue, ConnecticutAvenue);
             GroupSpaces(StCharlesPlace, StatesAvenue, VirginiaAvenue);
@@ -160,7 +160,8 @@ namespace MonopolyKata.Board
             ElectricCompany = new RealEstateSpace("Electric Company", 4, 140, new UtilityChargingStrategy(), new MortgageChargingStrategy());
             StatesAvenue = new RealEstateSpace("States Avenue", 10, 140, new PropertyChargingStrategy(), new MortgageChargingStrategy());
             VirginiaAvenue = new RealEstateSpace("Virginia Avenue", 12, 160, new PropertyChargingStrategy(), new MortgageChargingStrategy());
-            PennsylvaniaRailroad = new RealEstateSpace ("Pennsylvania Railroad");
+
+            PennsylvaniaRailroad = new RealEstateSpace("Pennsylvania Railroad", 25, 200, new RailRoadChargingStrategy(), new MortgageChargingStrategy());
             StJamesPlace = new RealEstateSpace("St James Place", 14, 180, new PropertyChargingStrategy(), new MortgageChargingStrategy());
             CommunityChest2= new MonopolyBoardSpace ("Community Chest");
             TessesseeAvenue = new RealEstateSpace("Tessessee Avenue", 14, 180, new PropertyChargingStrategy(), new MortgageChargingStrategy());
