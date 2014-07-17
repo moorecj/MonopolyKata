@@ -14,7 +14,7 @@ namespace MonopolyKataTests
         [Test]
         public void ADiceRollForMonopolyShouldGiveANumberGreaterThen0()
         {
-            IDice sixSidedDie = new SixSidedDie();
+            IDie sixSidedDie = new SixSidedDie();
 
             Assert.That(sixSidedDie.Roll(), Is.GreaterThan(0));
 
@@ -23,7 +23,7 @@ namespace MonopolyKataTests
         [Test]
         public void ADiceRollForMonopolyShouldGiveANumberLessThanOrEqualTo6()
         {
-            IDice sixSidedDie = new SixSidedDie();
+            IDie sixSidedDie = new SixSidedDie();
 
             Assert.That(sixSidedDie.Roll(), Is.LessThan(7));
 
@@ -32,7 +32,7 @@ namespace MonopolyKataTests
         [Test]
         public void ADiceRollForShouldBeRandom_Given1000RollsAllSixNumbersShouldAppear()
         {
-            IDice die =  new SixSidedDie();
+            IDie die =  new SixSidedDie();
             int[] testRolls =  new int [1000];
 
             for(int i = 0; i < 1000; ++i)

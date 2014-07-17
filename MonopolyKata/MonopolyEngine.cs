@@ -16,31 +16,33 @@ namespace MonopolyKata
 
         private MonopolyPlayer currentTurnPlayer;
         private ISetup GameSetup;
-        private IDice die;
+        private IDice dice;
         private IGameBoard gameBoard;
         bool currentTurnPlayerGoesAgainFromDoubles;
         int doublesCount;
 
 
-        public MonopolyEngine( ISetup GameSetup, IDice die )
-        {
-            this.GameSetup = GameSetup;
-            this.die = die;
-            currentTurnPlayer = GameSetup.WhoGoesFirst();
-            gameBoard = new GameBoard();
-        }
+        public MonopolyEngine( ISetup GameSetup, IDie die )
+            :this(GameSetup, die,new GameBoard())
+        { }
 
-        public MonopolyEngine(ISetup GameSetup, IDice die, IGameBoard gameBoard)
+        public MonopolyEngine(ISetup GameSetup, IDie die, IGameBoard gameBoard)
         {
             this.GameSetup = GameSetup;
-            this.die = die;
+            dice = new TwoDie(die);
             currentTurnPlayer = GameSetup.WhoGoesFirst();
             this.gameBoard = gameBoard;
         }
 
         public void TakeTurn()
         {
-            RollTheDice();
+            dice.Roll();
+
+            if (dice.LastRollWereAllTheSame())
+            {
+                currentTurnPlayerGoesAgainFromDoubles = true;
+                doublesCount++;
+            }
 
             if (ThePlayerRolledTooManyDoubles())
             {
@@ -48,7 +50,7 @@ namespace MonopolyKata
             }
             else
             {
-                currentTurnPlayer.Move(Roll1 + Roll2);
+                gameBoard.Move(currentTurnPlayer,dice.GetDiceRollTotal());
                 gameBoard.LandOnNewSpace(currentTurnPlayer);
             }
 
@@ -66,13 +68,6 @@ namespace MonopolyKata
             return doublesCount >= 3;
         }
 
-        private void RollTheDice()
-        {
-            Roll1 = die.Roll();
-            Roll2 = die.Roll();
-
-            RecordTheDoubleRolls();
-        }
 
         public void GoToNextTurn()
         {
@@ -107,6 +102,7 @@ namespace MonopolyKata
             if (currentTurnPlayerGoesAgainFromDoubles)
             {
                 nextPlayer = currentTurnPlayer;
+                currentTurnPlayerGoesAgainFromDoubles = false;
             }
 
             while (PlayerIsLoser(nextPlayer))
@@ -120,23 +116,6 @@ namespace MonopolyKata
 
             return nextPlayer;
         }
-
-        private void RecordTheDoubleRolls()
-        {
-            if (Roll1 == Roll2)
-            {
-                currentTurnPlayerGoesAgainFromDoubles = true;
-                doublesCount++;
-            }
-            else
-            {
-                currentTurnPlayerGoesAgainFromDoubles = false;
-                doublesCount = 0;
-            }
-        }
-
-        
-       
         
 
     }

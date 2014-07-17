@@ -16,16 +16,14 @@ namespace MonopolyKataTests
         [Test]
         public void NoMatterWhichSpaceYouLandOnIfYouPassedGoYouGet200()
         {
+            GameBoard board = new GameBoard();
             MonopolyPlayer player = new MonopolyPlayer("player1");
-
-            player.Balence = 0;
-            player.Location = 39;
-
             MonopolyBoardSpace space = new MonopolyBoardSpace("A Random Space");
-
+            
+            player.Balence = 0;
             player.Location = GameBoard.BOARDWALK_LOCATION;
 
-            player.Move(5);
+            board.Move(player,5);
 
             space.LandOn(player);
 

@@ -20,7 +20,7 @@ namespace MonopolyKataTests.SpaceTests
         {
             int PurchaseCost = 100;
             RealEstateSpace Utility = new RealEstateSpace("Utility", PurchaseCost, 4, new UtilityChargingStrategy(), new MortgageChargingStrategy());
-
+            GameBoard board = new GameBoard();
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
             MonopolyPlayer player2 = new MonopolyPlayer("player2");
 
@@ -30,7 +30,7 @@ namespace MonopolyKataTests.SpaceTests
 
             Utility.Owner = player1;
 
-            player2.Move(10);
+            board.Move(player2, 10);
 
             Utility.LandOn(player2);
 
@@ -45,7 +45,7 @@ namespace MonopolyKataTests.SpaceTests
             int PurchaseCost = 100;
             RealEstateSpace Utility1 = new RealEstateSpace("Utility", PurchaseCost, 4, new UtilityChargingStrategy(), new MortgageChargingStrategy());
             RealEstateSpace Utility2 = new RealEstateSpace("Utility", PurchaseCost, 4, new UtilityChargingStrategy(), new MortgageChargingStrategy());
-
+            GameBoard board = new GameBoard();
             GameBoard.GroupSpaces(Utility1, Utility2);
 
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
@@ -58,7 +58,7 @@ namespace MonopolyKataTests.SpaceTests
             Utility1.Owner = player1;
             Utility2.Owner = player1;
 
-            player2.Move(10);
+            board.Move(player2, 10);
 
             Utility1.LandOn(player2);
 

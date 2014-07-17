@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace MonopolyKata.Player
 {
     interface IPlayer
     {
-        void Move(int spaces);
+        int Balence { get; set; }
+        int lastRoll { get; set; }
+        int Location { get; set; }
+        string name { get; set; }
     }
 }

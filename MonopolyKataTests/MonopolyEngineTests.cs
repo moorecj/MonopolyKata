@@ -17,7 +17,7 @@ namespace MonopolyKataTests
     public class MonopolyEngineTests
     {
         public Mock<ISetup> setupMock;
-        public Mock<IDice> dieMock;
+        public Mock<IDie> dieMock;
         MonopolyPlayer player1;
         MonopolyPlayer player2;
 
@@ -34,7 +34,7 @@ namespace MonopolyKataTests
             setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);
             setupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player1);
 
-            dieMock = new Mock<IDice>();
+            dieMock = new Mock<IDie>();
 
             dieMock.Setup(s => s.Roll()).Returns(1);
         }
@@ -92,7 +92,6 @@ namespace MonopolyKataTests
         [Test]
         public void LandingOnIncomeTaxWithABalenceLessThen2000ShouldResultIn10PercentDeductionFromBalance()
         {
-
             player1.Balence = 100;
             player1.Location = GameBoard.INCOME_TAX_LOCATION - 2;
 
@@ -103,14 +102,11 @@ namespace MonopolyKataTests
             gameEngine.TakeTurn();
 
             Assert.That(gameEngine.GetCurrentTurnPlayer().Balence, Is.EqualTo(90));
-            
-
         }
 
         [Test]
         public void LandingOnIncomeTaxWithABalenceGreaterThan2000ShouldResultIn200DeductionFromBalance()
         {
-
             player1.Balence =  2200;
             player1.Location = GameBoard.INCOME_TAX_LOCATION-2;
 
@@ -121,13 +117,11 @@ namespace MonopolyKataTests
             gameEngine.TakeTurn();
 
             Assert.That(gameEngine.GetCurrentTurnPlayer().Balence, Is.EqualTo(2000));
-
         }
 
         [Test]
         public void LandingOnLuxuryTaxShouldReduceAPlayersBalenceBy75()
         {
-
             player1.Balence = 100;
             player1.Location = GameBoard.LUXURY_TAX_LOCATION - 2;
 
@@ -138,7 +132,6 @@ namespace MonopolyKataTests
             gameEngine.TakeTurn();
 
             Assert.That(gameEngine.GetCurrentTurnPlayer().Balence, Is.EqualTo(25));
-
         }
 
         [Test]

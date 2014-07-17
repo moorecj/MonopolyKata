@@ -50,11 +50,13 @@
     <Compile Include="DiceTests.cs" />
     <Compile Include="MonopolyEngineTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpaceTests\PropertyTests.cs" />
-    <Compile Include="SpaceTests\RailRoadTests.cs" />
-    <Compile Include="SpaceTests\RealEstateTests.cs" />
+    <Compile Include="SpaceTests\JailSpaceTests.cs" />
+    <Compile Include="SpaceTests\RealEstate\ChargingStrategies\MortgageStrategyTests.cs" />
+    <Compile Include="SpaceTests\RealEstate\ChargingStrategies\PropertyStrategyTests.cs" />
+    <Compile Include="SpaceTests\RealEstate\ChargingStrategies\RailRoadStrategyTests.cs" />
+    <Compile Include="SpaceTests\RealEstate\RealEstateTests.cs" />
     <Compile Include="SetupTests.cs" />
-    <Compile Include="SpaceTests\UtilitySpaceTests.cs" />
+    <Compile Include="SpaceTests\RealEstate\ChargingStrategies\UtilitySpaceStrategyTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

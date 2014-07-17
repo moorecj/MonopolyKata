@@ -43,6 +43,7 @@
     <Compile Include="Board\IGameBoard.cs" />
     <Compile Include="Board\Spaces\GoToJailSpace.cs" />
     <Compile Include="Board\Spaces\IncomeTaxSpace.cs" />
+    <Compile Include="Board\Spaces\JailSpace.cs" />
     <Compile Include="Board\Spaces\LuxuryTaxSpace.cs" />
     <Compile Include="Board\Spaces\MonopolyBoardSpace.cs" />
     <Compile Include="Board\Spaces\PrintWhereLandedDecoration.cs" />
@@ -53,13 +54,14 @@
     <Compile Include="Board\Spaces\RealEstate\UtilityChargingStrategy.cs" />
     <Compile Include="Board\Spaces\SpaceDecorator.cs" />
     <Compile Include="Board\Spaces\RealEstate\RealEstateSpace.cs" />
-    <Compile Include="Dice\PrintDiceRollDecoration.cs" />
     <Compile Include="Dice\IDice.cs" />
+    <Compile Include="Dice\TwoDie.cs" />
+    <Compile Include="Dice\PrintDiceRollDecoration.cs" />
+    <Compile Include="Dice\IDie.cs" />
     <Compile Include="Dice\SixSidedDie.cs" />
     <Compile Include="MonopolyGame.cs" />
-    <Compile Include="Player\ConsolePrintingMonopolyPlayer.cs" />
-    <Compile Include="Setup\ISetup.cs" />
     <Compile Include="Player\IPlayer.cs" />
+    <Compile Include="Setup\ISetup.cs" />
     <Compile Include="Setup\MonopolySetup.cs" />
     <Compile Include="Board\Spaces\BoardSpace.cs" />
     <Compile Include="Shuffler\ExtensionsMethods.cs" />

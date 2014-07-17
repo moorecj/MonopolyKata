@@ -21,11 +21,11 @@ namespace MonopolyKata
 
             foreach(string s in playerNames )
             {
-                players.Add(new ConsolePrintingMonopolyPlayer(s));
+                players.Add(new MonopolyPlayer(s));
             }
 
             ISetup setup = new MonopolySetup(players.ToArray());
-            IDice die = new SixSidedDie();
+            IDie die = new SixSidedDie();
 
             die = new PrintDiceRollDecoration(die);
 

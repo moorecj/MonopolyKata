@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace MonopolyKata.Dice
 {
-    public class PrintDiceRollDecoration : IDice
+    public class PrintDiceRollDecoration : IDie
     {
-        private IDice dice;
+        private IDie dice;
 
-        public PrintDiceRollDecoration(IDice dice)
+        public PrintDiceRollDecoration(IDie dice)
         {
             this.dice = dice;
         }

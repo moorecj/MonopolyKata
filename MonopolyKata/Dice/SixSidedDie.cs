@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonopolyKata.Dice
 {
-    public class SixSidedDie : IDice
+    public class SixSidedDie : IDie
     {
         private Random randomNumber;
 

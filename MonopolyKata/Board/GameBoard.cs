@@ -109,6 +109,18 @@ namespace MonopolyKata.Board
             spaces[player.Location].LandOn(player);
         }
 
+        public void Move(MonopolyPlayer player, int roll)
+        {
+            player.Location += roll;
+
+            player.lastRoll = roll;
+
+            while (player.Location >= GetNumberOfBoardSpaces())
+            {
+                player.Location -= GetNumberOfBoardSpaces();
+            }
+        }
+
         public int GetNumberOfBoardSpaces()
         {
             return (spaces.Count());
@@ -128,11 +140,10 @@ namespace MonopolyKata.Board
 
         private void SetUpPropertyGroups()
         {
-
-
             GroupSpaces(ReadingRailroad, PennsylvaniaRailroad, BnORailroad, ShortLineRailroad);
 
             GroupSpaces(ElectricCompany, WaterWorks);
+
             GroupSpaces(MediterraneanAvenue, BalticAvenue);
             GroupSpaces(OrientalAvenue, VermontAvenue, ConnecticutAvenue);
             GroupSpaces(StCharlesPlace, StatesAvenue, VirginiaAvenue);

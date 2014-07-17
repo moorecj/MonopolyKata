@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using MonopolyKata;
+using MonopolyKata.Board;
 
 namespace MonopolyKataTests
 {
@@ -14,12 +15,12 @@ namespace MonopolyKataTests
         [Test]
         public void APlayerMove_ShouldIncreaseTheirLocationByTheNumberOfSpacesMoved()
         {
-
+            GameBoard board = new GameBoard();
             MonopolyPlayer player = new MonopolyPlayer("Horse");
 
             Assert.That(player.Location, Is.EqualTo(0));
 
-            player.Move(6);
+            board.Move(player, 6);
 
             Assert.That(player.Location, Is.EqualTo(6));
 
@@ -28,12 +29,12 @@ namespace MonopolyKataTests
         [Test]
         public void APlayerThatMovesBeyondTheLastSpaceOnTheBoard_ShouldLoopAroundToTheBeginingOfBoard()
         {
-
+            GameBoard board = new GameBoard();
             MonopolyPlayer player = new MonopolyPlayer("Horse");
 
-            player.Move(39);
-
-            player.Move(6);
+            player.Location = 39;
+            
+            board.Move(player,6);
 
             Assert.That(player.Location, Is.EqualTo(5));
 
@@ -42,11 +43,11 @@ namespace MonopolyKataTests
         [Test]
         public void APlayerThatGoesOnePositionPastSpace39WillEndUpAtPosition0()
         {
+            GameBoard board = new GameBoard();
             MonopolyPlayer player = new MonopolyPlayer("Horse");
 
-            player.Move(39);
-
-            player.Move(1);
+            player.Location = 39;
+            board.Move(player,1);
 
             Assert.That(player.Location, Is.EqualTo(0));
 
