@@ -17,25 +17,13 @@ namespace MonopolyKata.Board.Spaces.RealEstate
         IRealEstateChargingStategy standardChargingStrategy;
         IRealEstateChargingStategy mortgagedChargingStrategy;
         
-        
-        public RealEstateSpace(string name) : base(name){ }
-
         public RealEstateSpace(string name, int purchaseCost, int baseLandOnCost, IRealEstateChargingStategy standardChargingStrategy)
-            : base(name)
-        {
-            this.purchaseCost = purchaseCost;
-
-            groupProperties = new List<RealEstateSpace>();
-
-            this.baseLandOnCost = baseLandOnCost;
-
-            currentChargingStrategy = standardChargingStrategy;
-            this.standardChargingStrategy = standardChargingStrategy;
-            mortgagedChargingStrategy = new MortgageChargingStrategy();
-        }
+            : this(name, purchaseCost, baseLandOnCost, standardChargingStrategy, new MortgageChargingStrategy())
+        { }
 
 
-        public RealEstateSpace(string name, int purchaseCost, int baseLandOnCost, IRealEstateChargingStategy standardChargingStrategy, IRealEstateChargingStategy mortgagedChargingStrategy ) : base(name) 
+        public RealEstateSpace(string name, int purchaseCost, int baseLandOnCost, IRealEstateChargingStategy standardChargingStrategy, IRealEstateChargingStategy mortgagedChargingStrategy )
+            : base(name) 
         {
             this.purchaseCost = purchaseCost;
 

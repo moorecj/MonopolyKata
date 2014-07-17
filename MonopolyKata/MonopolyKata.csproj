@@ -54,7 +54,6 @@
     <Compile Include="Board\Spaces\SpaceDecorator.cs" />
     <Compile Include="Board\Spaces\RealEstate\RealEstateSpace.cs" />
     <Compile Include="Dice\PrintDiceRollDecoration.cs" />
-    <Compile Include="Dice\DiceDecorator.cs" />
     <Compile Include="Dice\IDice.cs" />
     <Compile Include="Dice\SixSidedDie.cs" />
     <Compile Include="MonopolyGame.cs" />
@@ -70,9 +69,6 @@
     <Compile Include="Player\MonopolyPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup\TooManyPlayersException.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
