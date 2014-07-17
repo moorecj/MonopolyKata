@@ -35,7 +35,6 @@ namespace MonopolyKataTests
 
             Assert.That(player1.Balence, Is.EqualTo(10));
             Assert.That(player2.Balence, Is.EqualTo(0));
-
         }
 
         [Test]
@@ -63,7 +62,6 @@ namespace MonopolyKataTests
 
             Assert.That(player1.Balence, Is.EqualTo(20));
             Assert.That(player2.Balence, Is.EqualTo(0));
-
         }
 
 

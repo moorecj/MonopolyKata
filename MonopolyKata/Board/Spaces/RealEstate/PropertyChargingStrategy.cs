@@ -19,8 +19,6 @@ namespace MonopolyKata.Board.Spaces.RealEstate
                 realEstateSpace.Owner.Balence += realEstateSpace.baseLandOnCost * multiplier;
                 player.Balence -= realEstateSpace.baseLandOnCost * multiplier;
             }
-            
-
         }
 
         private int GetRentMultiplier( RealEstateSpace realEstateSpace )
@@ -37,7 +35,7 @@ namespace MonopolyKata.Board.Spaces.RealEstate
 
         private bool OwnerOfThisSpaceOwnsTheRestInGroup(RealEstateSpace realEstateSpace)
         {
-            return realEstateSpace.groupProperties.All(p => p.Owner == realEstateSpace.Owner);
+            return(realEstateSpace.groupProperties.Count(p => p.Owner == realEstateSpace.Owner) > 0);
         }
     }
 }
