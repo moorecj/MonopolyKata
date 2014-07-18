@@ -22,7 +22,7 @@ namespace MonopolyKata.Board
         MonopolyBoardSpace Chance1;
         RealEstateSpace VermontAvenue;
         RealEstateSpace ConnecticutAvenue;
-        MonopolyBoardSpace Jail;
+        JailSpace Jail;
         RealEstateSpace StCharlesPlace;
         RealEstateSpace ElectricCompany;
         RealEstateSpace StatesAvenue;
@@ -166,7 +166,7 @@ namespace MonopolyKata.Board
             Chance1 = new MonopolyBoardSpace ("Chance");
             VermontAvenue = new RealEstateSpace("Vermont Avenue", 6, 100, new PropertyChargingStrategy(), new MortgageChargingStrategy());
             ConnecticutAvenue = new RealEstateSpace("Connecticut Avenue", 8, 120, new PropertyChargingStrategy(), new MortgageChargingStrategy());
-            Jail =  new MonopolyBoardSpace("Jail");
+            Jail =  new JailSpace("Jail");
             StCharlesPlace = new RealEstateSpace("St Charles Place", 10, 140, new PropertyChargingStrategy(), new MortgageChargingStrategy());
             ElectricCompany = new RealEstateSpace("Electric Company", 4, 140, new UtilityChargingStrategy(), new MortgageChargingStrategy());
             StatesAvenue = new RealEstateSpace("States Avenue", 10, 140, new PropertyChargingStrategy(), new MortgageChargingStrategy());
@@ -187,7 +187,7 @@ namespace MonopolyKata.Board
             VentnorAvenue = new RealEstateSpace("Ventnor Avenue", 22, 260, new PropertyChargingStrategy(), new MortgageChargingStrategy());
             WaterWorks = new RealEstateSpace("Water Works", 4, 140, new UtilityChargingStrategy(), new MortgageChargingStrategy());
             MarvinGardinsAvenue = new RealEstateSpace("Marvin Gardins Avenue", 22, 280, new PropertyChargingStrategy(), new MortgageChargingStrategy());
-            GoToJail = new GoToJailSpace("Go To Jail");
+            GoToJail = new GoToJailSpace("Go To Jail", Jail);
             PacificAvenue = new RealEstateSpace("Pacific Avenue", 26, 300, new PropertyChargingStrategy(), new MortgageChargingStrategy());
             NorthCarolinaAvenue = new RealEstateSpace("North Carolina Avenue", 26, 300, new PropertyChargingStrategy(), new MortgageChargingStrategy());
             CommunityChest3 = new MonopolyBoardSpace("Community Chest");

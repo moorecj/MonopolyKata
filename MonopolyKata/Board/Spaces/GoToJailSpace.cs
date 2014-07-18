@@ -8,9 +8,12 @@ namespace MonopolyKata.Board.Spaces
 {
     public class GoToJailSpace : MonopolyBoardSpace
     {
-        public GoToJailSpace(string name) : base(name)
+        JailSpace jail = new JailSpace("jail");
+
+        public GoToJailSpace(string name, JailSpace jail) : base(name)
         {
-            this.name = name; 
+            this.name = name;
+            this.jail = jail;
         }
 
         public override void LandOn(MonopolyPlayer player)

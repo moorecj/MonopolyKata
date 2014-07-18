@@ -41,6 +41,22 @@ namespace MonopolyKataTests.SpaceTests
 
         }
 
+        [Test]
+        public void APlayerThatLandsOnGoToJailShouldGetLockedInJail()
+        {
+
+            MonopolyPlayer player = new MonopolyPlayer("a player");
+
+            JailSpace Jail = new JailSpace("Jail");
+            GoToJailSpace GoToJail = new GoToJailSpace("Go To Jail", Jail);
+
+            GoToJail.LandOn(player);
+
+            Assert.That(Jail.IsLockedUp(player), Is.EqualTo(true));
+
+
+        }
+
 
     }
 }
