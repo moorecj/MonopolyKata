@@ -17,8 +17,7 @@ namespace MonopolyKata
         private MonopolyPlayer currentTurnPlayer;
         private ISetup GameSetup;
         private IDice dice;
-        private IGameBoard gameBoard;
-        bool currentTurnPlayerGoesAgainFromDoubles;
+        private IMonopolyGameBoard gameBoard;
         int doublesCount;
 
 
@@ -26,7 +25,7 @@ namespace MonopolyKata
             :this(GameSetup, die,new GameBoard())
         { }
 
-        public MonopolyEngine(ISetup GameSetup, IDie die, IGameBoard gameBoard)
+        public MonopolyEngine(ISetup GameSetup, IDie die, IMonopolyGameBoard gameBoard)
         {
             this.GameSetup = GameSetup;
             dice = new TwoDie(die);
@@ -36,31 +35,36 @@ namespace MonopolyKata
 
         public void TakeTurn()
         {
-            dice.Roll();
+            do
+            {
+                dice.Roll();
 
-            if (dice.LastRollWereAllTheSame())
-            {
-                currentTurnPlayerGoesAgainFromDoubles = true;
-                doublesCount++;
-            }
+                if (dice.LastRollWereAllTheSame())
+                {
+                    doublesCount++;
+                }
 
-            if (ThePlayerRolledTooManyDoubles())
-            {
-                SendTheCurrentPlayerToJail();
+                if (ThePlayerRolledTooManyDoubles())
+                {
+                    SendTheCurrentPlayerToJail();
+                }
+
+                if (!gameBoard.Jail.IsLockedUp(currentTurnPlayer))
+                {
+                    gameBoard.Move(currentTurnPlayer, dice.GetDiceRollTotal());
+                    gameBoard.LandOnNewSpace(currentTurnPlayer);
+                }
+
             }
-            else
-            {
-                gameBoard.Move(currentTurnPlayer,dice.GetDiceRollTotal());
-                gameBoard.LandOnNewSpace(currentTurnPlayer);
-            }
+            while ((doublesCount > 0) && !(CurrentTurnPlayerIsLoser()) && !gameBoard.Jail.IsLockedUp(currentTurnPlayer)); 
 
         }
 
         private void SendTheCurrentPlayerToJail()
         {
             currentTurnPlayer.Location = GameBoard.JAIL_LOCATION;
-            currentTurnPlayerGoesAgainFromDoubles = false;
             doublesCount = 0;
+            gameBoard.Jail.LockUp(currentTurnPlayer);
         }
 
         private bool ThePlayerRolledTooManyDoubles()
@@ -99,15 +103,10 @@ namespace MonopolyKata
             MonopolyPlayer initalPlayer = currentTurnPlayer;
             MonopolyPlayer nextPlayer = GameSetup.WhoGoesNext(currentTurnPlayer);
 
-            if (currentTurnPlayerGoesAgainFromDoubles)
-            {
-                nextPlayer = currentTurnPlayer;
-                currentTurnPlayerGoesAgainFromDoubles = false;
-            }
-
             while (PlayerIsLoser(nextPlayer))
             {
                 nextPlayer = GameSetup.WhoGoesNext(nextPlayer);
+
                 if (nextPlayer == initalPlayer)
                 {
                     break;
@@ -117,6 +116,5 @@ namespace MonopolyKata
             return nextPlayer;
         }
         
-
     }
 }

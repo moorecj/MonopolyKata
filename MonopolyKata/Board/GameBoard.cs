@@ -8,50 +8,50 @@ using MonopolyKata.Board.Spaces.RealEstate;
 
 namespace MonopolyKata.Board
 {
-    public class GameBoard : MonopolyKata.Board.IGameBoard
+    public class GameBoard : MonopolyKata.Board.IMonopolyGameBoard
     {
         private List<BoardSpace> spaces;
 
-        GoSpace Go;
-        RealEstateSpace MediterraneanAvenue;
-        MonopolyBoardSpace CommunityChest1;
-        RealEstateSpace BalticAvenue;
-        IncomeTaxSpace IncomeTax;
-        RealEstateSpace ReadingRailroad;
-        RealEstateSpace OrientalAvenue;
-        MonopolyBoardSpace Chance1;
-        RealEstateSpace VermontAvenue;
-        RealEstateSpace ConnecticutAvenue;
-        JailSpace Jail;
-        RealEstateSpace StCharlesPlace;
-        RealEstateSpace ElectricCompany;
-        RealEstateSpace StatesAvenue;
-        RealEstateSpace VirginiaAvenue;
-        RealEstateSpace PennsylvaniaRailroad;
-        RealEstateSpace StJamesPlace;
-        MonopolyBoardSpace CommunityChest2;
-        RealEstateSpace TessesseeAvenue;
-        RealEstateSpace NewYorkAvenue;
-        MonopolyBoardSpace FreeParking;
-        RealEstateSpace KentuckyAvenue;
-        MonopolyBoardSpace Chance2;
-        RealEstateSpace IndianaAvenue;
-        RealEstateSpace IllinoisAvenue;
-        RealEstateSpace BnORailroad;
-        RealEstateSpace AtlanticAvenue;
-        RealEstateSpace VentnorAvenue;
-        RealEstateSpace WaterWorks;
-        RealEstateSpace MarvinGardinsAvenue;
-        GoToJailSpace GoToJail;
-        RealEstateSpace PacificAvenue;
-        RealEstateSpace NorthCarolinaAvenue;
-        MonopolyBoardSpace CommunityChest3;
-        RealEstateSpace PennsylvaniaAvenue;
-        RealEstateSpace ShortLineRailroad;
-        MonopolyBoardSpace Chance3;
-        RealEstateSpace ParkPlace;
-        LuxuryTaxSpace LuxuryTax;
-        RealEstateSpace Boardwalk;
+        public GoSpace Go{get;set;}
+        public RealEstateSpace MediterraneanAvenue { get; private set; }
+        public MonopolyBoardSpace CommunityChest1 { get; private set; }
+        public RealEstateSpace BalticAvenue { get; private set; }
+        public IncomeTaxSpace IncomeTax { get; private set; }
+        public RealEstateSpace ReadingRailroad { get; private set; }
+        public RealEstateSpace OrientalAvenue { get; private set; }
+        public MonopolyBoardSpace Chance1 { get; private set; }
+        public RealEstateSpace VermontAvenue { get; private set; }
+        public RealEstateSpace ConnecticutAvenue { get; private set; }
+        public JailSpace Jail { get; private set; }
+        public RealEstateSpace StCharlesPlace{ get; private set; }
+        public RealEstateSpace ElectricCompany{ get; private set; }
+        public RealEstateSpace StatesAvenue{ get; private set; }
+        public RealEstateSpace VirginiaAvenue{ get; private set; }
+        public RealEstateSpace PennsylvaniaRailroad{ get; private set; }
+        public RealEstateSpace StJamesPlace{ get; private set; }
+        public MonopolyBoardSpace CommunityChest2{ get; private set; }
+        public RealEstateSpace TessesseeAvenue{ get; private set; }
+        public RealEstateSpace NewYorkAvenue{ get; private set; }
+        public MonopolyBoardSpace FreeParking{ get; private set; }
+        public RealEstateSpace KentuckyAvenue{ get; private set; }
+        public MonopolyBoardSpace Chance2{ get; private set; }
+        public RealEstateSpace IndianaAvenue{ get; private set; }
+        public RealEstateSpace IllinoisAvenue{ get; private set; }
+        public RealEstateSpace BnORailroad{ get; private set; }
+        public RealEstateSpace AtlanticAvenue{ get; private set; }
+        public RealEstateSpace VentnorAvenue{ get; private set;}
+        public RealEstateSpace WaterWorks{ get; private set; }
+        public RealEstateSpace MarvinGardinsAvenue{ get; private set; }
+        public GoToJailSpace GoToJail{ get; private set; }
+        public RealEstateSpace PacificAvenue{ get; private set; }
+        public RealEstateSpace NorthCarolinaAvenue{ get; private set; }
+        public MonopolyBoardSpace CommunityChest3{ get; private set; }
+        public RealEstateSpace PennsylvaniaAvenue{ get; private set; }
+        public RealEstateSpace ShortLineRailroad{ get; private set; }
+        public MonopolyBoardSpace Chance3{ get; private set; }
+        public RealEstateSpace ParkPlace{ get; private set; }
+        public LuxuryTaxSpace LuxuryTax{ get; private set; }
+        public RealEstateSpace Boardwalk{ get; private set; }
 
         public const int GO_LOCATION = 0;
         public const int MEDITERRANEAN_AVENUE_LOCATION = 1;
@@ -171,7 +171,6 @@ namespace MonopolyKata.Board
             ElectricCompany = new RealEstateSpace("Electric Company", 4, 140, new UtilityChargingStrategy(), new MortgageChargingStrategy());
             StatesAvenue = new RealEstateSpace("States Avenue", 10, 140, new PropertyChargingStrategy(), new MortgageChargingStrategy());
             VirginiaAvenue = new RealEstateSpace("Virginia Avenue", 12, 160, new PropertyChargingStrategy(), new MortgageChargingStrategy());
-
             PennsylvaniaRailroad = new RealEstateSpace("Pennsylvania Railroad", 25, 200, new RailRoadChargingStrategy(), new MortgageChargingStrategy());
             StJamesPlace = new RealEstateSpace("St James Place", 14, 180, new PropertyChargingStrategy(), new MortgageChargingStrategy());
             CommunityChest2= new MonopolyBoardSpace ("Community Chest");

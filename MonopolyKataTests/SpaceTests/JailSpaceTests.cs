@@ -54,6 +54,7 @@ namespace MonopolyKataTests.SpaceTests
             Assert.That(Jail.IsLockedUp(player), Is.EqualTo(true));
         }
 
+        
 
     }
 }

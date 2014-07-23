@@ -90,51 +90,6 @@ namespace MonopolyKataTests
 
 
         [Test]
-        public void LandingOnIncomeTaxWithABalenceLessThen2000ShouldResultIn10PercentDeductionFromBalance()
-        {
-            player1.Balence = 100;
-            player1.Location = GameBoard.INCOME_TAX_LOCATION - 2;
-
-            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
-
-            int startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
-
-            gameEngine.TakeTurn();
-
-            Assert.That(gameEngine.GetCurrentTurnPlayer().Balence, Is.EqualTo(90));
-        }
-
-        [Test]
-        public void LandingOnIncomeTaxWithABalenceGreaterThan2000ShouldResultIn200DeductionFromBalance()
-        {
-            player1.Balence =  2200;
-            player1.Location = GameBoard.INCOME_TAX_LOCATION-2;
-
-            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
-
-            int startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
-
-            gameEngine.TakeTurn();
-
-            Assert.That(gameEngine.GetCurrentTurnPlayer().Balence, Is.EqualTo(2000));
-        }
-
-        [Test]
-        public void LandingOnLuxuryTaxShouldReduceAPlayersBalenceBy75()
-        {
-            player1.Balence = 100;
-            player1.Location = GameBoard.LUXURY_TAX_LOCATION - 2;
-
-            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
-
-            int startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
-
-            gameEngine.TakeTurn();
-
-            Assert.That(gameEngine.GetCurrentTurnPlayer().Balence, Is.EqualTo(25));
-        }
-
-        [Test]
         public void IfAPlayersBalenceGoesBelowZeroThatPlayerLosses()
         {
 
@@ -223,8 +178,6 @@ namespace MonopolyKataTests
 
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
-            int startingBalence = gameEngine.GetCurrentTurnPlayer().Balence;
-
             gameEngine.TakeTurn();
 
             Assert.That(gameEngine.CurrentTurnPlayerIsLoser(), Is.True);
@@ -236,24 +189,32 @@ namespace MonopolyKataTests
         }
 
         [Test]
-        public void IfAPlayerRollsDoublesThenTheyGetToTakeAnotherTurn()
+        public void APlayerIsNotTheWinnerIfTheyRollDoubles()
         {
-
-            MonopolyPlayer PlayerWhoGoesFirst;
-            MonopolyPlayer PlayerWhoGoesNext;
+            player1.Balence = 0;
+            player1.Location = GameBoard.FREE_PARKING_LOCATION - 2;
 
             //Mock die is setup to always return one
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
-            PlayerWhoGoesFirst = gameEngine.GetCurrentTurnPlayer();            
+            gameEngine.TakeTurn();
+
+            Assert.That(gameEngine.CurrentTurnPlayerIsWinner(), Is.False);
+        }
+
+        [Test]
+        public void IfAPlayerRollsDoublesThenTheyGetToRollAgain()
+        {
+            int count = 0;
+            
+            dieMock.Setup(m => m.Roll()).Callback(() => { count++; });
+
+            //Mock die is setup to always return one
+            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);      
 
             gameEngine.TakeTurn();
 
-            gameEngine.GoToNextTurn();
-
-            PlayerWhoGoesNext = gameEngine.GetCurrentTurnPlayer();
-
-            Assert.That(PlayerWhoGoesFirst, Is.EqualTo(PlayerWhoGoesNext));
+            Assert.That(count, Is.GreaterThan(2));
 
         }
 
@@ -269,17 +230,27 @@ namespace MonopolyKataTests
             player = gameEngine.GetCurrentTurnPlayer();
 
             gameEngine.TakeTurn();
-            gameEngine.GoToNextTurn();
-
-            gameEngine.TakeTurn();
-            gameEngine.GoToNextTurn();
-
-            gameEngine.TakeTurn();
 
             Assert.That(player.Location, Is.EqualTo(GameBoard.JAIL_LOCATION));
         }
 
 
+
+
+        [Test]
+        public void IfAPlayerRollsDoublesAndLandsOnGoToJailTheirTurnIsOver()
+        {
+            player1.Location = GameBoard.GO_TO_JAIL_LOCATION-2;
+
+            //Mock die is setup to always return one
+            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
+
+            gameEngine.TakeTurn();
+
+            gameEngine.GoToNextTurn();
+
+            Assert.That(gameEngine.GetCurrentTurnPlayer(), Is.Not.EqualTo(player1));
+        }
 
 
 

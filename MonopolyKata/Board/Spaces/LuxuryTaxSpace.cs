@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonopolyKata.Board.Spaces
 {
-    class LuxuryTaxSpace : MonopolyBoardSpace
+    public class LuxuryTaxSpace : MonopolyBoardSpace
     {
         private const int LUXURY_TAX_AMOUNT = 75;
 
