@@ -56,8 +56,13 @@ namespace MonopolyKata
                 }
 
             }
-            while ((doublesCount > 0) && !(CurrentTurnPlayerIsLoser()) && !gameBoard.Jail.IsLockedUp(currentTurnPlayer)); 
+            while (CurrentTurnPlayerShouldRollAgain()); 
 
+        }
+
+        private bool CurrentTurnPlayerShouldRollAgain()
+        {
+            return (doublesCount > 0) && !(CurrentTurnPlayerIsLoser()) && !(gameBoard.Jail.IsLockedUp(currentTurnPlayer));
         }
 
         private void SendTheCurrentPlayerToJail()

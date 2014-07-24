@@ -235,8 +235,6 @@ namespace MonopolyKataTests
         }
 
 
-
-
         [Test]
         public void IfAPlayerRollsDoublesAndLandsOnGoToJailTheirTurnIsOver()
         {
