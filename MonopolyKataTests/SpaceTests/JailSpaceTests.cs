@@ -54,6 +54,24 @@ namespace MonopolyKataTests.SpaceTests
             Assert.That(Jail.IsLockedUp(player), Is.EqualTo(true));
         }
 
+        [Test]
+        public void APlayerLockedInJailCanPay50ToBeReleasedFromJail()
+        {
+            MonopolyPlayer player = new MonopolyPlayer("a player");
+
+            player.Balence = 50;
+
+            JailSpace Jail = new JailSpace("Jail");
+            GoToJailSpace GoToJail = new GoToJailSpace("Go To Jail", Jail);
+
+            Jail.LockUp(player);
+
+            Jail.Pay50ToGetOut(player);
+
+            Assert.That(player.Balence, Is.EqualTo(0));
+            Assert.That(Jail.IsLockedUp(player), Is.EqualTo(false));
+        }
+
         
 
     }

@@ -29,5 +29,12 @@ namespace MonopolyKata.Board.Spaces
         {
             playersLockedInJail.RemoveAll(p => p == player); ;
         }
+
+        public void Pay50ToGetOut(MonopolyPlayer player)
+        {
+            player.Balence -= 50;
+
+            Release(player);
+        }
     }
 }
