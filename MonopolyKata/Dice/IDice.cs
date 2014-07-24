@@ -1,7 +1,7 @@
 ﻿using System;
 namespace MonopolyKata.Dice
 {
-    interface IDice
+    public interface IDice
     {
         int GetDiceRollTotal();
         bool LastRollWereAllTheSame();

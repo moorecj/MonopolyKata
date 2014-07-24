@@ -7,6 +7,8 @@ using NUnit.Framework;
 using MonopolyKata;
 using MonopolyKata.Player;
 using MonopolyKata.Board.Spaces;
+using MonopolyKata.Dice;
+using Moq;
 
 namespace MonopolyKataTests.SpaceTests
 {
@@ -55,7 +57,7 @@ namespace MonopolyKataTests.SpaceTests
         }
 
         [Test]
-        public void APlayerLockedInJailCanPay50ToBeReleasedFromJail()
+        public void APlayerLockedInJailCanBeReleasedByRollingDoubles()
         {
             MonopolyPlayer player = new MonopolyPlayer("a player");
 
@@ -64,13 +66,19 @@ namespace MonopolyKataTests.SpaceTests
             JailSpace Jail = new JailSpace("Jail");
             GoToJailSpace GoToJail = new GoToJailSpace("Go To Jail", Jail);
 
+
+            Mock<IDice> diceMock = new Mock<IDice>();
+
+            diceMock.Setup(s => s.LastRollWereAllTheSame()).Returns(true);
+
             Jail.LockUp(player);
 
-            Jail.Pay50ToGetOut(player);
+            Jail.TryToGetOUtWithDoubles(player, diceMock.Object);
 
-            Assert.That(player.Balence, Is.EqualTo(0));
+            Assert.That(player.Balence, Is.EqualTo(50));
             Assert.That(Jail.IsLockedUp(player), Is.EqualTo(false));
         }
+
 
         
 

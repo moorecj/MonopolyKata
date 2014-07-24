@@ -55,6 +55,7 @@
     <Compile Include="Board\Spaces\SpaceDecorator.cs" />
     <Compile Include="Board\Spaces\RealEstate\RealEstateSpace.cs" />
     <Compile Include="Dice\IDice.cs" />
+    <Compile Include="Dice\ITwoDie.cs" />
     <Compile Include="Dice\TwoDie.cs" />
     <Compile Include="Dice\PrintDiceRollDecoration.cs" />
     <Compile Include="Dice\IDie.cs" />

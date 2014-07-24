@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MonopolyKata.Dice;
 
 namespace MonopolyKata.Board.Spaces
 {
@@ -35,6 +36,15 @@ namespace MonopolyKata.Board.Spaces
             player.Balence -= 50;
 
             Release(player);
+        }
+
+        public void TryToGetOUtWithDoubles(MonopolyPlayer player, IDice dice)
+        {
+            if(dice.LastRollWereAllTheSame())
+            {
+                Release(player);
+            }
+            
         }
     }
 }

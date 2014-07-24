@@ -35,8 +35,29 @@ namespace MonopolyKata
 
         public void TakeTurn()
         {
-            PlayANonJailedPlayersTurn(); 
+
+            if(gameBoard.Jail.IsLockedUp(currentTurnPlayer))
+            {
+                TryToGetOutOfJail();
+            }
+
+            if (!gameBoard.Jail.IsLockedUp(currentTurnPlayer))
+            {
+                PlayANonJailedPlayersTurn();
+            }
+             
         }
+
+        private void TryToGetOutOfJail()
+        {
+            if(currentTurnPlayer.Balence >= 50)
+            {
+                gameBoard.Jail.Pay50ToGetOut(currentTurnPlayer);
+            }
+                
+        }
+
+
 
         public void GoToNextTurn()
         {

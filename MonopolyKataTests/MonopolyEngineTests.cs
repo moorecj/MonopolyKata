@@ -273,6 +273,50 @@ namespace MonopolyKataTests
 
         }
 
+        [Test]
+        public void IfAPlayerIsInJailAndTheyHave50OrMoreThenTheyMustPay50()
+        {
+            player1.Location = GameBoard.GO_TO_JAIL_LOCATION - 2;
+            player1.Balence = 50;
+            int count = 0;
+
+            dieMock.Setup(m => m.Roll()).Returns(1).Callback(() => { count++; });
+
+            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
+
+            gameEngine.TakeTurn();
+
+            gameEngine.GoToNextTurn();
+
+            gameEngine.GoToNextTurn();
+            gameEngine.TakeTurn();
+
+            Assert.That(player1.Balence, Is.EqualTo(0));
+
+        }
+
+        [Test]
+        public void IfAPlayerIsInJailAndTheyHaveless50ThenTheyStayInJail()
+        {
+            player1.Location = GameBoard.GO_TO_JAIL_LOCATION - 2;
+            player1.Balence = 25;
+            int count = 0;
+
+            dieMock.Setup(m => m.Roll()).Returns(1).Callback(() => { count++; });
+
+            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
+
+            gameEngine.TakeTurn();
+
+            gameEngine.GoToNextTurn();
+
+            gameEngine.GoToNextTurn();
+            gameEngine.TakeTurn();
+
+            Assert.That(player1.Balence, Is.EqualTo(25));
+
+        }
+
 
     }
 
