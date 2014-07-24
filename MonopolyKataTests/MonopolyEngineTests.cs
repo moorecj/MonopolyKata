@@ -226,7 +226,7 @@ namespace MonopolyKataTests
 
             const int NumberOfDieRollsPerMove = 2;
 
-            dieMock.Setup(m => m.Roll()).Returns(roll).Callback(() => { count++; roll++; });
+            dieMock.Setup(m => m.Roll()).Returns(() => roll).Callback(() => { count++; roll++; });
 
             //Mock die is setup to always return one
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);

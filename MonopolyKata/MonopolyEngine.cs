@@ -18,7 +18,7 @@ namespace MonopolyKata
         private ISetup GameSetup;
         private IDice dice;
         private IMonopolyGameBoard gameBoard;
-        int doublesCount;
+        int doublesInARowCount;
 
 
         public MonopolyEngine( ISetup GameSetup, IDie die )
@@ -80,8 +80,13 @@ namespace MonopolyKata
         {
             if (dice.LastRollWereAllTheSame())
             {
-                doublesCount++;
+                doublesInARowCount++;
             }
+            else
+            {
+                doublesInARowCount = 0;
+            }
+
 
             if (ThePlayerRolledTooManyDoubles())
             {
@@ -91,19 +96,19 @@ namespace MonopolyKata
 
         private bool CurrentTurnPlayerShouldRollAgain()
         {
-            return (doublesCount > 0) && !(CurrentTurnPlayerIsLoser()) && !(gameBoard.Jail.IsLockedUp(currentTurnPlayer));
+            return (doublesInARowCount > 0) && !(CurrentTurnPlayerIsLoser()) && !(gameBoard.Jail.IsLockedUp(currentTurnPlayer));
         }
 
         private void SendTheCurrentPlayerToJail()
         {
             currentTurnPlayer.Location = GameBoard.JAIL_LOCATION;
-            doublesCount = 0;
+            doublesInARowCount = 0;
             gameBoard.Jail.LockUp(currentTurnPlayer);
         }
 
         private bool ThePlayerRolledTooManyDoubles()
         {
-            return doublesCount >= 3;
+            return doublesInARowCount >= 3;
         }
 
         private bool PlayerIsLoser(MonopolyPlayer player)
