@@ -35,19 +35,36 @@ namespace MonopolyKata
 
         public void TakeTurn()
         {
+            PlayANonJailedPlayersTurn(); 
+        }
+
+        public void GoToNextTurn()
+        {
+            currentTurnPlayer = ReturnNextValidPlayerOrCurrentPlayerIfNoValidPlayersExist();
+        }
+
+        public MonopolyPlayer GetCurrentTurnPlayer()
+        {
+            return currentTurnPlayer;
+        }
+
+        public bool CurrentTurnPlayerIsLoser()
+        {
+            return PlayerIsLoser(currentTurnPlayer);
+        }
+
+        public bool CurrentTurnPlayerIsWinner()
+        {
+            return currentTurnPlayer == ReturnNextValidPlayerOrCurrentPlayerIfNoValidPlayersExist();
+        }
+
+        private void PlayANonJailedPlayersTurn()
+        {
             do
             {
                 dice.Roll();
 
-                if (dice.LastRollWereAllTheSame())
-                {
-                    doublesCount++;
-                }
-
-                if (ThePlayerRolledTooManyDoubles())
-                {
-                    SendTheCurrentPlayerToJail();
-                }
+                AccountDiceRoll();
 
                 if (!gameBoard.Jail.IsLockedUp(currentTurnPlayer))
                 {
@@ -56,8 +73,20 @@ namespace MonopolyKata
                 }
 
             }
-            while (CurrentTurnPlayerShouldRollAgain()); 
+            while (CurrentTurnPlayerShouldRollAgain());
+        }
 
+        private void AccountDiceRoll()
+        {
+            if (dice.LastRollWereAllTheSame())
+            {
+                doublesCount++;
+            }
+
+            if (ThePlayerRolledTooManyDoubles())
+            {
+                SendTheCurrentPlayerToJail();
+            }
         }
 
         private bool CurrentTurnPlayerShouldRollAgain()
@@ -77,31 +106,11 @@ namespace MonopolyKata
             return doublesCount >= 3;
         }
 
-
-        public void GoToNextTurn()
-        {
-            currentTurnPlayer = ReturnNextValidPlayerOrCurrentPlayerIfNoValidPlayersExist(); 
-        }
-
-        public MonopolyPlayer GetCurrentTurnPlayer()
-        {
-            return currentTurnPlayer;
-        }
-
         private bool PlayerIsLoser(MonopolyPlayer player)
         {
             return player.Balence < 0;
         }
 
-        public bool CurrentTurnPlayerIsLoser()
-        {
-            return PlayerIsLoser(currentTurnPlayer);
-        }
-
-        public bool CurrentTurnPlayerIsWinner()
-        {
-            return currentTurnPlayer == ReturnNextValidPlayerOrCurrentPlayerIfNoValidPlayersExist();
-        }
 
         private MonopolyPlayer ReturnNextValidPlayerOrCurrentPlayerIfNoValidPlayersExist()
         {

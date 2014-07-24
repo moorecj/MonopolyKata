@@ -207,7 +207,7 @@ namespace MonopolyKataTests
         {
             int count = 0;
             
-            dieMock.Setup(m => m.Roll()).Callback(() => { count++; });
+            dieMock.Setup(m => m.Roll()).Returns(1).Callback(() => { count++; });
 
             //Mock die is setup to always return one
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);      
@@ -219,7 +219,27 @@ namespace MonopolyKataTests
         }
 
         [Test]
-        public void IfAPlayerRollsDoublesThreeTimesInARowTheyGoToJail()
+        public void IfAPlayerDoesNotRollDoublesThenTheyDoNotRollAgain()
+        {
+            int count = 0;
+            int roll  = 1;
+
+            const int NumberOfDieRollsPerMove = 2;
+
+            dieMock.Setup(m => m.Roll()).Returns(roll).Callback(() => { count++; roll++; });
+
+            //Mock die is setup to always return one
+            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
+
+            gameEngine.TakeTurn();
+
+            Assert.That(count, Is.EqualTo(NumberOfDieRollsPerMove));
+
+        }
+
+
+        [Test]
+        public void IfAPlayerRollsDoublesThreeTimesInARowTheyAutoMaticallyGoToTheJailLocation()
         {
 
             MonopolyPlayer player;
@@ -239,19 +259,19 @@ namespace MonopolyKataTests
         public void IfAPlayerRollsDoublesAndLandsOnGoToJailTheirTurnIsOver()
         {
             player1.Location = GameBoard.GO_TO_JAIL_LOCATION-2;
+            
+            int count = 0;
+
+            dieMock.Setup(m => m.Roll()).Returns(1).Callback(() => { count++; });
 
             //Mock die is setup to always return one
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
             gameEngine.TakeTurn();
 
-            gameEngine.GoToNextTurn();
+            Assert.That(count, Is.EqualTo(2));
 
-            Assert.That(gameEngine.GetCurrentTurnPlayer(), Is.Not.EqualTo(player1));
         }
-
-
-
 
 
     }
