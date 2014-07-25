@@ -264,7 +264,6 @@ namespace MonopolyKataTests
 
             dieMock.Setup(m => m.Roll()).Returns(1).Callback(() => { count++; });
 
-            //Mock die is setup to always return one
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
             gameEngine.TakeTurn();
@@ -274,23 +273,46 @@ namespace MonopolyKataTests
         }
 
         [Test]
-        public void IfAPlayerIsInJailAndTheyHave50OrMoreThenTheyMustPay50()
+        public void IfAPlayerIsInJailIfTheyRollDoublesTheyGetOutOfJail()
         {
             player1.Location = GameBoard.GO_TO_JAIL_LOCATION - 2;
-            player1.Balence = 50;
-            int count = 0;
-
-            dieMock.Setup(m => m.Roll()).Returns(1).Callback(() => { count++; });
 
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
             gameEngine.TakeTurn();
+            
+            Assert.That(gameEngine.gameBoard.Jail.IsLockedUp(gameEngine.GetCurrentTurnPlayer()));
+            
+            gameEngine.GoToNextTurn();
+
+            gameEngine.TakeTurn();
+
+            Assert.That(!gameEngine.gameBoard.Jail.IsLockedUp(gameEngine.GetCurrentTurnPlayer()));
+
+        }
+
+
+        [Test]
+        public void IfAPlayerIsInJailAndTheyHave50OrMoreThenTheyMustPay50ToGetOutOfJail()
+        {
+            player1.Location = GameBoard.GO_TO_JAIL_LOCATION - 3;
+            player1.Balence = 50;
+            int count = 0;
+            int roll = 1;
+
+            dieMock.Setup(m => m.Roll()).Returns(() => roll).Callback(() => { count++; roll++; });
+
+            MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
+
+            gameEngine.TakeTurn();
+            Assert.That(gameEngine.gameBoard.Jail.IsLockedUp(gameEngine.GetCurrentTurnPlayer()));
 
             gameEngine.GoToNextTurn();
 
             gameEngine.GoToNextTurn();
             gameEngine.TakeTurn();
 
+            Assert.That(!gameEngine.gameBoard.Jail.IsLockedUp(gameEngine.GetCurrentTurnPlayer()));
             Assert.That(player1.Balence, Is.EqualTo(0));
 
         }
@@ -316,7 +338,6 @@ namespace MonopolyKataTests
             Assert.That(player1.Balence, Is.EqualTo(25));
 
         }
-
 
     }
 

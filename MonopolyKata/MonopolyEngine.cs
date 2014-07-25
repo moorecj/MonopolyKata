@@ -17,7 +17,7 @@ namespace MonopolyKata
         private MonopolyPlayer currentTurnPlayer;
         private ISetup GameSetup;
         private IDice dice;
-        private IMonopolyGameBoard gameBoard;
+        public  IMonopolyGameBoard gameBoard;
         int doublesInARowCount;
 
 
@@ -38,17 +38,16 @@ namespace MonopolyKata
 
             if(gameBoard.Jail.IsLockedUp(currentTurnPlayer))
             {
-                TryToGetOutOfJail();
+                PlayJailedPlayersTurn();
             }
-
-            if (!gameBoard.Jail.IsLockedUp(currentTurnPlayer))
+            else
             {
                 PlayANonJailedPlayersTurn();
             }
              
         }
 
-        private void TryToGetOutOfJail()
+        private void PlayJailedPlayersTurn()
         {
             if(currentTurnPlayer.Balence >= 50)
             {
@@ -56,7 +55,6 @@ namespace MonopolyKata
             }
                 
         }
-
 
 
         public void GoToNextTurn()
@@ -107,7 +105,6 @@ namespace MonopolyKata
             {
                 doublesInARowCount = 0;
             }
-
 
             if (ThePlayerRolledTooManyDoubles())
             {
