@@ -285,15 +285,15 @@ namespace MonopolyKataTests
             
             gameEngine.GoToNextTurn();
 
+            gameEngine.GoToNextTurn();
             gameEngine.TakeTurn();
-
             Assert.That(!gameEngine.gameBoard.Jail.IsLockedUp(gameEngine.GetCurrentTurnPlayer()));
 
         }
 
 
         [Test]
-        public void IfAPlayerIsInJailAndTheyHave50OrMoreThenTheyMustPay50ToGetOutOfJail()
+        public void IfAPlayerIsInJailTHeyWillReamainInJailForThreeTurnsIfTheyDontRollDoubles()
         {
             player1.Location = GameBoard.GO_TO_JAIL_LOCATION - 3;
             player1.Balence = 50;
@@ -306,14 +306,20 @@ namespace MonopolyKataTests
 
             gameEngine.TakeTurn();
             Assert.That(gameEngine.gameBoard.Jail.IsLockedUp(gameEngine.GetCurrentTurnPlayer()));
-
             gameEngine.GoToNextTurn();
 
             gameEngine.GoToNextTurn();
+
+            gameEngine.GoToNextTurn();
+            Assert.That(gameEngine.gameBoard.Jail.IsLockedUp(gameEngine.GetCurrentTurnPlayer()));
             gameEngine.TakeTurn();
 
-            Assert.That(!gameEngine.gameBoard.Jail.IsLockedUp(gameEngine.GetCurrentTurnPlayer()));
-            Assert.That(player1.Balence, Is.EqualTo(0));
+            gameEngine.GoToNextTurn();
+
+            gameEngine.GoToNextTurn();
+            Assert.That(gameEngine.gameBoard.Jail.IsLockedUp(gameEngine.GetCurrentTurnPlayer()));
+            gameEngine.TakeTurn();
+
 
         }
 

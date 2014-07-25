@@ -49,7 +49,11 @@ namespace MonopolyKata
 
         private void PlayJailedPlayersTurn()
         {
-            if(currentTurnPlayer.Balence >= 50)
+            dice.Roll();
+
+            gameBoard.Jail.TryToGetOUtWithDoubles(currentTurnPlayer, dice);
+
+            if (!dice.LastRollWereAllTheSame())
             {
                 gameBoard.Jail.Pay50ToGetOut(currentTurnPlayer);
             }
