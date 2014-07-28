@@ -19,8 +19,6 @@ namespace MonopolyKata.Board.Spaces
             {
                 GoSpace.Pass(player);
             }
-            
-
         }
 
         private bool CheckForPassingGo(MonopolyPlayer player)
