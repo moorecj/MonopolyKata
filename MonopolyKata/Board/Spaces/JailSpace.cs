@@ -53,7 +53,7 @@ namespace MonopolyKata.Board.Spaces
             
         }
 
-        public int GetEscapeFromRollsAttemptCount(MonopolyPlayer player)
+        public int GetOutFromRollsAttemptCount(MonopolyPlayer player)
         {
             return escapeAttemptsWithRolls.Count(p => p == player);
         }

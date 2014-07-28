@@ -97,7 +97,7 @@ namespace MonopolyKata
 
         private bool PlayerRanOutOfRollChances()
         {
-            return !dice.LastRollWereAllTheSame() && (gameBoard.Jail.GetEscapeFromRollsAttemptCount(currentTurnPlayer) >= 3);
+            return !dice.LastRollWereAllTheSame() && (gameBoard.Jail.GetOutFromRollsAttemptCount(currentTurnPlayer) >= 3);
         }
 
         private void AttemptToMovePlayer()

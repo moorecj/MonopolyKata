@@ -64,8 +64,6 @@ namespace MonopolyKataTests.SpaceTests
             player.Balence = 50;
 
             JailSpace Jail = new JailSpace("Jail");
-            GoToJailSpace GoToJail = new GoToJailSpace("Go To Jail", Jail);
-
 
             Mock<IDice> diceMock = new Mock<IDice>();
 
@@ -80,7 +78,36 @@ namespace MonopolyKataTests.SpaceTests
         }
 
 
-        
+        [Test]
+        public void AJailSpaceWillCountTheNumberOfAttemptsToGetOutByRolling()
+        {
+            MonopolyPlayer player = new MonopolyPlayer("a player");
+
+            JailSpace Jail = new JailSpace("Jail");
+
+            Mock<IDice> diceMock = new Mock<IDice>();
+
+            diceMock.Setup(s => s.LastRollWereAllTheSame()).Returns(false);
+
+            Jail.LockUp(player);
+            
+            Assert.That(Jail.GetOutFromRollsAttemptCount(player), Is.EqualTo(0));
+           
+            Jail.TryToGetOUtWithDoubles(player, diceMock.Object);
+
+            Assert.That(Jail.GetOutFromRollsAttemptCount(player), Is.EqualTo(1));
+           
+            Jail.TryToGetOUtWithDoubles(player, diceMock.Object);
+
+            Assert.That(Jail.GetOutFromRollsAttemptCount(player), Is.EqualTo(2));
+            
+            Jail.TryToGetOUtWithDoubles(player, diceMock.Object);
+
+            Assert.That(Jail.GetOutFromRollsAttemptCount(player), Is.EqualTo(3));
+          
+            
+        }
+
 
     }
 }
