@@ -105,8 +105,31 @@ namespace MonopolyKataTests.SpaceTests
 
             Assert.That(Jail.GetOutFromRollsAttemptCount(player), Is.EqualTo(3));
           
-            
         }
+
+        [Test]
+        public void AJailSpaceWillResetTheNumberOfAttemptsToGetOutByRollingWhenThePlayerLeavesJail()
+        {
+            MonopolyPlayer player = new MonopolyPlayer("a player");
+
+            JailSpace Jail = new JailSpace("Jail");
+
+            Mock<IDice> diceMock = new Mock<IDice>();
+
+            diceMock.Setup(s => s.LastRollWereAllTheSame()).Returns(false);
+
+            Jail.LockUp(player);
+
+            Jail.TryToGetOUtWithDoubles(player, diceMock.Object);
+
+            Assert.That(Jail.GetOutFromRollsAttemptCount(player), Is.EqualTo(1));
+
+            Jail.Release(player);
+
+            Assert.That(Jail.GetOutFromRollsAttemptCount(player), Is.EqualTo(0));
+
+        }
+
 
 
     }
