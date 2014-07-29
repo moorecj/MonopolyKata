@@ -31,7 +31,8 @@ namespace MonopolyKata.Board.Spaces
 
         public void Release(MonopolyPlayer player)
         {
-            playersLockedInJail.RemoveAll(p => p == player); ;
+            playersLockedInJail.RemoveAll(p => p == player);
+            escapeAttemptsWithRolls.RemoveAll(p => p == player); 
         }
 
         public void Pay50ToGetOut(MonopolyPlayer player)

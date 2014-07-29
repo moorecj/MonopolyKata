@@ -72,7 +72,7 @@ namespace MonopolyKata
 
             gameBoard.Jail.TryToGetOUtWithDoubles(currentTurnPlayer, dice);
 
-            if (PlayerRanOutOfRollChances())
+            if (PlayerRanOutOfRollToGetOutOfJailChances())
             {
                 gameBoard.Jail.Pay50ToGetOut(currentTurnPlayer);
             }
@@ -95,7 +95,7 @@ namespace MonopolyKata
             while (CurrentTurnPlayerShouldRollAgain());
         }
 
-        private bool PlayerRanOutOfRollChances()
+        private bool PlayerRanOutOfRollToGetOutOfJailChances()
         {
             return !dice.LastRollWereAllTheSame() && (gameBoard.Jail.GetOutFromRollsAttemptCount(currentTurnPlayer) >= 3);
         }
