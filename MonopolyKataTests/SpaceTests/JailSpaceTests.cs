@@ -26,7 +26,6 @@ namespace MonopolyKataTests.SpaceTests
         {
             gameBoard = new MonopolyGameBoard();
             Jail = gameBoard.Jail;
-
         }
         
         [Test] 

@@ -16,9 +16,9 @@ namespace MonopolyKata
 
         private MonopolyPlayer currentTurnPlayer;
         private ISetup GameSetup;
-        private IDice dice;
+        private TurnEngine turnEngine;
         public  IMonopolyGameBoard gameBoard;
-        int doublesInARowCount;
+
 
         public MonopolyEngine( ISetup GameSetup, IDie die )
             :this(GameSetup, die,new MonopolyGameBoard())
@@ -27,21 +27,15 @@ namespace MonopolyKata
         public MonopolyEngine(ISetup GameSetup, IDie die, IMonopolyGameBoard gameBoard)
         {
             this.GameSetup = GameSetup;
-            dice = new TwoDie(die);
             currentTurnPlayer = GameSetup.WhoGoesFirst();
             this.gameBoard = gameBoard;
+
+            turnEngine = new TurnEngine(new TwoDie(die), gameBoard);
         }
 
         public void TakeTurn()
         {
-            if(gameBoard.Jail.IsLockedUp(currentTurnPlayer))
-            {
-                PlayJailedPlayersTurn();
-            }
-            else
-            {
-                PlayANonJailedPlayersTurn();
-            } 
+            turnEngine.TakeTurn(currentTurnPlayer);   
         }
 
         public void GoToNextTurn()
@@ -62,93 +56,6 @@ namespace MonopolyKata
         public bool CurrentTurnPlayerIsWinner()
         {
             return currentTurnPlayer == ReturnNextValidPlayerOrCurrentPlayerIfNoValidPlayersExist();
-        }
-
-        private void PlayJailedPlayersTurn()
-        {
-            dice.Roll();
-
-            gameBoard.Jail.TryToGetOUtWithDoubles(currentTurnPlayer, dice);
-
-            if (PlayerRanOutOfRollToGetOutOfJailChances())
-            {
-                gameBoard.Jail.Pay50ToGetOut(currentTurnPlayer);
-            }
-
-            AttemptToMovePlayer();
-                
-        }
-
-        private void PlayANonJailedPlayersTurn()
-        {
-            do
-            {
-                dice.Roll();
-
-                AccountDiceRoll();
-
-                AttemptToMovePlayer();
-
-            }
-            while (CurrentTurnPlayerShouldRollAgain());
-        }
-
-        private bool PlayerRanOutOfRollToGetOutOfJailChances()
-        {
-            return !dice.LastRollWereAllTheSame() && (gameBoard.Jail.GetOutFromRollsAttemptCount(currentTurnPlayer) >= 3);
-        }
-
-        private void AttemptToMovePlayer()
-        {
-            if (CurrentTurnPlayerCanMove())
-            {
-                gameBoard.Move(currentTurnPlayer, dice.GetDiceRollTotal());
-                gameBoard.LandOnNewSpace(currentTurnPlayer);
-            }
-        }
-
-        private void AccountDiceRoll()
-        {
-            if (dice.LastRollWereAllTheSame())
-            {
-                doublesInARowCount++;
-            }
-            else
-            {
-                doublesInARowCount = 0;
-            }
-
-            if (CurrentTurnPlayerRolledTooManyDoubles())
-            {
-                SendTheCurrentPlayerToJail();
-            }
-        }
-
-        private void SendTheCurrentPlayerToJail()
-        {
-            currentTurnPlayer.Location = gameBoard.GetSpaceAddress(gameBoard.Jail);
-            doublesInARowCount = 0;
-            gameBoard.Jail.LockUp(currentTurnPlayer);
-        }
-
-        private bool CurrentTurnPlayerShouldRollAgain()
-        {
-            return CurrentTurnPlayerRolledDoubles() && CurrentTurnPlayerCanMove();
-        }
-
-        private bool CurrentTurnPlayerRolledDoubles()
-        {
-            return (doublesInARowCount > 0);
-        }
-        
-        private bool CurrentTurnPlayerCanMove()
-        {
-            return !(CurrentTurnPlayerIsLoser()) && !(gameBoard.Jail.IsLockedUp(currentTurnPlayer));
-        }
-
-        private bool CurrentTurnPlayerRolledTooManyDoubles()
-        {
-            return doublesInARowCount >= 3;
         }
 
         private bool PlayerIsLoser(MonopolyPlayer player)

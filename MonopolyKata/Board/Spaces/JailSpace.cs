@@ -26,6 +26,7 @@ namespace MonopolyKata.Board.Spaces
 
         public void LockUp(MonopolyPlayer player)
         {
+            player.Location = gameBoard.GetSpaceAddress(gameBoard.Jail);
             playersLockedInJail.Add(player);
         }
 

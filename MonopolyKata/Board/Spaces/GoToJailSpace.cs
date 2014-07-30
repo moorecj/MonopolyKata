@@ -17,7 +17,6 @@ namespace MonopolyKata.Board.Spaces
         {
             base.LandOn(player);
             gameBoard.Jail.LockUp(player);
-            player.Location = gameBoard.GetSpaceAddress(gameBoard.Jail);
         }
 
     }

@@ -23,7 +23,6 @@ namespace MonopolyKataTests
             board.Move(player, 6);
 
             Assert.That(player.Location, Is.EqualTo(6));
-
         }
 
         [Test]

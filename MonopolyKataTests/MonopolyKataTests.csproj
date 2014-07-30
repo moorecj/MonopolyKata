@@ -59,6 +59,7 @@
     <Compile Include="SpaceTests\RealEstate\RealEstateTests.cs" />
     <Compile Include="SetupTests.cs" />
     <Compile Include="SpaceTests\RealEstate\ChargingStrategies\UtilitySpaceStrategyTests.cs" />
+    <Compile Include="TurnEngineTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
