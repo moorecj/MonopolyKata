@@ -15,18 +15,30 @@ namespace MonopolyKataTests
     [TestFixture]
     public class RailRoadTests
     {
+        MonopolyPlayer player1;
+        MonopolyPlayer player2;
+        IMonopolyGameBoard gameBoard;
+
+        [SetUp]
+        public void RailRoadTestSetup()
+        {
+            player1 = new MonopolyPlayer("player1");
+            player2 = new MonopolyPlayer("player2");
+
+            gameBoard = new MonopolyGameBoard();
+        }
+
         [Test]
         public void LandingOnARailRoadWhereTheOwnerOnlyOwnsThatRailRoadPays25ToTheOwner()
         {
-            MonopolyPlayer player1 = new MonopolyPlayer("player1");
-            MonopolyPlayer player2 = new MonopolyPlayer("player2");
+            
 
             player1.Balence = 0;
             player2.Balence = 25;
 
             int PurchaseCost =  200;
 
-            RealEstateSpace railRoad = new RealEstateSpace("Rail Road Space", PurchaseCost,25,new RailRoadChargingStrategy());
+            RealEstateSpace railRoad = new RealEstateSpace("Rail Road Space",gameBoard, PurchaseCost,25,new RailRoadChargingStrategy());
 
             railRoad.Owner = player1;
 
@@ -40,18 +52,16 @@ namespace MonopolyKataTests
         [Test]
         public void LandingOnARailRoadWhereTheOwnerOwnsThatRailRoadAnd1OtherPays50ToTheOwner()
         {
-            MonopolyPlayer player1 = new MonopolyPlayer("player1");
-            MonopolyPlayer player2 = new MonopolyPlayer("player2");
 
             player1.Balence = 0;
             player2.Balence = 50;
 
             int PurchaseCost = 200;
 
-            RealEstateSpace railRoad1 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
-            RealEstateSpace railRoad2 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
+            RealEstateSpace railRoad1 = new RealEstateSpace("Rail Road Space", gameBoard, PurchaseCost, 25, new RailRoadChargingStrategy());
+            RealEstateSpace railRoad2 = new RealEstateSpace("Rail Road Space", gameBoard, PurchaseCost, 25, new RailRoadChargingStrategy());
 
-            GameBoard.GroupSpaces(railRoad1, railRoad2);
+            MonopolyGameBoard.GroupSpaces(railRoad1, railRoad2);
 
             railRoad1.Owner = player1;
             railRoad2.Owner = player1;
@@ -66,19 +76,17 @@ namespace MonopolyKataTests
         [Test]
         public void LandingOnARailRoadWhereTheOwnerOwnsThatRailRoadAnd2OthersPays100ToTheOwner()
         {
-            MonopolyPlayer player1 = new MonopolyPlayer("player1");
-            MonopolyPlayer player2 = new MonopolyPlayer("player2");
 
             player1.Balence = 0;
             player2.Balence = 100;
 
             int PurchaseCost = 200;
 
-            RealEstateSpace railRoad1 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
-            RealEstateSpace railRoad2 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
-            RealEstateSpace railRoad3 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
+            RealEstateSpace railRoad1 = new RealEstateSpace("Rail Road Space", gameBoard, PurchaseCost, 25, new RailRoadChargingStrategy());
+            RealEstateSpace railRoad2 = new RealEstateSpace("Rail Road Space", gameBoard, PurchaseCost, 25, new RailRoadChargingStrategy());
+            RealEstateSpace railRoad3 = new RealEstateSpace("Rail Road Space", gameBoard, PurchaseCost, 25, new RailRoadChargingStrategy());
 
-            GameBoard.GroupSpaces(railRoad1, railRoad2, railRoad3);
+            MonopolyGameBoard.GroupSpaces(railRoad1, railRoad2, railRoad3);
 
             railRoad1.Owner = player1;
             railRoad2.Owner = player1;
@@ -94,20 +102,17 @@ namespace MonopolyKataTests
         [Test]
         public void LandingOnARailRoadWhereTheOwnerOwnsThatRailRoadAnd3OthersPays200ToTheOwner()
         {
-            MonopolyPlayer player1 = new MonopolyPlayer("player1");
-            MonopolyPlayer player2 = new MonopolyPlayer("player2");
-
             player1.Balence = 0;
             player2.Balence = 200;
 
             int PurchaseCost = 200;
 
-            RealEstateSpace railRoad1 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
-            RealEstateSpace railRoad2 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
-            RealEstateSpace railRoad3 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
-            RealEstateSpace railRoad4 = new RealEstateSpace("Rail Road Space", PurchaseCost, 25, new RailRoadChargingStrategy());
+            RealEstateSpace railRoad1 = new RealEstateSpace("Rail Road Space", gameBoard, PurchaseCost, 25, new RailRoadChargingStrategy());
+            RealEstateSpace railRoad2 = new RealEstateSpace("Rail Road Space", gameBoard, PurchaseCost, 25, new RailRoadChargingStrategy());
+            RealEstateSpace railRoad3 = new RealEstateSpace("Rail Road Space", gameBoard, PurchaseCost, 25, new RailRoadChargingStrategy());
+            RealEstateSpace railRoad4 = new RealEstateSpace("Rail Road Space", gameBoard, PurchaseCost, 25, new RailRoadChargingStrategy());
 
-            GameBoard.GroupSpaces(railRoad1, railRoad2, railRoad3, railRoad4);
+            MonopolyGameBoard.GroupSpaces(railRoad1, railRoad2, railRoad3, railRoad4);
 
             railRoad1.Owner = player1;
             railRoad2.Owner = player1;

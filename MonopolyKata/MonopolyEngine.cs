@@ -21,7 +21,7 @@ namespace MonopolyKata
         int doublesInARowCount;
 
         public MonopolyEngine( ISetup GameSetup, IDie die )
-            :this(GameSetup, die,new GameBoard())
+            :this(GameSetup, die,new MonopolyGameBoard())
         { }
 
         public MonopolyEngine(ISetup GameSetup, IDie die, IMonopolyGameBoard gameBoard)
@@ -34,7 +34,6 @@ namespace MonopolyKata
 
         public void TakeTurn()
         {
-
             if(gameBoard.Jail.IsLockedUp(currentTurnPlayer))
             {
                 PlayJailedPlayersTurn();
@@ -42,8 +41,7 @@ namespace MonopolyKata
             else
             {
                 PlayANonJailedPlayersTurn();
-            }
-             
+            } 
         }
 
         public void GoToNextTurn()
@@ -126,6 +124,13 @@ namespace MonopolyKata
             }
         }
 
+        private void SendTheCurrentPlayerToJail()
+        {
+            currentTurnPlayer.Location = gameBoard.GetSpaceAddress(gameBoard.Jail);
+            doublesInARowCount = 0;
+            gameBoard.Jail.LockUp(currentTurnPlayer);
+        }
+
         private bool CurrentTurnPlayerShouldRollAgain()
         {
             return CurrentTurnPlayerRolledDoubles() && CurrentTurnPlayerCanMove();
@@ -139,13 +144,6 @@ namespace MonopolyKata
         private bool CurrentTurnPlayerCanMove()
         {
             return !(CurrentTurnPlayerIsLoser()) && !(gameBoard.Jail.IsLockedUp(currentTurnPlayer));
-        }
-
-        private void SendTheCurrentPlayerToJail()
-        {
-            currentTurnPlayer.Location = GameBoard.JAIL_LOCATION;
-            doublesInARowCount = 0;
-            gameBoard.Jail.LockUp(currentTurnPlayer);
         }
 
         private bool CurrentTurnPlayerRolledTooManyDoubles()

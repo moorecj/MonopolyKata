@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using MonopolyKata;
+using MonopolyKata.Board;
 using MonopolyKata.Board.Spaces.RealEstate;
 
  
@@ -19,13 +20,14 @@ namespace MonopolyKataTests.SpaceTests.RealEstate.ChargingStrategies
         {
 
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
+            IMonopolyGameBoard gameBoard = new MonopolyGameBoard();
 
             player1.Balence = 0;
 
             IRealEstateChargingStategy strategy = new PropertyChargingStrategy();
             int PurchaseCost = 100;
 
-            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", PurchaseCost, 10, strategy);
+            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", gameBoard, PurchaseCost, 10, strategy);
 
             realEstateSpace.Owner = player1;
 
@@ -41,6 +43,7 @@ namespace MonopolyKataTests.SpaceTests.RealEstate.ChargingStrategies
 
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
             MonopolyPlayer player2 = new MonopolyPlayer("player2");
+            IMonopolyGameBoard gameBoard = new MonopolyGameBoard();
 
             player1.Balence = 0;
 
@@ -51,7 +54,7 @@ namespace MonopolyKataTests.SpaceTests.RealEstate.ChargingStrategies
 
             IRealEstateChargingStategy strategy = new PropertyChargingStrategy();
 
-            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", PurchaseCost, LandOnCost, strategy);
+            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", gameBoard, PurchaseCost, LandOnCost, strategy);
 
             realEstateSpace.Owner = player1;
             realEstateSpace.Mortgage(player1);
@@ -67,13 +70,14 @@ namespace MonopolyKataTests.SpaceTests.RealEstate.ChargingStrategies
         {
 
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
+            IMonopolyGameBoard gameBoard = new MonopolyGameBoard();
 
             player1.Balence = 0;
 
             IRealEstateChargingStategy strategy = new PropertyChargingStrategy();
             int PurchaseCost = 100;
 
-            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", PurchaseCost, 10, strategy);
+            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", gameBoard, PurchaseCost, 10, strategy);
 
             realEstateSpace.Owner = player1;
 
@@ -89,13 +93,14 @@ namespace MonopolyKataTests.SpaceTests.RealEstate.ChargingStrategies
         {
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
             MonopolyPlayer player2 = new MonopolyPlayer("player2");
+            IMonopolyGameBoard gameBoard = new MonopolyGameBoard();
 
             player1.Balence = 0;
 
             IRealEstateChargingStategy strategy = new PropertyChargingStrategy();
             int PurchaseCost = 100;
 
-            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", PurchaseCost, 10, strategy);
+            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", gameBoard, PurchaseCost, 10, strategy);
 
             realEstateSpace.Owner = player2;
 
@@ -111,6 +116,7 @@ namespace MonopolyKataTests.SpaceTests.RealEstate.ChargingStrategies
 
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
             MonopolyPlayer player2 = new MonopolyPlayer("player2");
+            IMonopolyGameBoard gameBoard = new MonopolyGameBoard();
 
             player1.Balence = 10;
 
@@ -118,7 +124,7 @@ namespace MonopolyKataTests.SpaceTests.RealEstate.ChargingStrategies
 
             int PurchaseCost = 100;
 
-            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", PurchaseCost, 10, strategy);
+            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", gameBoard, PurchaseCost, 10, strategy);
 
             realEstateSpace.Owner = player1;
 

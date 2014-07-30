@@ -13,7 +13,7 @@ namespace MonopolyKata.Board.Spaces
         private List<MonopolyPlayer> escapeAttemptsWithRolls;
         private List<MonopolyPlayer> playersLockedInJail;
 
-        public JailSpace(String name) : base(name)
+        public JailSpace(string name, IMonopolyGameBoard gameBoard): base(name, gameBoard)
         {
             playersLockedInJail = new List<MonopolyPlayer>();
             escapeAttemptsWithRolls = new List<MonopolyPlayer>();
@@ -44,7 +44,6 @@ namespace MonopolyKata.Board.Spaces
 
         public void TryToGetOUtWithDoubles(MonopolyPlayer player, IDice dice)
         {
-
             escapeAttemptsWithRolls.Add(player);
 
             if(dice.LastRollWereAllTheSame())

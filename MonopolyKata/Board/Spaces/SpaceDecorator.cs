@@ -11,7 +11,7 @@ namespace MonopolyKata.Board.Spaces
     {
         protected BoardSpace space;
 
-        public SpaceDecorator(BoardSpace space): base(space.name)
+        public SpaceDecorator(BoardSpace space): base(space.name, space.gameBoard)
         {
             this.space = space;
         }

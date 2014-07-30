@@ -10,7 +10,7 @@ namespace MonopolyKata.Board.Spaces
     {
         private const int MAX_INCOME_TAX_AMOUNT = 200;
 
-        public IncomeTaxSpace(string name) : base(name) { }
+        public IncomeTaxSpace(string name, IMonopolyGameBoard gameBoard) : base(name, gameBoard) { }
 
         public override void LandOn(MonopolyPlayer player)
         {

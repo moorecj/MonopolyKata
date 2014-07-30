@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using MonopolyKata;
 using MonopolyKata.Player;
+using MonopolyKata.Board;
 using MonopolyKata.Board.Spaces;
 using MonopolyKata.Dice;
 using Moq;
@@ -15,12 +16,24 @@ namespace MonopolyKataTests.SpaceTests
     [TestFixture]
     public class JailSpaceTests
     {
+
+        JailSpace Jail;
+        IMonopolyGameBoard gameBoard;
+
+
+        [SetUp]
+        public void JailSetUp()
+        {
+            gameBoard = new MonopolyGameBoard();
+            Jail = gameBoard.Jail;
+
+        }
+        
         [Test] 
         public void APlayerCanBeLockedInJail()
         {
             MonopolyPlayer player = new MonopolyPlayer("a player");
 
-            JailSpace Jail = new JailSpace("Jail");
             Jail.LockUp(player);
 
             Assert.That(Jail.IsLockedUp(player), Is.EqualTo(true));
@@ -30,8 +43,6 @@ namespace MonopolyKataTests.SpaceTests
         public void APlayerThatIsLockedUpCanBeReleasedFromJail()
         {
             MonopolyPlayer player = new MonopolyPlayer("a player");
-
-            JailSpace Jail = new JailSpace("Jail");
             
             Jail.LockUp(player);
 
@@ -48,8 +59,7 @@ namespace MonopolyKataTests.SpaceTests
         {
             MonopolyPlayer player = new MonopolyPlayer("a player");
 
-            JailSpace Jail = new JailSpace("Jail");
-            GoToJailSpace GoToJail = new GoToJailSpace("Go To Jail", Jail);
+            GoToJailSpace GoToJail = gameBoard.GoToJail;
 
             GoToJail.LandOn(player);
 
@@ -62,8 +72,6 @@ namespace MonopolyKataTests.SpaceTests
             MonopolyPlayer player = new MonopolyPlayer("a player");
 
             player.Balence = 50;
-
-            JailSpace Jail = new JailSpace("Jail");
 
             Mock<IDice> diceMock = new Mock<IDice>();
 
@@ -82,8 +90,6 @@ namespace MonopolyKataTests.SpaceTests
         public void AJailSpaceWillCountTheNumberOfAttemptsToGetOutByRolling()
         {
             MonopolyPlayer player = new MonopolyPlayer("a player");
-
-            JailSpace Jail = new JailSpace("Jail");
 
             Mock<IDice> diceMock = new Mock<IDice>();
 
@@ -111,8 +117,6 @@ namespace MonopolyKataTests.SpaceTests
         public void AJailSpaceWillResetTheNumberOfAttemptsToGetOutByRollingWhenThePlayerLeavesJail()
         {
             MonopolyPlayer player = new MonopolyPlayer("a player");
-
-            JailSpace Jail = new JailSpace("Jail");
 
             Mock<IDice> diceMock = new Mock<IDice>();
 

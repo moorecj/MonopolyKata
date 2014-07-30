@@ -20,6 +20,7 @@ namespace MonopolyKataTests
         public Mock<IDie> dieMock;
         MonopolyPlayer player1;
         MonopolyPlayer player2;
+        IMonopolyGameBoard gameBoard;
 
         [SetUp]
         public void MonopolyEngineSetUp()
@@ -36,6 +37,7 @@ namespace MonopolyKataTests
 
             dieMock = new Mock<IDie>();
 
+            gameBoard = new MonopolyGameBoard();
             
         }
 
@@ -81,13 +83,13 @@ namespace MonopolyKataTests
         {
             dieMock.Setup(s => s.Roll()).Returns(1);
 
-            player1.Location = GameBoard.GO_TO_JAIL_LOCATION - 2;
+            player1.Location = gameBoard.GetSpaceAddress(gameBoard.GoToJail) - 2;
 
             MonopolyEngine gameEngine = new MonopolyEngine(setupMock.Object, dieMock.Object);
 
             gameEngine.TakeTurn();
 
-            Assert.That(gameEngine.GetCurrentTurnPlayer().Location, Is.EqualTo(GameBoard.JAIL_LOCATION)); 
+            Assert.That(gameEngine.GetCurrentTurnPlayer().Location, Is.EqualTo(gameBoard.GetSpaceAddress(gameBoard.Jail))); 
            
         }
 
@@ -97,7 +99,7 @@ namespace MonopolyKataTests
         {
 
             player1.Balence = 0;
-            player1.Location = GameBoard.LUXURY_TAX_LOCATION - 2;
+            player1.Location = gameBoard.GetSpaceAddress(gameBoard.LuxuryTax) - 2;
 
             dieMock.Setup(s => s.Roll()).Returns(1);
 
@@ -116,7 +118,7 @@ namespace MonopolyKataTests
         {
 
             player1.Balence = 0;
-            player1.Location = GameBoard.LUXURY_TAX_LOCATION - 2;
+            player1.Location = gameBoard.GetSpaceAddress(gameBoard.LuxuryTax) - 2;
 
             dieMock.Setup(s => s.Roll()).Returns(1);
 
@@ -144,7 +146,7 @@ namespace MonopolyKataTests
             MonopolyPlayer player3 = new MonopolyPlayer("player3");
 
             player1.Balence = 0;
-            player1.Location = GameBoard.LUXURY_TAX_LOCATION - 2;
+            player1.Location = gameBoard.GetSpaceAddress(gameBoard.LuxuryTax) - 2;
 
             dieMock.Setup(s => s.Roll()).Returns(1);
 
@@ -183,7 +185,7 @@ namespace MonopolyKataTests
         {
 
             player1.Balence = 0;
-            player1.Location = GameBoard.LUXURY_TAX_LOCATION - 2;
+            player1.Location = gameBoard.GetSpaceAddress(gameBoard.LuxuryTax) - 2;
 
             dieMock.Setup(s => s.Roll()).Returns(1);
 
@@ -203,7 +205,7 @@ namespace MonopolyKataTests
         public void APlayerIsNotTheWinnerIfTheyRollDoubles()
         {
             player1.Balence = 0;
-            player1.Location = GameBoard.FREE_PARKING_LOCATION - 2;
+            player1.Location = gameBoard.GetSpaceAddress(gameBoard.FreeParking) - 2;
 
             dieMock.Setup(s => s.Roll()).Returns(1);
 
@@ -262,14 +264,14 @@ namespace MonopolyKataTests
 
             gameEngine.TakeTurn();
 
-            Assert.That(player.Location, Is.EqualTo(GameBoard.JAIL_LOCATION));
+            Assert.That(player.Location, Is.EqualTo(gameBoard.GetSpaceAddress(gameBoard.Jail)));
         }
 
 
         [Test]
         public void IfAPlayerRollsDoublesAndLandsOnGoToJailTheirTurnIsOver()
         {
-            player1.Location = GameBoard.GO_TO_JAIL_LOCATION-2;
+            player1.Location = gameBoard.GetSpaceAddress(gameBoard.GoToJail) - 2;
             
             int count = 0;
 
@@ -286,7 +288,7 @@ namespace MonopolyKataTests
         [Test]
         public void IfAPlayerIsInJailIfTheyRollDoublesTheyGetOutOfJail()
         {
-            player1.Location = GameBoard.GO_TO_JAIL_LOCATION - 2;
+            player1.Location = gameBoard.GetSpaceAddress(gameBoard.GoToJail) - 2;
 
             dieMock.Setup(s => s.Roll()).Returns(1);
 
@@ -308,7 +310,7 @@ namespace MonopolyKataTests
         [Test]
         public void IfAPlayerIsInJailTHeyWillReamainInJailForThreeMoreTurnsIfTheyDontRollDoubles()
         {
-            player1.Location = GameBoard.GO_TO_JAIL_LOCATION - 3;
+            player1.Location = gameBoard.GetSpaceAddress(gameBoard.GoToJail) - 3;
             int roll = 1;
 
             dieMock.Setup(m => m.Roll()).Returns(() => roll).Callback(() => { roll++; });
@@ -339,7 +341,7 @@ namespace MonopolyKataTests
         [Test]
         public void IfAPlayerFailsToRollDoublesForThreeTurnsWhileInJailTheMustPay50()
         {
-            player1.Location = GameBoard.GO_TO_JAIL_LOCATION - 3;
+            player1.Location = gameBoard.GetSpaceAddress(gameBoard.GoToJail) - 3;
             int roll = 1;
 
             player1.Balence = 50;
@@ -374,7 +376,7 @@ namespace MonopolyKataTests
         public void IfAPlayerIsInJailAndTheyRollDoublesTheyMoveThatManySpaces()
         {
 
-            player1.Location = GameBoard.GO_TO_JAIL_LOCATION - 2;
+            player1.Location = gameBoard.GetSpaceAddress(gameBoard.GoToJail) - 2;
 
             int count = 0;
 
@@ -390,7 +392,7 @@ namespace MonopolyKataTests
             count = 0;
             gameEngine.TakeTurn();
 
-            Assert.That(gameEngine.GetCurrentTurnPlayer().Location, Is.EqualTo(GameBoard.JAIL_LOCATION+2));
+            Assert.That(gameEngine.GetCurrentTurnPlayer().Location, Is.EqualTo(gameBoard.GetSpaceAddress(gameBoard.Jail) + 2));
             
 
         }
@@ -398,7 +400,7 @@ namespace MonopolyKataTests
         [Test]
         public void IfAPlayerIsInJailAndTheyRollDoublesTheyDoNotRollAgain()
         {
-            player1.Location = GameBoard.GO_TO_JAIL_LOCATION - 2;
+            player1.Location = gameBoard.GetSpaceAddress(gameBoard.GoToJail) - 2;
 
             int count = 0;
 

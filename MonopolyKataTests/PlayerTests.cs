@@ -15,7 +15,7 @@ namespace MonopolyKataTests
         [Test]
         public void APlayerMove_ShouldIncreaseTheirLocationByTheNumberOfSpacesMoved()
         {
-            GameBoard board = new GameBoard();
+            MonopolyGameBoard board = new MonopolyGameBoard();
             MonopolyPlayer player = new MonopolyPlayer("Horse");
 
             Assert.That(player.Location, Is.EqualTo(0));
@@ -29,7 +29,7 @@ namespace MonopolyKataTests
         [Test]
         public void APlayerThatMovesBeyondTheLastSpaceOnTheBoard_ShouldLoopAroundToTheBeginingOfBoard()
         {
-            GameBoard board = new GameBoard();
+            MonopolyGameBoard board = new MonopolyGameBoard();
             MonopolyPlayer player = new MonopolyPlayer("Horse");
 
             player.Location = 39;
@@ -43,7 +43,7 @@ namespace MonopolyKataTests
         [Test]
         public void APlayerThatGoesOnePositionPastSpace39WillEndUpAtPosition0()
         {
-            GameBoard board = new GameBoard();
+            MonopolyGameBoard board = new MonopolyGameBoard();
             MonopolyPlayer player = new MonopolyPlayer("Horse");
 
             player.Location = 39;

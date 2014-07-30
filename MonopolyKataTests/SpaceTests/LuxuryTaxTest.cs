@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using MonopolyKata;
 using MonopolyKata.Player;
+using MonopolyKata.Board;
 using MonopolyKata.Board.Spaces;
+
 
 namespace MonopolyKataTests.SpaceTests
 {
@@ -17,10 +19,11 @@ namespace MonopolyKataTests.SpaceTests
         public void LandingOnLuxuryTaxShouldReduceAPlayersBalenceBy75()
         {
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
+            IMonopolyGameBoard gameBoard = new MonopolyGameBoard();
 
             player1.Balence = 100;
 
-            MonopolyBoardSpace luxuryTaxSpace = new LuxuryTaxSpace("Luxury Tax");
+            MonopolyBoardSpace luxuryTaxSpace = new LuxuryTaxSpace("Luxury Tax", gameBoard);
 
             luxuryTaxSpace.LandOn(player1); 
 

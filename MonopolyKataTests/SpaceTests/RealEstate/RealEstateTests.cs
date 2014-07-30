@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using MonopolyKata;
+using MonopolyKata.Board;
 using MonopolyKata.Board.Spaces.RealEstate;
 using MonopolyKata.Board.Spaces;
 using Moq;
@@ -16,12 +17,22 @@ namespace MonopolyKataTests
     public class RealEstateTests
     {
 
+        MonopolyPlayer player1;
+        IMonopolyGameBoard gameBoard;
+
+        [SetUp]
+        public void RailRoadTestSetup()
+        {
+            player1 = new MonopolyPlayer("player1");
+            gameBoard = new MonopolyGameBoard();
+        }
+
         [Test]
         public void RealEstateShouldHaveAnOwnerInitializedToNull()
         {
             IRealEstateChargingStategy strategy = new PropertyChargingStrategy();
             int PurchaseCost = 100;
-            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", PurchaseCost, 10, strategy);
+            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", gameBoard, PurchaseCost, 10, strategy);
 
             Assert.That( realEstateSpace.Owner, Is.EqualTo(null));
 
@@ -32,7 +43,7 @@ namespace MonopolyKataTests
         {
             IRealEstateChargingStategy strategy = new PropertyChargingStrategy();
             int PurchaseCost = 100;
-            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space",  PurchaseCost, 10, strategy);
+            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", gameBoard, PurchaseCost, 10, strategy);
 
             Assert.That(realEstateSpace.purchaseCost, Is.EqualTo(100));
         }
@@ -40,12 +51,11 @@ namespace MonopolyKataTests
         [Test]
         public void LandingOnAnUnownedRealEstateSpaceShouldPurchaseTheSpaceAutomatically()
         {
-            MonopolyPlayer player1 = new MonopolyPlayer("player1");
 
             IRealEstateChargingStategy strategy = new PropertyChargingStrategy();
             int PurchaseCost = 0;
 
-            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space",  PurchaseCost, 10, strategy);
+            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", gameBoard, PurchaseCost, 10, strategy);
 
             realEstateSpace.LandOn(player1);
 
@@ -57,8 +67,6 @@ namespace MonopolyKataTests
         [Test]
         public void PurchasingARealEstateSpaceShouldReduceThePurchaseesBalenceByTheCost()
         {
-            
-            MonopolyPlayer player1 = new MonopolyPlayer("player1");
 
             player1.Balence = 1000;
 
@@ -66,7 +74,7 @@ namespace MonopolyKataTests
 
             IRealEstateChargingStategy strategy = new PropertyChargingStrategy();
 
-            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", PurchaseCost, 10, strategy);
+            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", gameBoard, PurchaseCost, 10, strategy);
 
             realEstateSpace.LandOn(player1);
 
@@ -78,14 +86,12 @@ namespace MonopolyKataTests
         public void APlayerWillNotPurchaseASpaceIfTheyDoNotHaveEnoughMoney()
         {
 
-            MonopolyPlayer player1 = new MonopolyPlayer("player1");
-
             player1.Balence = 0;
 
             IRealEstateChargingStategy strategy = new PropertyChargingStrategy();
             int PurchaseCost = 100;
 
-            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", PurchaseCost, 10, strategy);
+            RealEstateSpace realEstateSpace = new RealEstateSpace("Real Estate Space", gameBoard, PurchaseCost, 10, strategy);
 
             realEstateSpace.LandOn(player1);
 

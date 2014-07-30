@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using MonopolyKata;
 using MonopolyKata.Player;
+using MonopolyKata.Board;
 using MonopolyKata.Board.Spaces;
 
 namespace MonopolyKataTests.SpaceTests
@@ -17,8 +18,8 @@ namespace MonopolyKataTests.SpaceTests
         public void LandingOnIncomeTaxWithABalenceLessThen2000ShouldResultIn10PercentDeductionFromBalance()
         {
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
-
-            MonopolyBoardSpace incomeTaxSpace = new IncomeTaxSpace("Income Tax");
+            
+            MonopolyBoardSpace incomeTaxSpace = new IncomeTaxSpace("Income Tax", new MonopolyGameBoard());
 
             player1.Balence = 100;
 
@@ -32,7 +33,7 @@ namespace MonopolyKataTests.SpaceTests
         {
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
 
-            MonopolyBoardSpace incomeTaxSpace = new IncomeTaxSpace("Income Tax");
+            MonopolyBoardSpace incomeTaxSpace = new IncomeTaxSpace("Income Tax", new MonopolyGameBoard());
 
             player1.Balence = 2200;
 

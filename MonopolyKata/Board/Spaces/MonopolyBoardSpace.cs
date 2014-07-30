@@ -8,10 +8,8 @@ namespace MonopolyKata.Board.Spaces
 {
     public class MonopolyBoardSpace : BoardSpace
     {
-        public MonopolyBoardSpace( string name ) : base( name )
-        {
-
-        }
+        public MonopolyBoardSpace(string name, IMonopolyGameBoard gameBoard): base(name, gameBoard)  
+        { }
 
         public override void LandOn(MonopolyPlayer player)
         {
@@ -23,7 +21,7 @@ namespace MonopolyKata.Board.Spaces
 
         private bool CheckForPassingGo(MonopolyPlayer player)
         {
-            return ((player.Location - player.lastRoll) < 0) && player.Location != GameBoard.GO_LOCATION;
+            return ((player.Location - player.lastRoll) < 0) && player.Location != gameBoard.GetSpaceAddress(gameBoard.Go);
         }
 
         

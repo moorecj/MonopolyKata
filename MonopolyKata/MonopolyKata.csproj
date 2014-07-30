@@ -39,8 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Board\GameBoard.cs" />
-    <Compile Include="Board\IGameBoard.cs" />
+    <Compile Include="Board\MonopolyGameBoard.cs" />
+    <Compile Include="Board\IMonopolyGameBoard.cs" />
     <Compile Include="Board\Spaces\GoToJailSpace.cs" />
     <Compile Include="Board\Spaces\IncomeTaxSpace.cs" />
     <Compile Include="Board\Spaces\JailSpace.cs" />
@@ -72,6 +72,7 @@
     <Compile Include="Player\MonopolyPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup\TooManyPlayersException.cs" />
+    <Compile Include="Turn.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

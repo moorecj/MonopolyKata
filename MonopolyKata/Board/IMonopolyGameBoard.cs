@@ -49,5 +49,6 @@ namespace MonopolyKata.Board
         void LandOnNewSpace(MonopolyPlayer player);
         void Move(MonopolyPlayer player, int roll);
         int GetNumberOfBoardSpaces();
+        int GetSpaceAddress(BoardSpace space);
     }
 }

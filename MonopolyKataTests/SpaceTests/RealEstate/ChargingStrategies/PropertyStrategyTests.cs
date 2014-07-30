@@ -20,6 +20,8 @@ namespace MonopolyKataTests
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
             MonopolyPlayer player2 = new MonopolyPlayer("player2");
 
+            IMonopolyGameBoard gameBoard = new MonopolyGameBoard();
+
             player1.Balence = 0;
 
             player2.Balence = 10;
@@ -27,7 +29,7 @@ namespace MonopolyKataTests
             int LandOnCost = 10;
             int PurchaseCost = 100;
 
-            RealEstateSpace propertySpace = new RealEstateSpace("Real Estate Space", PurchaseCost, LandOnCost, new PropertyChargingStrategy());
+            RealEstateSpace propertySpace = new RealEstateSpace("Real Estate Space", gameBoard, PurchaseCost, LandOnCost, new PropertyChargingStrategy());
 
             propertySpace.Owner = player1;
 
@@ -43,6 +45,8 @@ namespace MonopolyKataTests
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
             MonopolyPlayer player2 = new MonopolyPlayer("player2");
 
+            IMonopolyGameBoard gameBoard = new MonopolyGameBoard();
+
             player1.Balence = 0;
 
             player2.Balence = 20;
@@ -50,13 +54,13 @@ namespace MonopolyKataTests
             int LandOnCost = 10;
             int PurchaseCost = 100;
 
-            RealEstateSpace groupPropertySpace1 = new RealEstateSpace("Real Estate Space", PurchaseCost, LandOnCost, new PropertyChargingStrategy());
-            RealEstateSpace groupPropertySpace2 = new RealEstateSpace("Real Estate Space", PurchaseCost, LandOnCost,  new PropertyChargingStrategy());
+            RealEstateSpace groupPropertySpace1 = new RealEstateSpace("Real Estate Space", gameBoard, PurchaseCost, LandOnCost, new PropertyChargingStrategy());
+            RealEstateSpace groupPropertySpace2 = new RealEstateSpace("Real Estate Space", gameBoard, PurchaseCost, LandOnCost,  new PropertyChargingStrategy());
 
             groupPropertySpace1.Owner = player1;
             groupPropertySpace2.Owner = player1;
 
-            GameBoard.GroupSpaces(groupPropertySpace1, groupPropertySpace2);
+            MonopolyGameBoard.GroupSpaces(groupPropertySpace1, groupPropertySpace2);
 
             groupPropertySpace1.LandOn(player2);
 

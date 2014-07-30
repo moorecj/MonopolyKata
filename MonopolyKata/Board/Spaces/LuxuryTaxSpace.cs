@@ -10,7 +10,7 @@ namespace MonopolyKata.Board.Spaces
     {
         private const int LUXURY_TAX_AMOUNT = 75;
 
-        public LuxuryTaxSpace(string name) : base(name) { }
+        public LuxuryTaxSpace(string name, IMonopolyGameBoard gameBoard) : base(name, gameBoard) { }
 
         public override void LandOn(MonopolyPlayer player)
         {

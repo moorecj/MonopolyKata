@@ -16,14 +16,14 @@ namespace MonopolyKataTests
         [Test]
         public void NoMatterWhichSpaceYouLandOnIfYouPassedGoYouGet200()
         {
-            GameBoard board = new GameBoard();
+            MonopolyGameBoard gameBoard = new MonopolyGameBoard();
             MonopolyPlayer player = new MonopolyPlayer("player1");
-            MonopolyBoardSpace space = new MonopolyBoardSpace("A Random Space");
+            MonopolyBoardSpace space = new MonopolyBoardSpace("A Random Space", gameBoard);
             
             player.Balence = 0;
-            player.Location = GameBoard.BOARDWALK_LOCATION;
+            player.Location = gameBoard.GetSpaceAddress(gameBoard.Boardwalk);
 
-            board.Move(player,5);
+            gameBoard.Move(player, 5);
 
             space.LandOn(player);
 
@@ -35,12 +35,12 @@ namespace MonopolyKataTests
         public void LandingOnGoShouldIncreaseBalenceBy200()
         {
 
+            MonopolyGameBoard gameBoard = new MonopolyGameBoard();
             MonopolyPlayer player = new MonopolyPlayer("player1");
+            MonopolyBoardSpace space = new GoSpace("A Go Space", gameBoard);
 
             player.Balence = 0;
             player.Location = 0;
-
-            MonopolyBoardSpace space = new GoSpace("A Go Space");
 
             space.LandOn(player);
 
