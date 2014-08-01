@@ -195,8 +195,6 @@ namespace MonopolyKataTests
             turnEngine.TakeTurn(player);
 
             Assert.That(count, Is.EqualTo(1));
-
-
         }
     }
 }

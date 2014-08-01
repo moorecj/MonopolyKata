@@ -54,6 +54,9 @@
     <Compile Include="Board\Spaces\RealEstate\UtilityChargingStrategy.cs" />
     <Compile Include="Board\Spaces\SpaceDecorator.cs" />
     <Compile Include="Board\Spaces\RealEstate\RealEstateSpace.cs" />
+    <Compile Include="Cards\Card.cs" />
+    <Compile Include="Cards\ICard.cs" />
+    <Compile Include="Cards\WhenDrawnStrategies\IWhenDrawnStrategy.cs" />
     <Compile Include="Dice\IDice.cs" />
     <Compile Include="Dice\ITwoDie.cs" />
     <Compile Include="Dice\TwoDie.cs" />
@@ -74,6 +77,7 @@
     <Compile Include="Setup\TooManyPlayersException.cs" />
     <Compile Include="TurnEngine.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
