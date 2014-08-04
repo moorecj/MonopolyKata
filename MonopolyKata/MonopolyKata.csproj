@@ -58,6 +58,7 @@
     <Compile Include="Cards\Card.cs" />
     <Compile Include="Cards\ICard.cs" />
     <Compile Include="Cards\WhenDrawnStrategies\AddFundsStrategy.cs" />
+    <Compile Include="Cards\WhenDrawnStrategies\GetFundsFromOthersStrategy.cs" />
     <Compile Include="Cards\WhenDrawnStrategies\IWhenDrawnStrategy.cs" />
     <Compile Include="Cards\WhenDrawnStrategies\SubtractFundsStrategy.cs" />
     <Compile Include="Dice\IDice.cs" />
