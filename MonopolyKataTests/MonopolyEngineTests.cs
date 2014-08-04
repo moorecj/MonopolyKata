@@ -16,7 +16,7 @@ namespace MonopolyKataTests
     [TestFixture]
     public class MonopolyEngineTests
     {
-        public Mock<ISetup> setupMock;
+        public Mock<IPlayerOrderSetup> setupMock;
         public Mock<IDie> dieMock;
         MonopolyPlayer player1;
         MonopolyPlayer player2;
@@ -29,7 +29,7 @@ namespace MonopolyKataTests
             player1 = new MonopolyPlayer("player1");
             player2 = new MonopolyPlayer("player2");
 
-            setupMock = new Mock<ISetup>();
+            setupMock = new Mock<IPlayerOrderSetup>();
 
             setupMock.Setup(s => s.WhoGoesFirst()).Returns(player1);
             setupMock.Setup(s => s.WhoGoesNext(player1)).Returns(player2);

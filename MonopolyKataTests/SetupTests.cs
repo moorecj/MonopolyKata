@@ -17,7 +17,7 @@ namespace MonopolyKataTests
         [Test]
         public void ASetupShouldBeCreatedWithStringsPassedAsPlayerIdentifyers()
         {
-            ISetup setup = new MonopolySetup("Player1", "Player2");
+            IPlayerOrderSetup setup = new PlayerOrderSetup("Player1", "Player2");
 
             Assert.That(setup, Is.Not.Null);
         }
@@ -29,7 +29,7 @@ namespace MonopolyKataTests
                                  "Player 4", "Player 5", "Player 6", 
                                  "Player 7", "Player 8", "Player 9" };
 
-            TooManyPlayersException exception = Assert.Throws<TooManyPlayersException>(() => new MonopolySetup(players));
+            TooManyPlayersException exception = Assert.Throws<TooManyPlayersException>(() => new PlayerOrderSetup(players));
 
             Assert.That(exception.Message, Is.EqualTo("Too many players: 9"));
 
@@ -38,7 +38,7 @@ namespace MonopolyKataTests
         [Test]
         public void ASetupWithLessThen2PlayersShouldFail()
         {
-            TooFewPlayersException exception = Assert.Throws<TooFewPlayersException>(() => new MonopolySetup("Player1"));
+            TooFewPlayersException exception = Assert.Throws<TooFewPlayersException>(() => new PlayerOrderSetup("Player1"));
 
             Assert.That(exception.Message, Is.EqualTo("Too few players: 1"));
 
@@ -49,7 +49,7 @@ namespace MonopolyKataTests
         {
             String [] playerNames = {"Player1", "Player2"};
             
-            ISetup setup = new MonopolySetup(playerNames);
+            IPlayerOrderSetup setup = new PlayerOrderSetup(playerNames);
 
             MonopolyPlayer firstplayer = setup.WhoGoesFirst();
 
@@ -60,7 +60,7 @@ namespace MonopolyKataTests
         [Test]
         public void GivenAValidPlayerTheSetupShouldTellYouWhoGoesNext()
         {
-            ISetup setup = new MonopolySetup("Horse", "Car" );
+            IPlayerOrderSetup setup = new PlayerOrderSetup("Horse", "Car" );
 
             MonopolyPlayer player1 = setup.WhoGoesFirst();
 
@@ -75,14 +75,14 @@ namespace MonopolyKataTests
         [Test]
         public void ForEachSetupRandomPlayOrderShouldBeGenerated_In100GamesBothPlayOrdersShouldAppear()
         {
-            List<MonopolySetup> ListOfSetups = new List<MonopolySetup>();
+            List<PlayerOrderSetup> ListOfSetups = new List<PlayerOrderSetup>();
 
             for (int i = 0; i < 100; ++i)
             {
-                ListOfSetups.Add(new MonopolySetup("Horse", "Car"));
+                ListOfSetups.Add(new PlayerOrderSetup("Horse", "Car"));
             }
 
-            IEnumerable<MonopolySetup> differentOrder = from g in ListOfSetups
+            IEnumerable<PlayerOrderSetup> differentOrder = from g in ListOfSetups
                                  where g.WhoGoesFirst().name.Equals("Car")
                                  select g;
 

@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Board\MonopolyGameBoard.cs" />
     <Compile Include="Board\IMonopolyGameBoard.cs" />
+    <Compile Include="Board\Spaces\CardSpace.cs" />
     <Compile Include="Board\Spaces\GoToJailSpace.cs" />
     <Compile Include="Board\Spaces\IncomeTaxSpace.cs" />
     <Compile Include="Board\Spaces\JailSpace.cs" />
@@ -65,16 +66,16 @@
     <Compile Include="Dice\SixSidedDie.cs" />
     <Compile Include="MonopolyGame.cs" />
     <Compile Include="Player\IPlayer.cs" />
-    <Compile Include="Setup\ISetup.cs" />
-    <Compile Include="Setup\MonopolySetup.cs" />
+    <Compile Include="PlayerOrderSetup\IPlayerOrderSetup.cs" />
+    <Compile Include="PlayerOrderSetup\PlayerOrderSetup.cs" />
     <Compile Include="Board\Spaces\BoardSpace.cs" />
     <Compile Include="Shuffler\ExtensionsMethods.cs" />
     <Compile Include="Board\Spaces\GoSpace.cs" />
-    <Compile Include="Setup\TooFewPlayersException.cs" />
+    <Compile Include="PlayerOrderSetup\TooFewPlayersException.cs" />
     <Compile Include="MonopolyEngine.cs" />
     <Compile Include="Player\MonopolyPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Setup\TooManyPlayersException.cs" />
+    <Compile Include="PlayerOrderSetup\TooManyPlayersException.cs" />
     <Compile Include="TurnEngine.cs" />
   </ItemGroup>
   <ItemGroup />

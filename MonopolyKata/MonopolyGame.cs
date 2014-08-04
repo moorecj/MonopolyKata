@@ -24,7 +24,7 @@ namespace MonopolyKata
                 players.Add(new MonopolyPlayer(s));
             }
 
-            ISetup setup = new MonopolySetup(players.ToArray());
+            IPlayerOrderSetup setup = new PlayerOrderSetup(players.ToArray());
             IDie die = new SixSidedDie();
 
             die = new PrintDiceRollDecoration(die);

@@ -15,16 +15,16 @@ namespace MonopolyKata
         public int Roll2 { get; private set; }
 
         private MonopolyPlayer currentTurnPlayer;
-        private ISetup GameSetup;
+        private IPlayerOrderSetup GameSetup;
         private TurnEngine turnEngine;
         public  IMonopolyGameBoard gameBoard;
 
 
-        public MonopolyEngine( ISetup GameSetup, IDie die )
+        public MonopolyEngine( IPlayerOrderSetup GameSetup, IDie die )
             :this(GameSetup, die,new MonopolyGameBoard())
         { }
 
-        public MonopolyEngine(ISetup GameSetup, IDie die, IMonopolyGameBoard gameBoard)
+        public MonopolyEngine(IPlayerOrderSetup GameSetup, IDie die, IMonopolyGameBoard gameBoard)
         {
             this.GameSetup = GameSetup;
             currentTurnPlayer = GameSetup.WhoGoesFirst();

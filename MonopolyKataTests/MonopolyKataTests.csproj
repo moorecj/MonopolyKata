@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CardTests\CardTests.cs" />
+    <Compile Include="SpaceTests\CardSpaceTests.cs" />
     <Compile Include="SpaceTests\GoSpaceTests.cs" />
     <Compile Include="PlayerTests.cs" />
     <Compile Include="DiceTests.cs" />

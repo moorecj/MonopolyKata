@@ -7,7 +7,7 @@ using MonopolyKata.Player;
 
 namespace MonopolyKata
 {
-    public interface ISetup
+    public interface IPlayerOrderSetup
     {
         void CheckForTooFewPlayers<T>(T[] players);
         void CheckForTooManyPlayers<T>(T[] players);

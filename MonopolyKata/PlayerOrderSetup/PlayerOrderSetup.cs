@@ -9,14 +9,14 @@ using MonopolyKata.Dice;
 namespace MonopolyKata.Setup
 {
     
-    public class MonopolySetup : ISetup
+    public class PlayerOrderSetup : IPlayerOrderSetup
     {
         private const int MAX_NUMBER_OF_PLAYERS = 8;
         private const int MIN_NUMBER_OF_PLAYERS = 2;
 
         private List<MonopolyPlayer> playOrder;
 
-        public MonopolySetup(params String[] playerNames )
+        public PlayerOrderSetup(params String[] playerNames )
         {
             CheckForTooManyPlayers(playerNames);
             CheckForTooFewPlayers(playerNames);
@@ -25,7 +25,7 @@ namespace MonopolyKata.Setup
 
         }
 
-        public MonopolySetup(params MonopolyPlayer[] players)
+        public PlayerOrderSetup(params MonopolyPlayer[] players)
         {
             CheckForTooManyPlayers(players);
             CheckForTooFewPlayers(players);
