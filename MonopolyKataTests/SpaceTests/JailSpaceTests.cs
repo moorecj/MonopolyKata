@@ -18,7 +18,7 @@ namespace MonopolyKataTests.SpaceTests
     {
 
         JailSpace Jail;
-        IMonopolyGameBoard gameBoard;
+        MonopolyGameBoard gameBoard;
 
 
         [SetUp]

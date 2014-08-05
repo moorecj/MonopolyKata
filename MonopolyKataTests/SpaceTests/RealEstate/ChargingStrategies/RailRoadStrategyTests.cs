@@ -17,7 +17,7 @@ namespace MonopolyKataTests
     {
         MonopolyPlayer player1;
         MonopolyPlayer player2;
-        IMonopolyGameBoard gameBoard;
+        MonopolyGameBoard gameBoard;
 
         [SetUp]
         public void RailRoadTestSetup()

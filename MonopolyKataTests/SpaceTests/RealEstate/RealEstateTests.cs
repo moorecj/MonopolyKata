@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using MonopolyKata;
+using MonopolyKata.Player;
 using MonopolyKata.Board;
 using MonopolyKata.Board.Spaces.RealEstate;
 using MonopolyKata.Board.Spaces;
@@ -18,7 +19,7 @@ namespace MonopolyKataTests
     {
 
         MonopolyPlayer player1;
-        IMonopolyGameBoard gameBoard;
+        MonopolyGameBoard gameBoard;
 
         [SetUp]
         public void RailRoadTestSetup()

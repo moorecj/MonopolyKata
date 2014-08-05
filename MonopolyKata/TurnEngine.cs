@@ -13,10 +13,10 @@ namespace MonopolyKata
     public class TurnEngine
     {
         IDice dice;
-        IMonopolyGameBoard gameBoard;
+        MonopolyGameBoard gameBoard;
         int doublesInARowCount;
 
-        public TurnEngine(IDice dice, IMonopolyGameBoard gameBoard)
+        public TurnEngine(IDice dice, MonopolyGameBoard gameBoard)
         {
             this.dice = dice;
             this.gameBoard = gameBoard;

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using MonopolyKata;
+using MonopolyKata.Player;
 using MonopolyKata.Board.Spaces;
 using MonopolyKata.Board;
 

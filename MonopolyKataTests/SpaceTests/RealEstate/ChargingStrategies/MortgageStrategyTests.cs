@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using MonopolyKata;
+using MonopolyKata.Player;
 using MonopolyKata.Board;
 using MonopolyKata.Board.Spaces.RealEstate;
 
@@ -20,7 +21,7 @@ namespace MonopolyKataTests.SpaceTests.RealEstate.ChargingStrategies
         {
 
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
-            IMonopolyGameBoard gameBoard = new MonopolyGameBoard();
+            MonopolyGameBoard gameBoard = new MonopolyGameBoard();
 
             player1.Balence = 0;
 
@@ -43,7 +44,7 @@ namespace MonopolyKataTests.SpaceTests.RealEstate.ChargingStrategies
 
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
             MonopolyPlayer player2 = new MonopolyPlayer("player2");
-            IMonopolyGameBoard gameBoard = new MonopolyGameBoard();
+            MonopolyGameBoard gameBoard = new MonopolyGameBoard();
 
             player1.Balence = 0;
 
@@ -70,7 +71,7 @@ namespace MonopolyKataTests.SpaceTests.RealEstate.ChargingStrategies
         {
 
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
-            IMonopolyGameBoard gameBoard = new MonopolyGameBoard();
+            MonopolyGameBoard gameBoard = new MonopolyGameBoard();
 
             player1.Balence = 0;
 
@@ -93,7 +94,7 @@ namespace MonopolyKataTests.SpaceTests.RealEstate.ChargingStrategies
         {
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
             MonopolyPlayer player2 = new MonopolyPlayer("player2");
-            IMonopolyGameBoard gameBoard = new MonopolyGameBoard();
+            MonopolyGameBoard gameBoard = new MonopolyGameBoard();
 
             player1.Balence = 0;
 
@@ -116,7 +117,7 @@ namespace MonopolyKataTests.SpaceTests.RealEstate.ChargingStrategies
 
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
             MonopolyPlayer player2 = new MonopolyPlayer("player2");
-            IMonopolyGameBoard gameBoard = new MonopolyGameBoard();
+            MonopolyGameBoard gameBoard = new MonopolyGameBoard();
 
             player1.Balence = 10;
 

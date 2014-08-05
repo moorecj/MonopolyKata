@@ -25,7 +25,7 @@ namespace MonopolyKata
             :this(GameSetup, die,new MonopolyGameBoard())
         { }
 
-        public MonopolyEngine(IPlayerOrderSetup GameSetup, IDie die, IMonopolyGameBoard gameBoard)
+        public MonopolyEngine(IPlayerOrderSetup GameSetup, IDie die, MonopolyGameBoard gameBoard)
         {
             this.GameSetup = GameSetup;
             currentTurnPlayer = GameSetup.WhoGoesFirst();

@@ -9,7 +9,7 @@ namespace MonopolyKata.Board.Spaces
 {
     public class GoToJailSpace : MonopolyBoardSpace
     {
-        public GoToJailSpace(string name, IMonopolyGameBoard gameBoard): base(name, gameBoard)
+        public GoToJailSpace(string name, MonopolyGameBoard gameBoard): base(name, gameBoard)
         {
             this.name = name;
         }

@@ -9,7 +9,7 @@ using MonopolyKata.Board.Spaces.RealEstate;
 
 namespace MonopolyKata.Board
 {
-    public class MonopolyGameBoard : MonopolyKata.Board.IMonopolyGameBoard
+    public class MonopolyGameBoard : IMonopolyGameBoard
     {
         private List<BoardSpace> spaces;
 

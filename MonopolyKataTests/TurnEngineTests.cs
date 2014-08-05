@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
 using MonopolyKata;
+using MonopolyKata.Player;
 using MonopolyKata.Board;
 using MonopolyKata.Dice;
 
@@ -16,7 +17,7 @@ namespace MonopolyKataTests
     {
         MonopolyPlayer player;
         TurnEngine turnEngine;
-        IMonopolyGameBoard gameBoard;
+        MonopolyGameBoard gameBoard;
         public Mock<IDice> diceMock;
 
         [SetUp]

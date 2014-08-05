@@ -14,7 +14,7 @@ namespace MonopolyKata.Board.Spaces
         private List<IPlayer> escapeAttemptsWithRolls;
         private List<IPlayer> playersLockedInJail;
 
-        public JailSpace(string name, IMonopolyGameBoard gameBoard): base(name, gameBoard)
+        public JailSpace(string name, MonopolyGameBoard gameBoard): base(name, gameBoard)
         {
             playersLockedInJail = new List<IPlayer>();
             escapeAttemptsWithRolls = new List<IPlayer>();

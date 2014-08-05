@@ -20,7 +20,7 @@ namespace MonopolyKataTests
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
             MonopolyPlayer player2 = new MonopolyPlayer("player2");
 
-            IMonopolyGameBoard gameBoard = new MonopolyGameBoard();
+            MonopolyGameBoard gameBoard = new MonopolyGameBoard();
 
             player1.Balence = 0;
 
@@ -45,7 +45,7 @@ namespace MonopolyKataTests
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
             MonopolyPlayer player2 = new MonopolyPlayer("player2");
 
-            IMonopolyGameBoard gameBoard = new MonopolyGameBoard();
+            MonopolyGameBoard gameBoard = new MonopolyGameBoard();
 
             player1.Balence = 0;
 

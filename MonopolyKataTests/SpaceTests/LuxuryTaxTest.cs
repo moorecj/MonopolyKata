@@ -19,7 +19,7 @@ namespace MonopolyKataTests.SpaceTests
         public void LandingOnLuxuryTaxShouldReduceAPlayersBalenceBy75()
         {
             MonopolyPlayer player1 = new MonopolyPlayer("player1");
-            IMonopolyGameBoard gameBoard = new MonopolyGameBoard();
+            MonopolyGameBoard gameBoard = new MonopolyGameBoard();
 
             player1.Balence = 100;
 

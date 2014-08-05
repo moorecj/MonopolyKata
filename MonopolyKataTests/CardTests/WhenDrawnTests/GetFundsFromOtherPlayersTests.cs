@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using Moq;
 using MonopolyKata;
+using MonopolyKata.Player;
 using MonopolyKata.Setup;
 using MonopolyKata.Cards.WhenDrawnStrategies;
 

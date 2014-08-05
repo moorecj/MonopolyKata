@@ -9,7 +9,7 @@ namespace MonopolyKata.Board.Spaces
 {
     public class MonopolyBoardSpace : BoardSpace
     {
-        public MonopolyBoardSpace(string name, IMonopolyGameBoard gameBoard): base(name, gameBoard)  
+        public MonopolyBoardSpace(string name, MonopolyGameBoard gameBoard): base(name, gameBoard)  
         { }
 
         public override void LandOn(IPlayer player)

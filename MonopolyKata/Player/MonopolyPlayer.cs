@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MonopolyKata.Player;
 using MonopolyKata.Board;
 
-namespace MonopolyKata
+namespace MonopolyKata.Player
 {  
     public class MonopolyPlayer : IPlayer  
     {

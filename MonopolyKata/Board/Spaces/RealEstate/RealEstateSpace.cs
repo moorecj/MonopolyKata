@@ -19,12 +19,12 @@ namespace MonopolyKata.Board.Spaces.RealEstate
         IRealEstateChargingStategy mortgagedChargingStrategy;
 
 
-        public RealEstateSpace(string name, IMonopolyGameBoard gameBoard, int purchaseCost, int baseLandOnCost, IRealEstateChargingStategy standardChargingStrategy)
+        public RealEstateSpace(string name, MonopolyGameBoard gameBoard, int purchaseCost, int baseLandOnCost, IRealEstateChargingStategy standardChargingStrategy)
             : this(name, gameBoard, purchaseCost, baseLandOnCost, standardChargingStrategy, new MortgageChargingStrategy())
         { }
 
 
-        public RealEstateSpace(string name,  IMonopolyGameBoard gameBoard, int purchaseCost, int baseLandOnCost, IRealEstateChargingStategy standardChargingStrategy, IRealEstateChargingStategy mortgagedChargingStrategy)
+        public RealEstateSpace(string name,  MonopolyGameBoard gameBoard, int purchaseCost, int baseLandOnCost, IRealEstateChargingStategy standardChargingStrategy, IRealEstateChargingStategy mortgagedChargingStrategy)
             : base(name, gameBoard)
         {
             this.purchaseCost = purchaseCost;

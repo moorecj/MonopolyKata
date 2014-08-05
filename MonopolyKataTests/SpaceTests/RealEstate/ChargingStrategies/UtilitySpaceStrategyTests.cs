@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MonopolyKata;
+using MonopolyKata.Player;
 using MonopolyKata.Board.Spaces.RealEstate;
 using MonopolyKata.Board.Spaces;
 using MonopolyKata.Board;
