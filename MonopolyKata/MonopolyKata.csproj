@@ -60,6 +60,8 @@
     <Compile Include="Cards\WhenDrawnStrategies\AddFundsStrategy.cs" />
     <Compile Include="Cards\WhenDrawnStrategies\GetFundsFromOthersStrategy.cs" />
     <Compile Include="Cards\WhenDrawnStrategies\IWhenDrawnStrategy.cs" />
+    <Compile Include="Cards\WhenDrawnStrategies\MakePlayerOwnerStrategy.cs" />
+    <Compile Include="Cards\WhenDrawnStrategies\MoveToClosestStrategy.cs" />
     <Compile Include="Cards\WhenDrawnStrategies\SubtractFundsStrategy.cs" />
     <Compile Include="Dice\IDice.cs" />
     <Compile Include="Dice\ITwoDie.cs" />

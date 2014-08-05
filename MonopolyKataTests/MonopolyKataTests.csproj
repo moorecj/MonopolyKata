@@ -48,7 +48,7 @@
     <Compile Include="CardTests\DeckTests.cs" />
     <Compile Include="CardTests\WhenDrawnTests\AddFundsTests.cs" />
     <Compile Include="CardTests\WhenDrawnTests\GetFundsFromOtherPlayersTests.cs" />
-    <Compile Include="CardTests\WhenDrawnTests\GiveOtherPlayersFunds.cs" />
+    <Compile Include="CardTests\WhenDrawnTests\MoveToClosestTests.cs" />
     <Compile Include="CardTests\WhenDrawnTests\SubtractFundsTests.cs" />
     <Compile Include="CardTests\BecomeCardOwnerTests.cs" />
     <Compile Include="CardTests\CardTests.cs" />

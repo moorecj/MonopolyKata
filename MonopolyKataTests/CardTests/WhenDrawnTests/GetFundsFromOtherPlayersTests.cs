@@ -22,7 +22,7 @@ namespace MonopolyKataTests.CardTests.WhenDrawnTests
         Mock<IPlayerOrderSetup> playerSetupMock;
 
         [SetUp]
-        public void MonopolyEngineSetUp()
+        public void SetUp()
         {
 
             player1 = new MonopolyPlayer("player1");
@@ -42,9 +42,9 @@ namespace MonopolyKataTests.CardTests.WhenDrawnTests
         [Test]
         public void TheGetFundsFromOthersStrategyWillTakeAnAmmountAndAPlayerOrderSetup()
         {
-            int amountToAdd = 10;
+            int transferAmount = 10;
 
-            GetFundsFromOthersStrategy TansferStrategy = new GetFundsFromOthersStrategy(amountToAdd, playerSetupMock.Object);
+            GetFundsFromOthersStrategy TansferStrategy = new GetFundsFromOthersStrategy(transferAmount, playerSetupMock.Object);
 
             Assert.That(TansferStrategy, Is.Not.Null);
         }
