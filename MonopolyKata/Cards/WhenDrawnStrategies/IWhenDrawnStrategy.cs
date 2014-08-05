@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonopolyKata.Player;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace MonopolyKata.Cards.WhenDrawnStrategies
 {
     public interface IWhenDrawnStrategy
     {
-        void Apply(MonopolyPlayer player);
+        void Apply(IPlayer player);
     }
 }

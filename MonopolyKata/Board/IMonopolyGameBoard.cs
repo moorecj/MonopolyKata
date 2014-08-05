@@ -1,4 +1,5 @@
 ﻿using System;
+using MonopolyKata.Player;
 using MonopolyKata.Board.Spaces;
 using MonopolyKata.Board.Spaces.RealEstate;
 
@@ -46,8 +47,8 @@ namespace MonopolyKata.Board
         LuxuryTaxSpace LuxuryTax { get; }
         RealEstateSpace Boardwalk { get;}
 
-        void LandOnNewSpace(MonopolyPlayer player);
-        void Move(MonopolyPlayer player, int roll);
+        void LandOnNewSpace(IPlayer player);
+        void Move(IPlayer player, int roll);
         int GetNumberOfBoardSpaces();
         int GetSpaceAddress(BoardSpace space);
     }

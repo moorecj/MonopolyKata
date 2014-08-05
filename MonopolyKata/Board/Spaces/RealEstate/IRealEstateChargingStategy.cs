@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonopolyKata.Player;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace MonopolyKata.Board.Spaces.RealEstate
 {
     public interface IRealEstateChargingStategy
     {
-        void ChargePlayer(MonopolyPlayer player, RealEstateSpace realEstateSpace);
+        void ChargePlayer(IPlayer player, RealEstateSpace realEstateSpace);
     }
 }

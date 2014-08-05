@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MonopolyKata.Extensions;
 using MonopolyKata.Board;
 using MonopolyKata.Dice;
+using MonopolyKata.Player;
 
 namespace MonopolyKata
 {
@@ -14,7 +15,7 @@ namespace MonopolyKata
         public int Roll1{get; private set;}
         public int Roll2 { get; private set; }
 
-        private MonopolyPlayer currentTurnPlayer;
+        private IPlayer currentTurnPlayer;
         private IPlayerOrderSetup GameSetup;
         private TurnEngine turnEngine;
         public  IMonopolyGameBoard gameBoard;
@@ -43,7 +44,7 @@ namespace MonopolyKata
             currentTurnPlayer = ReturnNextValidPlayerOrCurrentPlayerIfNoValidPlayersExist();
         }
 
-        public MonopolyPlayer GetCurrentTurnPlayer()
+        public IPlayer GetCurrentTurnPlayer()
         {
             return currentTurnPlayer;
         }
@@ -58,15 +59,15 @@ namespace MonopolyKata
             return currentTurnPlayer == ReturnNextValidPlayerOrCurrentPlayerIfNoValidPlayersExist();
         }
 
-        private bool PlayerIsLoser(MonopolyPlayer player)
+        private bool PlayerIsLoser(IPlayer player)
         {
             return player.Balence < 0;
         }
 
-        private MonopolyPlayer ReturnNextValidPlayerOrCurrentPlayerIfNoValidPlayersExist()
+        private IPlayer ReturnNextValidPlayerOrCurrentPlayerIfNoValidPlayersExist()
         {
-            MonopolyPlayer initalPlayer = currentTurnPlayer;
-            MonopolyPlayer nextPlayer = GameSetup.WhoGoesNext(currentTurnPlayer);
+            IPlayer initalPlayer = currentTurnPlayer;
+            IPlayer nextPlayer = GameSetup.WhoGoesNext(currentTurnPlayer);
 
             while (PlayerIsLoser(nextPlayer))
             {

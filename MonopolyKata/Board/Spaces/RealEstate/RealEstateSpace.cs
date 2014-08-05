@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonopolyKata.Player;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace MonopolyKata.Board.Spaces.RealEstate
 
     public class RealEstateSpace : MonopolyBoardSpace
     {
-        public MonopolyPlayer Owner{ get; set; }
+        public IPlayer Owner { get; set; }
         public int purchaseCost {  get; private set; }
         public List<RealEstateSpace> groupProperties;
         public int baseLandOnCost { get; set; }
@@ -37,7 +38,7 @@ namespace MonopolyKata.Board.Spaces.RealEstate
             this.mortgagedChargingStrategy = mortgagedChargingStrategy;
         }
 
-        public override void LandOn(MonopolyPlayer player)
+        public override void LandOn(IPlayer player)
         {
             base.LandOn(player);
 
@@ -65,7 +66,7 @@ namespace MonopolyKata.Board.Spaces.RealEstate
             return Owner == null;
         }
 
-        private void Purchase( MonopolyPlayer player)
+        private void Purchase(IPlayer player)
         {
             Owner = player;
 
@@ -73,7 +74,7 @@ namespace MonopolyKata.Board.Spaces.RealEstate
 
         }
 
-        public void Mortgage( MonopolyPlayer player ) 
+        public void Mortgage(IPlayer player) 
         {
             if (currentChargingStrategy == standardChargingStrategy)
             {
@@ -86,7 +87,7 @@ namespace MonopolyKata.Board.Spaces.RealEstate
             }
         }
 
-        public void Unmortgage(MonopolyPlayer player)
+        public void Unmortgage(IPlayer player)
         {
             if (currentChargingStrategy == mortgagedChargingStrategy)
             {

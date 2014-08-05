@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonopolyKata.Player;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,10 +20,10 @@ namespace MonopolyKata.Cards.WhenDrawnStrategies
                 this.playerSetup = playerSetup;
             }
 
-            public void Apply(MonopolyPlayer playerToAddTo)
+            public void Apply(IPlayer playerToAddTo)
             {
-                MonopolyPlayer playerToTakeFrom = playerSetup.WhoGoesFirst();
-                MonopolyPlayer initalPlayer = playerToTakeFrom;
+                IPlayer playerToTakeFrom = playerSetup.WhoGoesFirst();
+                IPlayer initalPlayer = playerToTakeFrom;
 
                 do
                 {
@@ -37,7 +38,7 @@ namespace MonopolyKata.Cards.WhenDrawnStrategies
                 while (playerToTakeFrom != initalPlayer);
             }
 
-            private void TransferAsMuchOfAmountAsIsAvailable(MonopolyPlayer playerToAddTo, MonopolyPlayer playerToTakeFrom)
+            private void TransferAsMuchOfAmountAsIsAvailable(IPlayer playerToAddTo, IPlayer playerToTakeFrom)
             {
                 if (playerToTakeFrom.Balence < amountToTransfer)
                 {

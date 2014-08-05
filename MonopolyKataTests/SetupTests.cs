@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using MonopolyKata;
 using MonopolyKata.Setup;
+using MonopolyKata.Player;
 
 namespace MonopolyKataTests
 {
@@ -51,7 +52,7 @@ namespace MonopolyKataTests
             
             IPlayerOrderSetup setup = new PlayerOrderSetup(playerNames);
 
-            MonopolyPlayer firstplayer = setup.WhoGoesFirst();
+            IPlayer firstplayer = setup.WhoGoesFirst();
 
             Assert.That(playerNames.Any(n => n.Contains(firstplayer.name)));
 
@@ -62,9 +63,9 @@ namespace MonopolyKataTests
         {
             IPlayerOrderSetup setup = new PlayerOrderSetup("Horse", "Car" );
 
-            MonopolyPlayer player1 = setup.WhoGoesFirst();
+            IPlayer player1 = setup.WhoGoesFirst();
 
-            MonopolyPlayer player2 = setup.WhoGoesNext(player1);
+            IPlayer player2 = setup.WhoGoesNext(player1);
 
             Assert.That(player1, Is.Not.Null);
             Assert.That(player2, Is.Not.Null);

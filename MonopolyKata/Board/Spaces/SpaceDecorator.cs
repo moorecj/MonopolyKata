@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonopolyKata.Player;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace MonopolyKata.Board.Spaces
             this.space = space;
         }
 
-        public override void LandOn(MonopolyPlayer player)
+        public override void LandOn(IPlayer player)
         {
             space.LandOn(player);
         }

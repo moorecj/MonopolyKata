@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonopolyKata.Player;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,8 @@ namespace MonopolyKata.Cards
     public interface ICard
     {
         string flavorText { get; }
-        MonopolyPlayer Owner { get; }
-        void SetOwner(MonopolyPlayer player);
-        void Draw(MonopolyPlayer player);
+        IPlayer Owner { get; }
+        void SetOwner(IPlayer player);
+        void Draw(IPlayer player);
     }
 }

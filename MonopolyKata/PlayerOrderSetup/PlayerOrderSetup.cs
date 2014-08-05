@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MonopolyKata.Extensions;
 using MonopolyKata.Dice;
+using MonopolyKata.Player;
 
 namespace MonopolyKata.Setup
 {
@@ -14,7 +15,7 @@ namespace MonopolyKata.Setup
         private const int MAX_NUMBER_OF_PLAYERS = 8;
         private const int MIN_NUMBER_OF_PLAYERS = 2;
 
-        private List<MonopolyPlayer> playOrder;
+        private List<IPlayer> playOrder;
 
         public PlayerOrderSetup(params String[] playerNames )
         {
@@ -25,11 +26,11 @@ namespace MonopolyKata.Setup
 
         }
 
-        public PlayerOrderSetup(params MonopolyPlayer[] players)
+        public PlayerOrderSetup(params IPlayer[] players)
         {
             CheckForTooManyPlayers(players);
             CheckForTooFewPlayers(players);
-            playOrder = players.ToList<MonopolyPlayer>();
+            playOrder = players.ToList<IPlayer>();
             RandomizePlayOrder();
         }
 
@@ -40,7 +41,7 @@ namespace MonopolyKata.Setup
 
         public void PopulatePlayOrderList(String[] playerNames)
         {
-            playOrder = new List<MonopolyPlayer>();
+            playOrder = new List<IPlayer>();
 
             foreach (String s in playerNames)
             {
@@ -48,12 +49,12 @@ namespace MonopolyKata.Setup
             }
         }
 
-        public MonopolyPlayer WhoGoesFirst()
+        public IPlayer WhoGoesFirst()
         {
             return playOrder[0];
         }
 
-        public MonopolyPlayer WhoGoesNext( MonopolyPlayer player )
+        public IPlayer WhoGoesNext(IPlayer player)
         {
             int nextPlayerIndex = playOrder.FindIndex(p => p == player) + 1;
 

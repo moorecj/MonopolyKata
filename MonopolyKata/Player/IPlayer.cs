@@ -1,7 +1,7 @@
 ﻿using System;
 namespace MonopolyKata.Player
 {
-    interface IPlayer
+    public interface IPlayer
     {
         int Balence { get; set; }
         int lastRoll { get; set; }

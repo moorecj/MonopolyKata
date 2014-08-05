@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonopolyKata.Player;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace MonopolyKata.Board.Spaces.RealEstate
     {
         public PropertyChargingStrategy() { }
 
-        public void ChargePlayer(MonopolyPlayer player, RealEstateSpace realEstateSpace)
+        public void ChargePlayer(IPlayer player, RealEstateSpace realEstateSpace)
         {
             if (realEstateSpace.Owner != player)
             {

@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MonopolyKata.Cards.WhenDrawnStrategies;
+using MonopolyKata.Player;
 
 namespace MonopolyKata.Cards
 {
     public class Card : ICard
     {
         public string flavorText{get; private set;}
-        public MonopolyPlayer Owner { get; private set; }
+        public IPlayer Owner { get; private set; }
         IWhenDrawnStrategy whenDrawnStrategy;
 
         public Card(string flavorText, IWhenDrawnStrategy whenDrawnStrategy )
@@ -19,12 +20,12 @@ namespace MonopolyKata.Cards
             this.whenDrawnStrategy = whenDrawnStrategy;
         }
 
-        public void SetOwner( MonopolyPlayer player )
+        public void SetOwner(IPlayer player)
         {
             Owner = player;
         }
 
-        public void Draw( MonopolyPlayer player)
+        public void Draw(IPlayer player)
         {
             whenDrawnStrategy.Apply(player);
         }

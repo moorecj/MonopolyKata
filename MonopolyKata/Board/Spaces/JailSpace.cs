@@ -4,46 +4,47 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MonopolyKata.Dice;
+using MonopolyKata.Player;
 
 namespace MonopolyKata.Board.Spaces
 {
 
     public class JailSpace:MonopolyBoardSpace
     {
-        private List<MonopolyPlayer> escapeAttemptsWithRolls;
-        private List<MonopolyPlayer> playersLockedInJail;
+        private List<IPlayer> escapeAttemptsWithRolls;
+        private List<IPlayer> playersLockedInJail;
 
         public JailSpace(string name, IMonopolyGameBoard gameBoard): base(name, gameBoard)
         {
-            playersLockedInJail = new List<MonopolyPlayer>();
-            escapeAttemptsWithRolls = new List<MonopolyPlayer>();
+            playersLockedInJail = new List<IPlayer>();
+            escapeAttemptsWithRolls = new List<IPlayer>();
         }
 
-        public bool IsLockedUp(MonopolyPlayer player)
+        public bool IsLockedUp(IPlayer player)
         {
             return playersLockedInJail.Contains(player);
         }
 
-        public void LockUp(MonopolyPlayer player)
+        public void LockUp(IPlayer player)
         {
             player.Location = gameBoard.GetSpaceAddress(gameBoard.Jail);
             playersLockedInJail.Add(player);
         }
 
-        public void Release(MonopolyPlayer player)
+        public void Release(IPlayer player)
         {
             playersLockedInJail.RemoveAll(p => p == player);
             escapeAttemptsWithRolls.RemoveAll(p => p == player); 
         }
 
-        public void Pay50ToGetOut(MonopolyPlayer player)
+        public void Pay50ToGetOut(IPlayer player)
         {
             player.Balence -= 50;
 
             Release(player);
         }
 
-        public void TryToGetOUtWithDoubles(MonopolyPlayer player, IDice dice)
+        public void TryToGetOUtWithDoubles(IPlayer player, IDice dice)
         {
             escapeAttemptsWithRolls.Add(player);
 
@@ -54,7 +55,7 @@ namespace MonopolyKata.Board.Spaces
             
         }
 
-        public int GetOutFromRollsAttemptCount(MonopolyPlayer player)
+        public int GetOutFromRollsAttemptCount(IPlayer player)
         {
             return escapeAttemptsWithRolls.Count(p => p == player);
         }

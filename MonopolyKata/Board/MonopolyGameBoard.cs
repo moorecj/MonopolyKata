@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MonopolyKata.Player;
 using MonopolyKata.Board.Spaces;
 using MonopolyKata.Board.Spaces.RealEstate;
 
@@ -62,12 +63,12 @@ namespace MonopolyKata.Board
             AddBoardSpacesToList();
         }
 
-        public void LandOnNewSpace( MonopolyPlayer player )
+        public void LandOnNewSpace(IPlayer player)
         {
             spaces[player.Location].LandOn(player);
         }
 
-        public void Move(MonopolyPlayer player, int roll)
+        public void Move(IPlayer player, int roll)
         {
             player.Location += roll;
 

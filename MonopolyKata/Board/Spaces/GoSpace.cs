@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MonopolyKata.Board;
+using MonopolyKata.Player;
 
 namespace MonopolyKata
 {
@@ -15,13 +16,13 @@ namespace MonopolyKata
 
         public GoSpace(string name, IMonopolyGameBoard gameBoard) : base(name, gameBoard) { }
 
-        public override void LandOn(MonopolyPlayer player) 
+        public override void LandOn(IPlayer player) 
         {
             base.LandOn(player);
             player.Balence += LAND_ON_GO_AMOUNT;
         }
 
-        public static void Pass( MonopolyPlayer player ) 
+        public static void Pass(IPlayer player) 
         {
             player.Balence += PASS_GO_AMOUNT;
         }

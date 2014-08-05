@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MonopolyKata.Player;
 
 namespace MonopolyKata.Board.Spaces
 {
@@ -13,7 +14,7 @@ namespace MonopolyKata.Board.Spaces
             this.name = name;
         }
 
-        public override void LandOn(MonopolyPlayer player)
+        public override void LandOn(IPlayer player)
         {
             base.LandOn(player);
             gameBoard.Jail.LockUp(player);

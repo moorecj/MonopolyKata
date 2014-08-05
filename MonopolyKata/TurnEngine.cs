@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MonopolyKata;
 using MonopolyKata.Dice;
 using MonopolyKata.Board;
+using MonopolyKata.Player;
 
 namespace MonopolyKata
 {
@@ -21,7 +22,7 @@ namespace MonopolyKata
             this.gameBoard = gameBoard;
         }
 
-        public void TakeTurn(MonopolyPlayer player)
+        public void TakeTurn(IPlayer player)
         {
             if (gameBoard.Jail.IsLockedUp(player))
             {
@@ -33,7 +34,7 @@ namespace MonopolyKata
             } 
         }
 
-        private void PlayJailedPlayersTurn(MonopolyPlayer player)
+        private void PlayJailedPlayersTurn(IPlayer player)
         {
             dice.Roll();
 
@@ -47,7 +48,7 @@ namespace MonopolyKata
             AttemptToMovePlayer(player);
         }
 
-        private void PlayANonJailedPlayersTurn(MonopolyPlayer player)
+        private void PlayANonJailedPlayersTurn(IPlayer player)
         {
             do
             {
@@ -63,7 +64,7 @@ namespace MonopolyKata
             while (PlayerShouldRollAgain(player));
         }
 
-        private void SendPlayerToJailIfTheyRolledToManyDoubles(MonopolyPlayer player)
+        private void SendPlayerToJailIfTheyRolledToManyDoubles(IPlayer player)
         {
             if (PlayerRolledTooManyDoubles())
             {
@@ -72,12 +73,12 @@ namespace MonopolyKata
             }
         }
 
-        private bool PlayerRanOutOfRollToGetOutOfJailChances(MonopolyPlayer player)
+        private bool PlayerRanOutOfRollToGetOutOfJailChances(IPlayer player)
         {
             return !dice.LastRollWereAllTheSame() && (gameBoard.Jail.GetOutFromRollsAttemptCount(player) >= 3);
         }
 
-        private void AttemptToMovePlayer(MonopolyPlayer player)
+        private void AttemptToMovePlayer(IPlayer player)
         {
             if (PlayerCanMove(player))
             {
@@ -99,7 +100,7 @@ namespace MonopolyKata
 
         }
 
-        private bool PlayerShouldRollAgain(MonopolyPlayer player)
+        private bool PlayerShouldRollAgain(IPlayer player)
         {
             return PlayerRolledDoubles() && PlayerCanMove(player);
         }
@@ -109,7 +110,7 @@ namespace MonopolyKata
             return (doublesInARowCount > 0);
         }
 
-        private bool PlayerCanMove(MonopolyPlayer player)
+        private bool PlayerCanMove(IPlayer player)
         {
             return !(PlayerIsLoser(player)) && !(gameBoard.Jail.IsLockedUp(player));
         }
@@ -119,7 +120,7 @@ namespace MonopolyKata
             return doublesInARowCount >= 3;
         }
 
-        private bool PlayerIsLoser(MonopolyPlayer player)
+        private bool PlayerIsLoser(IPlayer player)
         {
             return player.Balence < 0;
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MonopolyKata.Player;
 using MonopolyKata.Board;
 
 namespace MonopolyKata
@@ -23,7 +24,7 @@ namespace MonopolyKata
             return gameBoard.GetSpaceAddress(this);
         }
 
-        abstract public void LandOn(MonopolyPlayer player);
+        abstract public void LandOn(IPlayer player);
 
     }
 

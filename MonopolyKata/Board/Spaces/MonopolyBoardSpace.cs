@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MonopolyKata.Player;
 
 namespace MonopolyKata.Board.Spaces
 {
@@ -11,7 +12,7 @@ namespace MonopolyKata.Board.Spaces
         public MonopolyBoardSpace(string name, IMonopolyGameBoard gameBoard): base(name, gameBoard)  
         { }
 
-        public override void LandOn(MonopolyPlayer player)
+        public override void LandOn(IPlayer player)
         {
             if (CheckForPassingGo(player))
             {
@@ -19,12 +20,10 @@ namespace MonopolyKata.Board.Spaces
             }
         }
 
-        private bool CheckForPassingGo(MonopolyPlayer player)
+        private bool CheckForPassingGo(IPlayer player)
         {
             return ((player.Location - player.lastRoll) < 0) && player.Location != gameBoard.GetSpaceAddress(gameBoard.Go);
         }
-
-        
 
     }
 }

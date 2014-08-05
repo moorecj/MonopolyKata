@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonopolyKata.Player;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,7 @@ namespace MonopolyKata.Cards.WhenDrawnStrategies
             this.amount = amount;
         }
 
-        public void Apply(MonopolyPlayer player)
+        public void Apply(IPlayer player)
         {
             player.Balence += amount;
         }
