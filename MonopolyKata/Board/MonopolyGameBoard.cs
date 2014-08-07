@@ -112,6 +112,18 @@ namespace MonopolyKata.Board
             return spaceAddress;
         }
 
+        public bool DidPlayerPassGo(IPlayer player)
+        {
+            return ((player.Location - player.lastRoll) < 0) && player.Location != GetSpaceAddress(Go);
+        }
+
+        public void PutPlayerInJail(IPlayer player)
+        {
+            Jail.LockUp(player);
+        }
+
+
+
         private void SetUpPropertyGroups()
         {
             GroupSpaces(ReadingRailroad, PennsylvaniaRailroad, BnORailroad, ShortLineRailroad);

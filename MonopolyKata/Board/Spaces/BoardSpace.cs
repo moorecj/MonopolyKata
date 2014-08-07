@@ -10,10 +10,10 @@ namespace MonopolyKata
 {
     abstract public class BoardSpace
     {
-        public MonopolyGameBoard gameBoard;
+        public IMonopolyGameBoard gameBoard;
         public string name { get; set; }
 
-        public BoardSpace(string name, MonopolyGameBoard gameBoard)
+        public BoardSpace(string name, IMonopolyGameBoard gameBoard)
         {
             this.name =  name;
             this.gameBoard = gameBoard;

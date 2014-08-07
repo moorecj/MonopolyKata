@@ -96,8 +96,6 @@ namespace MonopolyKataTests
 
             Assert.That(count, Is.EqualTo(1));
 
-
-
         }
 
         [Test]
