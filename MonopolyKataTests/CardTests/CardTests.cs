@@ -28,19 +28,6 @@ namespace MonopolyKataTests.CardTests
         }
 
         [Test]
-        public void ACardCanHaveAnOwner()
-        {
-            string flavorText = "This is a very awesome Monopoly card";
-            MonopolyPlayer player = new MonopolyPlayer("player 1");
-            Mock<IWhenDrawnStrategy> whenDrawnStrategyMock = new Mock<IWhenDrawnStrategy>();
-            ICard card = new Card(flavorText, whenDrawnStrategyMock.Object);
-
-            card.SetOwner(player);
-
-            Assert.That(card.Owner, Is.EqualTo(player));
-        }
-
-        [Test]
         public void ACardShouldTakeAWhenDrawnStrategy()
         {
             string flavorText = "This is a very awesome Monopoly card";

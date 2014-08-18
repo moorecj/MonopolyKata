@@ -10,8 +10,6 @@ namespace MonopolyKata.Cards
     public interface ICard
     {
         string flavorText { get; }
-        IPlayer Owner { get; }
-        void SetOwner(IPlayer player);
         void Draw(IPlayer player);
     }
 }

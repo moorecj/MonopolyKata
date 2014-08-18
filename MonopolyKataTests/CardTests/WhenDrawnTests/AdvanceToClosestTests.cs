@@ -70,6 +70,7 @@ namespace MonopolyKataTests.CardTests.WhenDrawnTests
             moveToStrategy.Apply(player);
 
             Assert.That(count, Is.EqualTo(1));
+
         }
 
 
