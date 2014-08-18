@@ -11,7 +11,7 @@ namespace MonopolyKata.Board
 {
     public class MonopolyGameBoard : IMonopolyGameBoard
     {
-        private List<BoardSpace> spaces;
+        private List<IBoardSpace> spaces;
 
         public GoSpace Go{get;set;}
         public RealEstateSpace MediterraneanAvenue { get; private set; }
@@ -57,7 +57,7 @@ namespace MonopolyKata.Board
 
         public MonopolyGameBoard()
         {
-            spaces = new List<BoardSpace>();
+            spaces = new List<IBoardSpace>();
             
             CreateBoardSpaces();
             AddBoardSpacesToList();
@@ -92,7 +92,7 @@ namespace MonopolyKata.Board
             }
         }
 
-        public int GetSpaceAddress(BoardSpace space)
+        public int GetSpaceAddress(IBoardSpace space)
         {
             int spaceAddress = -1;
 
@@ -107,7 +107,7 @@ namespace MonopolyKata.Board
             return spaceAddress;
         }
 
-        public int GetForwardDistanceToSpace(int location, BoardSpace space)
+        public int GetForwardDistanceToSpace(int location, IBoardSpace space)
         {
             int spaceAddress = GetSpaceAddress(space); 
             

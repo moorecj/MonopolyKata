@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using MonopolyKata.Player;
 using MonopolyKata.Board;
+using MonopolyKata.Board.Spaces;
 
 namespace MonopolyKata
 {
-    abstract public class BoardSpace
+    abstract public class BoardSpace : IBoardSpace
     {
         public IMonopolyGameBoard gameBoard;
         public string name { get; set; }

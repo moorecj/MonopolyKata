@@ -17,8 +17,8 @@ namespace MonopolyKataTests.CardTests.WhenDrawnTests
     public class AdvanceToClosestTests
     {
         Mock<IMonopolyGameBoard> mockGameBoard;
-        BoardSpace boardSpace1;
-        BoardSpace boardSpace2;
+        IBoardSpace boardSpace1;
+        IBoardSpace boardSpace2;
 
         [SetUp]
         public void SetUp()
@@ -56,7 +56,7 @@ namespace MonopolyKataTests.CardTests.WhenDrawnTests
         [Test]
         public void TheAddvanceToClosestStrategeyShouldApplyTheLandOnMethodOfTheNewSpace()
         {
-            Mock<BoardSpace> mockSpace = new Mock<BoardSpace>();
+            Mock<IBoardSpace> mockSpace = new Mock<IBoardSpace>();
 
             IPlayer player = new MonopolyPlayer("player");
 
@@ -71,6 +71,8 @@ namespace MonopolyKataTests.CardTests.WhenDrawnTests
 
             Assert.That(count, Is.EqualTo(1));
         }
+
+
 
 
 

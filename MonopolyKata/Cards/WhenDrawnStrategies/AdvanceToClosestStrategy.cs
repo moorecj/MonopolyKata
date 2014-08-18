@@ -4,36 +4,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MonopolyKata.Board.Spaces;
 
 namespace MonopolyKata.Cards.WhenDrawnStrategies
 {
     public class AdvanceToClosestStrategy : IWhenDrawnStrategy
     {
-        BoardSpace[] spaces;
+        IBoardSpace[] spaces;
 
-        public AdvanceToClosestStrategy(params BoardSpace[] spaces)
+        public AdvanceToClosestStrategy(params IBoardSpace[] spaces)
         {
             this.spaces = spaces;
         }
 
         public void Apply(IPlayer player)
         {
-            BoardSpace theClosestSpace;
+            IBoardSpace theClosestSpace;
 
             theClosestSpace = spaces[0];
 
-            foreach(BoardSpace s in spaces)
+            theClosestSpace = FindTheClosestSpace(player, theClosestSpace);
+
+            player.Location = theClosestSpace.GetMyLocation();
+
+            theClosestSpace.LandOn(player);
+        }
+
+        private IBoardSpace FindTheClosestSpace(IPlayer player, IBoardSpace theClosestSpace)
+        {
+            foreach (IBoardSpace s in spaces)
             {
                 if (DistanceFromPlayerToSpace(player, s) < DistanceFromPlayerToSpace(player, theClosestSpace))
                 {
                     theClosestSpace = s;
                 }
             }
-
-            player.Location = theClosestSpace.GetMyLocation();
+            return theClosestSpace;
         }
 
-        private static int DistanceFromPlayerToSpace(IPlayer player, BoardSpace s)
+        private static int DistanceFromPlayerToSpace(IPlayer player, IBoardSpace s)
         {
             return s.GetForwardDistanceFromLocation(player.Location);
         }

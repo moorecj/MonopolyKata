@@ -43,6 +43,7 @@
     <Compile Include="Board\IMonopolyGameBoard.cs" />
     <Compile Include="Board\Spaces\CardSpace.cs" />
     <Compile Include="Board\Spaces\GoToJailSpace.cs" />
+    <Compile Include="Board\Spaces\IBoardSpace.cs" />
     <Compile Include="Board\Spaces\IncomeTaxSpace.cs" />
     <Compile Include="Board\Spaces\JailSpace.cs" />
     <Compile Include="Board\Spaces\LuxuryTaxSpace.cs" />

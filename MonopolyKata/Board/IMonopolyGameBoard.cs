@@ -9,8 +9,8 @@ namespace MonopolyKata.Board
     {
         void LandOnNewSpace(IPlayer player);
         void Move(IPlayer player, int roll);
-        int GetSpaceAddress(BoardSpace space);
-        int GetForwardDistanceToSpace(int location, BoardSpace space);
+        int GetSpaceAddress(IBoardSpace space);
+        int GetForwardDistanceToSpace(int location, IBoardSpace space);
         void PutPlayerInJail(IPlayer player);
         bool DidPlayerPassGo(IPlayer player);
         int GetNumberOfBoardSpaces();
