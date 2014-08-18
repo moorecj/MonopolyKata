@@ -37,7 +37,6 @@ namespace MonopolyKataTests.CardTests.WhenDrawnTests
             playerSetupMock.Setup(s => s.WhoGoesNext(player2)).Returns(player3);
             playerSetupMock.Setup(s => s.WhoGoesNext(player3)).Returns(player1);
 
-
         }
 
         [Test]
@@ -123,13 +122,28 @@ namespace MonopolyKataTests.CardTests.WhenDrawnTests
             player2.Balence = player2InitialAmount;
             player3.Balence = player3InitialAmount;
 
-            PlayerOrderSetup playerSetup = new PlayerOrderSetup(player1, player2, player3);
-
             GetFundsFromOthersStrategy TansferStrategy = new GetFundsFromOthersStrategy(transferAmount, playerSetupMock.Object);
 
             TansferStrategy.Apply(player1);
 
             Assert.That(player3.Balence, Is.LessThan(0));
+
+        }
+
+        [Test]
+        public void IfAPlayerHasANegitiveBalenceNoFundsWillBeTransferedFromThem()
+        {
+            int transferAmount = 10;
+
+            player1.Balence = 0;
+            player2.Balence = 10;
+            player3.Balence = -1;
+
+            GetFundsFromOthersStrategy TansferStrategy = new GetFundsFromOthersStrategy(transferAmount, playerSetupMock.Object);
+
+            TansferStrategy.Apply(player1);
+
+            Assert.That(player1.Balence, Is.EqualTo(10));
 
         }
 

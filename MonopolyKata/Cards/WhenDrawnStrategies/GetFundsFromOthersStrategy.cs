@@ -40,17 +40,22 @@ namespace MonopolyKata.Cards.WhenDrawnStrategies
 
             private void TransferAsMuchOfAmountAsIsAvailable(IPlayer playerToAddTo, IPlayer playerToTakeFrom)
             {
-                if (playerToTakeFrom.Balence < amountToTransfer)
+                if(playerToTakeFrom.Balence >= 0 )
                 {
-                    playerToAddTo.Balence += playerToTakeFrom.Balence;
-                }
-                else
-                {
-                    playerToAddTo.Balence += amountToTransfer;
-                }
+                    if (playerToTakeFrom.Balence < amountToTransfer)
+                    {
+                        playerToAddTo.Balence += playerToTakeFrom.Balence;
+                    }
+                    else
+                    {
+                        playerToAddTo.Balence += amountToTransfer;
+                    }
 
-                playerToTakeFrom.Balence -= amountToTransfer;
+                    playerToTakeFrom.Balence -= amountToTransfer;
+
+                }
+                
             }
-        
+
     }
 }

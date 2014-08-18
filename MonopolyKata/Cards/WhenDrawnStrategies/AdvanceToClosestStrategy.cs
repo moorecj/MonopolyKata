@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace MonopolyKata.Cards.WhenDrawnStrategies
 {
-    public class MoveToClosestStrategy : IWhenDrawnStrategy
+    public class AdvanceToClosestStrategy : IWhenDrawnStrategy
     {
         List<BoardSpace> spaces;
 
-        public MoveToClosestStrategy(params BoardSpace[] spaces)
+        public AdvanceToClosestStrategy(params BoardSpace[] spaces)
         {
 
         }

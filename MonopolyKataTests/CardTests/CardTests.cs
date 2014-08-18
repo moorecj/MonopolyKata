@@ -41,7 +41,7 @@ namespace MonopolyKataTests.CardTests
         }
 
         [Test]
-        public void ACardCanShouldTakeAWhenDrawnStrategy()
+        public void ACardShouldTakeAWhenDrawnStrategy()
         {
             string flavorText = "This is a very awesome Monopoly card";
             MonopolyPlayer player = new MonopolyPlayer("player 1");
@@ -69,11 +69,5 @@ namespace MonopolyKataTests.CardTests
 
             Assert.That(count, Is.EqualTo(1));
         }
-
-
-
-        
-
-
     }
 }

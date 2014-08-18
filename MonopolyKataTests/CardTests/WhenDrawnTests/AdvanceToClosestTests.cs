@@ -10,11 +10,12 @@ using MonopolyKata.Cards.WhenDrawnStrategies;
 namespace MonopolyKataTests.CardTests.WhenDrawnTests
 {
     [TestFixture]
-    public class MoveToClosestTests
+    public class AdvanceToClosestTests
     {
+
         public void TheMoveToClosestStategyShouldTakeAnArrayOfBoardSpaces()
         {
-            MoveToClosestStrategy moveToStrategy = new MoveToClosestStrategy();
+            AdvanceToClosestStrategy moveToStrategy = new AdvanceToClosestStrategy();
 
 
         }
