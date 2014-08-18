@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoardTests.cs" />
     <Compile Include="CardTests\DeckTests.cs" />
     <Compile Include="CardTests\WhenDrawnTests\AddFundsTests.cs" />
     <Compile Include="CardTests\WhenDrawnTests\GetFundsFromOtherPlayersTests.cs" />

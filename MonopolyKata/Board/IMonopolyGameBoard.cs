@@ -13,5 +13,6 @@ namespace MonopolyKata.Board
         int GetForwardDistanceToSpace(int location, BoardSpace space);
         void PutPlayerInJail(IPlayer player);
         bool DidPlayerPassGo(IPlayer player);
+        int GetNumberOfBoardSpaces();
     }
 }

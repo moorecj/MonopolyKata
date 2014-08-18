@@ -132,7 +132,7 @@ namespace MonopolyKata.Board
             Jail.LockUp(player);
         }
 
-        private int GetNumberOfBoardSpaces()
+        public int GetNumberOfBoardSpaces()
         {
             return (spaces.Count());
         }
