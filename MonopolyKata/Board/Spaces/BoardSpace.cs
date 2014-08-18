@@ -24,6 +24,11 @@ namespace MonopolyKata
             return gameBoard.GetSpaceAddress(this);
         }
 
+        public int GetForwardDistanceFromLocation(int location)
+        {
+            return gameBoard.GetForwardDistanceToSpace(location, this);
+        }
+
         abstract public void LandOn(IPlayer player);
 
     }

@@ -80,11 +80,6 @@ namespace MonopolyKata.Board
             }
         }
 
-        public int GetNumberOfBoardSpaces()
-        {
-            return (spaces.Count());
-        }
-
         public static void GroupSpaces(params RealEstateSpace[] spaces)
         {
             for (int i = 0; i < spaces.Length - 1; ++i)
@@ -112,6 +107,21 @@ namespace MonopolyKata.Board
             return spaceAddress;
         }
 
+        public int GetForwardDistanceToSpace(int location, BoardSpace space)
+        {
+            int spaceAddress = GetSpaceAddress(space); 
+            
+            if(location <= GetSpaceAddress(space))
+            {
+                return (spaceAddress - location);
+            }
+            else
+            {
+                return( spaceAddress + (GetNumberOfBoardSpaces()-location));
+            }
+
+        }
+
         public bool DidPlayerPassGo(IPlayer player)
         {
             return ((player.Location - player.lastRoll) < 0) && player.Location != GetSpaceAddress(Go);
@@ -122,7 +132,10 @@ namespace MonopolyKata.Board
             Jail.LockUp(player);
         }
 
-
+        private int GetNumberOfBoardSpaces()
+        {
+            return (spaces.Count());
+        }
 
         private void SetUpPropertyGroups()
         {

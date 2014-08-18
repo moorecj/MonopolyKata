@@ -9,16 +9,35 @@ namespace MonopolyKata.Cards.WhenDrawnStrategies
 {
     public class AdvanceToClosestStrategy : IWhenDrawnStrategy
     {
-        List<BoardSpace> spaces;
+        BoardSpace[] spaces;
 
         public AdvanceToClosestStrategy(params BoardSpace[] spaces)
         {
-
+            this.spaces = spaces;
         }
 
         public void Apply(IPlayer player)
         {
-            throw new NotImplementedException();
+            BoardSpace theClosestSpace;
+
+            theClosestSpace = spaces[0];
+
+            foreach(BoardSpace s in spaces)
+            {
+                if (DistanceFromPlayerToSpace(player, s) < DistanceFromPlayerToSpace(player, theClosestSpace))
+                {
+                    theClosestSpace = s;
+                }
+            }
+
+            player.Location = theClosestSpace.GetMyLocation();
         }
+
+        private static int DistanceFromPlayerToSpace(IPlayer player, BoardSpace s)
+        {
+            return s.GetForwardDistanceFromLocation(player.Location);
+        }
+
+    
     }
 }
