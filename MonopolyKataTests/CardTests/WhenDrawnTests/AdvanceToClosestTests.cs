@@ -53,5 +53,27 @@ namespace MonopolyKataTests.CardTests.WhenDrawnTests
             Assert.That(player.Location, Is.EqualTo(1));
         }
 
+        [Test]
+        public void TheAddvanceToClosestStrategeyShouldApplyTheLandOnMethodOfTheNewSpace()
+        {
+            Mock<BoardSpace> mockSpace = new Mock<BoardSpace>();
+
+            IPlayer player = new MonopolyPlayer("player");
+
+            int count = 0;
+
+            mockSpace.Setup(m => m.GetMyLocation()).Returns(1);
+            mockSpace.Setup(m => m.LandOn(player)).Callback(() => { count++; });
+
+            AdvanceToClosestStrategy moveToStrategy = new AdvanceToClosestStrategy(mockSpace.Object, boardSpace2);
+
+            moveToStrategy.Apply(player);
+
+            Assert.That(count, Is.EqualTo(1));
+        }
+
+
+
+
     }
 }
