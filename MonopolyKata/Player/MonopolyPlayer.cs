@@ -32,14 +32,22 @@ namespace MonopolyKata.Player
             cards.Add(card);
         }
 
-        public int GetNumberOfCard()
+        public void RemoveCard(ICard card)
+        {
+            cards.Remove(card);
+        }
+     
+        public int GetNumberOfCards()
         {
             return cards.Count();
         }
 
-        public ICard GetCard(int cardNumber)
+        public ICard GetCardByIndex(int cardIndex)
         {
-            return (cardNumber >= cards.Count()) ? null : cards[cardNumber];
+            return (cardIndex >= cards.Count()) ? null : cards[cardIndex];
         }
+
+
+
     }
 }

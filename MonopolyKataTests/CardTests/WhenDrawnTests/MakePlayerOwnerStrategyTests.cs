@@ -37,7 +37,7 @@ namespace MonopolyKataTests.CardTests.WhenDrawnTests
 
             strategy.Apply(player);
 
-            Assert.That(player.GetCard(0), Is.EqualTo(card));
+            Assert.That(player.GetCardByIndex(0), Is.EqualTo(card));
 
         }
 

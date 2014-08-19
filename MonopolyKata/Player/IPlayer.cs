@@ -11,7 +11,8 @@ namespace MonopolyKata.Player
         string name { get; set; }
 
         void AddCard( ICard card);
-        int GetNumberOfCard();
-        ICard GetCard(int cardNumber);
+        void RemoveCard(ICard card);
+        int GetNumberOfCards();
+        ICard GetCardByIndex(int cardIndex);
     }
 }

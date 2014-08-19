@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using Moq;
 using MonopolyKata;
 using MonopolyKata.Player;
 using MonopolyKata.Board;
+using MonopolyKata.Cards;
+using MonopolyKata.Cards.WhenDrawnStrategies;
 
 namespace MonopolyKataTests
 {
@@ -50,7 +53,6 @@ namespace MonopolyKataTests
             board.Move(player,1);
 
             Assert.That(player.Location, Is.EqualTo(0));
-
         }
 
         [Test]
@@ -60,6 +62,81 @@ namespace MonopolyKataTests
             MonopolyPlayer player = new MonopolyPlayer("Horse");
             Assert.That(player.Balence, Is.EqualTo(0));
         }
+
+        [Test]
+        public void APlayerShouldHaveNoCardsToStart()
+        {
+            MonopolyPlayer player = new MonopolyPlayer("Horse");
+            Assert.That(player.GetNumberOfCards(), Is.EqualTo(0));
+        }
+
+        [Test]
+        public void IfAPlayerHasNoCardsTheGetCardFunctionShouldReturnNull()
+        {
+            MonopolyPlayer player = new MonopolyPlayer("Horse");
+
+            ICard card;
+
+            card = player.GetCardByIndex(0);
+
+            Assert.That(card, Is.EqualTo(null));
+        }
+
+        [Test]
+        public void IfAPlayerHasACardAddedTheCardCountShouldIncreaseByOne()
+        {
+            MonopolyPlayer player = new MonopolyPlayer("Horse");
+
+            ICard card;
+
+            card = new Card("test", Moq.It.IsAny<IWhenDrawnStrategy>());
+
+            Assert.That(player.GetNumberOfCards(), Is.EqualTo(0));
+
+            player.AddCard(card);
+
+            Assert.That(player.GetNumberOfCards(), Is.EqualTo(1));
+        }
+
+        [Test]
+        public void IfAPlayerHasACardRemovedTheCardCountShouldDecreaseByOne()
+        {
+            MonopolyPlayer player = new MonopolyPlayer("Horse");
+
+            ICard card;
+
+            card = new Card("test", Moq.It.IsAny<IWhenDrawnStrategy>());
+
+            player.AddCard(card);
+
+            Assert.That(player.GetNumberOfCards(), Is.EqualTo(1));
+
+            player.RemoveCard(card);
+
+            Assert.That(player.GetNumberOfCards(), Is.EqualTo(0));
+        }
+
+        [Test]
+        public void IfAPlayerTryToRemovedACardThatItDoesNotHaveTheCountWillRemainUnchanged()
+        {
+            MonopolyPlayer player = new MonopolyPlayer("Horse");
+
+            ICard card1 = new Card("test", Moq.It.IsAny<IWhenDrawnStrategy>());
+            ICard card2 = new Card("test", Moq.It.IsAny<IWhenDrawnStrategy>());
+
+            player.AddCard(card1);
+
+            Assert.That(player.GetNumberOfCards(), Is.EqualTo(1));
+
+            player.RemoveCard(card2);
+
+            Assert.That(player.GetNumberOfCards(), Is.EqualTo(1));
+        }
+
+
+
+
+
 
       
     }
