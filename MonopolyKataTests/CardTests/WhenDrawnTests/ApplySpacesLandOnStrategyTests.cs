@@ -45,11 +45,6 @@ namespace MonopolyKataTests.CardTests.WhenDrawnTests
 
             Assert.That(count, Is.EqualTo(1));
         }
-
-
-
-       
-
     }
 }
 

@@ -9,6 +9,6 @@ namespace MonopolyKata.Deck
 {
     public interface IDeck
     {
-        void Draw(IPlayer player);
+        string Draw(IPlayer player);
     }
 }

@@ -4,21 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MonopolyKata.Cards;
+using MonopolyKata.Player;
+
 
 namespace MonopolyKata.Deck
 {
     public class Deck : IDeck
     {
-        List<ICard> cards;
-
+        List<ICard> drawnCards;
+        Stack<ICard> cardsToDraw;
         public Deck( params ICard[] cards)
         {
-            this.cards = cards.ToList();
+            cardsToDraw = new Stack<ICard>(cards);
         }
 
-        public void Draw(Player.IPlayer player)
+        public string Draw(IPlayer player)
         {
-            throw new NotImplementedException();
+            ICard card;
+
+            card = cardsToDraw.Pop();
+
+            card.Draw(player);
+
+            return (card.flavorText);
         }
     }
 }
