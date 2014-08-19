@@ -48,11 +48,13 @@
     <Compile Include="BoardTests.cs" />
     <Compile Include="CardTests\DeckTests.cs" />
     <Compile Include="CardTests\WhenDrawnTests\AddFundsTests.cs" />
+    <Compile Include="CardTests\WhenDrawnTests\ApplySpacesLandOnStrategyTests.cs" />
     <Compile Include="CardTests\WhenDrawnTests\GetFundsFromOtherPlayersTests.cs" />
     <Compile Include="CardTests\WhenDrawnTests\AdvanceToClosestTests.cs" />
     <Compile Include="CardTests\WhenDrawnTests\MakePlayerOwnerStrategyTests.cs" />
     <Compile Include="CardTests\WhenDrawnTests\SubtractFundsTests.cs" />
     <Compile Include="CardTests\CardTests.cs" />
+    <Compile Include="DeckTests.cs" />
     <Compile Include="SpaceTests\CardSpaceTests.cs" />
     <Compile Include="SpaceTests\GoSpaceTests.cs" />
     <Compile Include="PlayerTests.cs" />

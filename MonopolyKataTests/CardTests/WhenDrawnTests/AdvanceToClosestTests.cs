@@ -37,6 +37,8 @@ namespace MonopolyKataTests.CardTests.WhenDrawnTests
         public void TheAdvanceToClosestStategyShouldTakeAnArrayOfBoardSpaces()
         {
             AdvanceToClosestStrategy moveToStrategy = new AdvanceToClosestStrategy(boardSpace1, boardSpace2);
+
+            Assert.That(moveToStrategy, Is.Not.Null);
         }
 
         [Test]
