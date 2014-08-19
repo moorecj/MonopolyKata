@@ -10,15 +10,16 @@ namespace MonopolyKata.Cards
 {
     public class Card : ICard
     {
-        public string flavorText{get; private set;}
-        IWhenDrawnStrategy whenDrawnStrategy;
+        public string flavorText{get; set;}
+        public IWhenDrawnStrategy whenDrawnStrategy;
+
+        public Card() { }
 
         public Card(string flavorText, IWhenDrawnStrategy whenDrawnStrategy )
         {
             this.flavorText = flavorText;
             this.whenDrawnStrategy = whenDrawnStrategy;
         }
-
 
         public void Draw(IPlayer player)
         {

@@ -1,4 +1,6 @@
 ﻿using System;
+using MonopolyKata.Cards;
+
 namespace MonopolyKata.Player
 {
     public interface IPlayer
@@ -7,5 +9,9 @@ namespace MonopolyKata.Player
         int lastRoll { get; set; }
         int Location { get; set; }
         string name { get; set; }
+
+        void AddCard( ICard card);
+        int GetNumberOfCard();
+        ICard GetCard(int cardNumber);
     }
 }

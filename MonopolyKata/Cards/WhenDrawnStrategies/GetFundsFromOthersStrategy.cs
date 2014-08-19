@@ -9,7 +9,6 @@ namespace MonopolyKata.Cards.WhenDrawnStrategies
 {
     public class GetFundsFromOthersStrategy: IWhenDrawnStrategy
     {
-
        
             private int amountToTransfer;
             IPlayerOrderSetup playerSetup;
