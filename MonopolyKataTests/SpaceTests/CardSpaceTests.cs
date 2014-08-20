@@ -1,30 +1,26 @@
 ﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using MonopolyKata.Board;
 using MonopolyKata.Board.Spaces;
-using MonopolyKata.Setup;
-
+using MonopolyKata.Deck;
+using MonopolyKata.Cards;
+using Moq;
 
 namespace MonopolyKataTests.SpaceTests
 {
     [TestFixture]
-    public class CardSpaceTests
+    public class DeckSpaceTests
     {
         [Test]
-        public void ACardSpaceShouldTakeAPlayerSetup()
+        public void ADeckSpaceShouldTakeADeck()
         {
-            PlayerOrderSetup setup = new PlayerOrderSetup("player1","player2");
-            MonopolyGameBoard gameBoard = new MonopolyGameBoard();
+            IDeck deck = new Deck(Moq.It.IsAny<Card>());
 
-            CardSpace cardSpace = new CardSpace("card space", gameBoard, setup);
-
-            Assert.That(cardSpace, Is.Not.Null);
+            Assert.That(deck, Is.Not.Null);
         }
-
-
     }
 }
