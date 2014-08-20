@@ -17,16 +17,22 @@ namespace MonopolyKata.Deck
         public Deck( params ICard[] cards)
         {
             cardsToDraw = new Stack<ICard>(cards.Shuffle());
+            drawnCards = new List<ICard>();
         }
 
         public string Draw(IPlayer player)
         {
             ICard card;
-
             card = cardsToDraw.Pop();
-
             card.Draw(player);
 
+            drawnCards.Add(card);
+
+            if(cardsToDraw.Count == 0)
+            {
+                cardsToDraw = new Stack<ICard>(drawnCards.Shuffle());
+            }
+                
             return (card.flavorText);
         }
     }

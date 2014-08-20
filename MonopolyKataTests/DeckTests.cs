@@ -13,11 +13,6 @@ namespace MonopolyKataTests
     [TestFixture]
     public class DeckTests
     {
-        [SetUp]
-        public void SetUp()
-        {
-            
-        }
         
         [Test]
         public void ADeckShouldTakeAnArrayOfCards()
@@ -43,7 +38,7 @@ namespace MonopolyKataTests
 
 
         [Test]
-        public void ADeckShouldPlaceThoseCardsInRandomOrder()
+        public void ADeckShouldPlaceCardsInRandomOrderUponDeckCreation()
         {
             ICard card1 = new Card("card1 text", new AddFundsStrategy(0));
             ICard card2 = new Card("card2 text", new AddFundsStrategy(0));
@@ -66,6 +61,40 @@ namespace MonopolyKataTests
             Assert.That(diffentCount, Is.GreaterThan(1));
             Assert.That(diffentCount, Is.LessThan(99));
         }
+
+
+        [Test]
+        public void ADeckShouldReshuffleTheDrawnCardsInOnceAllTheCardsRunOUt()
+        {
+            ICard card1 = new Card("card1 text", new AddFundsStrategy(0));
+            ICard card2 = new Card("card2 text", new AddFundsStrategy(0));
+
+            IDeck deck = new Deck(card1, card2);
+
+            int diffentCount = 0; 
+
+            for (int i = 0; i < 100; ++i)
+            {
+                String text1 = deck.Draw(new MonopolyPlayer("Player"));
+                deck.Draw(new MonopolyPlayer("Player"));
+
+                String text2 = deck.Draw(new MonopolyPlayer("Player"));
+                deck.Draw(new MonopolyPlayer("Player"));
+
+                if(text1.Equals(text2))
+                {
+                    diffentCount++;
+                }
+
+
+            }
+
+            Assert.That(diffentCount, Is.GreaterThan(1));
+            Assert.That(diffentCount, Is.LessThan(99));
+        }
+
+
+
 
 
     }
