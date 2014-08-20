@@ -24,5 +24,7 @@ namespace MonopolyKataTests.SpaceTests
 
             Assert.That(cardSpace, Is.Not.Null);
         }
+
+
     }
 }

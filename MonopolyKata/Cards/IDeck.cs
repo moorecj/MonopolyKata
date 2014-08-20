@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace MonopolyKata.Cards
 {
-    interface IDeck
+    public interface IDeck
     {
+        void Shuffle();
+        void DrawCard(MonopolyPlayer player);
     }
 }

@@ -13,6 +13,12 @@ namespace MonopolyKataTests
     [TestFixture]
     public class DeckTests
     {
+        [SetUp]
+        public void SetUp()
+        {
+            
+        }
+        
         [Test]
         public void ADeckShouldTakeAnArrayOfCards()
         {
@@ -23,7 +29,9 @@ namespace MonopolyKataTests
         [Test]
         public void ADeckShouldReturnTheDrawnCardsTextWhenTheCardIsDrawn()
         {
-            ICard card1 = new Card("card1 text", Moq.It.IsAny<IWhenDrawnStrategy>());
+            IWhenDrawnStrategy strategy = new AddFundsStrategy(0);
+            
+            ICard card1 = new Card("card1 text", strategy);
 
             IDeck deck = new Deck(card1);
 
@@ -37,12 +45,26 @@ namespace MonopolyKataTests
         [Test]
         public void ADeckShouldPlaceThoseCardsInRandomOrder()
         {
-            ICard card1 = new Card("card1 text", Moq.It.IsAny<IWhenDrawnStrategy>());
-            ICard card2 = new Card("card2 text", Moq.It.IsAny<IWhenDrawnStrategy>());
+            ICard card1 = new Card("card1 text", new AddFundsStrategy(0));
+            ICard card2 = new Card("card2 text", new AddFundsStrategy(0));
             
-            ICard[] cardsArray = { card1, card2 };
 
-            IDeck deck = new Deck(cardsArray);
+            List<IDeck> ListOfDecks = new List<IDeck>();
+
+            for (int i = 0; i < 100; ++i)
+            {
+                ListOfDecks.Add(new Deck(card1, card2));
+            }
+
+
+            IEnumerable<IDeck> differentOrder = from g in ListOfDecks
+                                                where g.Draw(new MonopolyPlayer("Player")).Equals("card2 text")
+                                                select g;
+
+            int diffentCount = differentOrder.Count();
+
+            Assert.That(diffentCount, Is.GreaterThan(1));
+            Assert.That(diffentCount, Is.LessThan(99));
         }
 
 

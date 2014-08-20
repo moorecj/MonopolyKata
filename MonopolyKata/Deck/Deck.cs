@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MonopolyKata.Cards;
 using MonopolyKata.Player;
+using MonopolyKata.Extensions;
 
 
 namespace MonopolyKata.Deck
@@ -15,7 +16,7 @@ namespace MonopolyKata.Deck
         Stack<ICard> cardsToDraw;
         public Deck( params ICard[] cards)
         {
-            cardsToDraw = new Stack<ICard>(cards);
+            cardsToDraw = new Stack<ICard>(cards.Shuffle());
         }
 
         public string Draw(IPlayer player)
