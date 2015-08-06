@@ -19,6 +19,7 @@ namespace MonopolyKata
         public TurnEngine(IDice dice, MonopolyGameBoard gameBoard)
         {
             this.dice = dice;
+
             this.gameBoard = gameBoard;
         }
 
